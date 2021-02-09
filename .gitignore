@@ -1,0 +1,5 @@
+#Npm and Yarn config files
+node_modules/
+
+#PyCharm
+.idea/
