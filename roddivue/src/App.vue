@@ -17,15 +17,18 @@ import axios from 'axios'
 
 export default class App extends Vue {
   name: 'App' | undefined;
-  notes: undefined;
+  notes: [] | undefined;
+  data() {
+    return{
+      notes: []
+    }
+  }
 
   mounted(){
     axios.get('http://localhost:8000/api/notes/').then((response) => {
       this.notes = response.data
-      console.log(this.data)
-  })
-}
-
+    })
+  }
 }
 
 

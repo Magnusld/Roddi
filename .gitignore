@@ -1,5 +1,14 @@
 #Npm and Yarn config files
 node_modules/
+Lib/
 
 #PyCharm
 .idea/
+/Scripts/
+
+#Venv
+/venv/
+pyvenv.cfg
+
+#Database
+#roddidjango/db.sqlite3
