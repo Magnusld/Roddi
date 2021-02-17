@@ -1,6 +1,7 @@
 #Npm and Yarn config files
 node_modules/
-Lib/
+lib/
+/bin/
 
 #PyCharm
 .idea/
@@ -8,6 +9,7 @@ Lib/
 
 #Venv
 /venv/
+venv/
 pyvenv.cfg
 
 #Database
