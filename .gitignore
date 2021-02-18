@@ -1,5 +1,9 @@
 #Npm and Yarn config files
 node_modules/
+lib/
 
 #PyCharm
 .idea/
+
+#Python
+venv/
