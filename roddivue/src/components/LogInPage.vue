@@ -1,5 +1,5 @@
 <template>
-  <p>Har routa te Loginpage</p>
+
 </template>
 
 <script lang="ts">
