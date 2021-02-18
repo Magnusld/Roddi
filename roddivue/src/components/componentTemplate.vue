@@ -1,5 +1,5 @@
 <template>
-
+  <p>Dette komponentet er kun et template</p>
 </template>
 
 <script lang="ts">

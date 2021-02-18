@@ -1,5 +1,8 @@
 <template>
-  <LogInPage />
+  <div class="p-d-flex">
+    <img src="../assets/RODDI-logo.png">
+    <LogInPage />
+  </div>
 </template>
 
 <script lang="ts">
@@ -15,5 +18,9 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
+
+.p-d-flex {
+  justify-content: center;
+}
 
 </style>
