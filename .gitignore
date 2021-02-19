@@ -5,6 +5,8 @@ lib/
 
 #PyCharm
 .idea/
+.idea/vcs.xml
+.idea/workspace.xml
 /Scripts/
 
 #Venv

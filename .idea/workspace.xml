@@ -2,27 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f04f6da2-f639-4e2b-827c-ecd0faab75d9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/roddidjango/apps/notes/migrations/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roddidjango/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roddidjango/notes/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/roddidjango/apps/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roddidjango/notes/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/roddidjango/apps/notes/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roddidjango/notes/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/roddidjango/apps/notes/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roddidjango/notes/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/roddidjango/apps/notes/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roddidjango/notes/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/roddidjango/apps/notes/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roddidjango/notes/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/roddidjango/apps/notes/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roddidjango/notes/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/roddidjango/apps/notes/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roddidjango/notes/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/roddidjango/apps/notes/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roddidjango/notes/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/roddidjango/apps/notes/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roddidjango/notes/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/roddidjango/apps/notes/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roddidjango/roddi/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/roddidjango/roddi/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roddidjango/roddi/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/roddidjango/roddi/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roddivue/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/roddivue/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roddivue/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/roddivue/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roddivue/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/roddivue/src/main.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,8 +47,15 @@
       <workItem from="1612857453432" duration="5577000" />
       <workItem from="1613470597056" duration="768000" />
       <workItem from="1613652090126" duration="323000" />
-      <workItem from="1613747106450" duration="39000" />
+      <workItem from="1613747106450" duration="240000" />
     </task>
+    <task id="LOCAL−00001" summary="Merge fra master inn til 5-handtere-innlogging&#10;&#10;# Conflicts:&#10;#&#9;roddivue/package-lock.json&#10;#&#9;roddivue/package.json&#10;#&#9;roddivue/src/App.vue&#10;#&#9;roddivue/src/main.ts">
+      <created>1613747228149</created>
+      <option name="number" value="LOCAL−00001" />
+      <option name="presentableId" value="LOCAL−00001" />
+      <updated>1613747228149</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -85,5 +72,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Merge fra master inn til 5-handtere-innlogging&#10;&#10;# Conflicts:&#10;#&#9;roddivue/package-lock.json&#10;#&#9;roddivue/package.json&#10;#&#9;roddivue/src/App.vue&#10;#&#9;roddivue/src/main.ts" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge fra master inn til 5-handtere-innlogging&#10;&#10;# Conflicts:&#10;#&#9;roddivue/package-lock.json&#10;#&#9;roddivue/package.json&#10;#&#9;roddivue/src/App.vue&#10;#&#9;roddivue/src/main.ts" />
   </component>
 </project>
