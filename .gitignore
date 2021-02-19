@@ -13,4 +13,4 @@ venv/
 pyvenv.cfg
 
 #Database
-#roddidjango/db.sqlite3
+roddidjango/db.sqlite3
