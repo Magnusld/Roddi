@@ -1,24 +1,16 @@
-# roddivue
+# Røddi front-end
 
-## Project setup
+For å kjøre front-end serveren skriv inn i terminalen:
 ```
-npm install
+cd roddivue && yarn install && yarn serve
 ```
+Dersom man gjør endringer på kode eller legger til kode i roddivue
+mappa, husk å linte, se "Lints and fixes"
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
 
 ### Lints and fixes files
+Skal linte før man commiter endringer i koden, for å overholde codestyle
 ```
-npm run lint
+yarn lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
