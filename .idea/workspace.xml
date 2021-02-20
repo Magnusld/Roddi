@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f04f6da2-f639-4e2b-827c-ecd0faab75d9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roddivue/src/Views/LogInView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/roddivue/src/Views/LogInView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roddivue/src/Views/ViewTemplate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/roddivue/src/Views/ViewTemplate.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roddivue/src/assets/RØDDI- logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/roddivue/src/assets/RODDI-logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roddivue/src/components/componentTemplate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/roddivue/src/components/componentTemplate.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roddivue/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/roddivue/src/store/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roddivue/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/roddivue/src/assets/logo.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
