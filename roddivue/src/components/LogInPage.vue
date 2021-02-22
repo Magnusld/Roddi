@@ -19,7 +19,7 @@
         </div>
         <div class="ButtonBar">
           <Button type="submit" class="p-button-raised">Logg inn</Button>
-          <Button class="p-button-text">Opprett ny bruker</Button>
+          <Button class="p-button-text" @click="$router.push('signup')">Opprett ny bruker</Button>
         </div>
       </form>
     </template>
