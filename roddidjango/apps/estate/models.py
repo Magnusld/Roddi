@@ -8,5 +8,6 @@ class Estate(models.Model):
 class EstateItem(models.Model):
     name = models.CharField(max_length=255)
     #bilde? hvordan legge til?
+    description = models.TextField()
     value = models.DecimalField(max_digits=12,decimal_places=2)
-    belongs_to = models.ForeignKey(to=Estate,on_delete=models.CASCADE)
+    belongs_to = models.ForeignKey(to=Estate,related_name="items",on_delete=models.CASCADE)
