@@ -17,4 +17,5 @@ pyvenv.cfg
 #Database
 roddidjango/db.sqlite3
 
-
+#Div
+.DS_Store
