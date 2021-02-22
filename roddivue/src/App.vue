@@ -6,11 +6,20 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import store from './store'
+import axios from "axios";
 
 export default defineComponent({
   name: 'App',
-  components: {
-  },
+  beforeCreate() {
+      this.$store.commit('initializeStore')
+      const token = this.$store.state.token
+      if (token) {
+        axios.defaults.headers.common['Authorization'] = "Token " + token
+      } else {
+        axios.defaults.headers.common['Authorization'] = ""
+      }
+    }
 });
 </script>
 
