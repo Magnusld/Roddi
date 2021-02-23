@@ -43,8 +43,6 @@ REST_FRAMEWORK = {
     )
 }
 
-
-
 # Application definition
 
 INSTALLED_APPS = [
