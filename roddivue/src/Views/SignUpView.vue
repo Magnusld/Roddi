@@ -1,19 +1,19 @@
 <template>
   <div class="p-d-flex">
     <img src="../assets/RODDI-logo.png">
-    <LogInPage />
+    <SignUpPage />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue"
-import LogInPage from "@/components/LogInPage.vue";
+import SignUpPage from "@/components/SignUpPage.vue";
 import axios from "axios";
 
 export default defineComponent({
-  name: "LogInView",
+  name: "SignUpView",
   components: {
-    LogInPage
+    SignUpPage
   },
 })
 </script>
