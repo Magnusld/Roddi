@@ -1,6 +1,8 @@
 import {createWebHistory, createRouter} from "vue-router";
 import LogInView from "@/Views/LogInView.vue";
-import store from '../store'
+import store from '../store';
+import DashboardView from "@/Views/DashboardView.vue"
+
 const routerHistory = createWebHistory()
 
 const router = createRouter({
@@ -17,6 +19,12 @@ const router = createRouter({
             component: LogInView,
             props: {mode: "signup"}
         },
+        {
+            path: "/minside",
+            name: "Min Side",
+            component: DashboardView
+        },
+
     ],
 });
 
