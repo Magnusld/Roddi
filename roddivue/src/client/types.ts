@@ -17,6 +17,29 @@ export interface LogInResponse {
 export interface UserResponse {
     id: number;
     username: string;
-    admin: boolean;
     // put in all relevent user data, email, name etc, whatever we ask for in signup, and store.
+}
+
+export interface NewEstateRequest {
+    name: string;
+    participants: UserResponse[] | null;
+}
+
+export interface EstateResponse {
+    id: number;
+    name: string;
+    participants: UserResponse[] | null;
+    items: ItemResponse[] | null;
+}
+
+export interface NewItemRequest {
+    name: string;
+    description: string;
+    belongs_to: EstateResponse;
+}
+
+export interface ItemResponse {
+    id: number;
+    name: string;
+    description: string;
 }
