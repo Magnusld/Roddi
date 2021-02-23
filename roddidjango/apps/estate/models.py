@@ -4,7 +4,7 @@ from django.db import models
 
 class Estate(models.Model):
     name = models.CharField(max_length=255)
-    participants = models.ManyToManyField(to=User, related_name='users', null=True)
+    participants = models.ManyToManyField(to=User, related_name='users', blank=True)
 
     def __str__(self):
         return self.name
