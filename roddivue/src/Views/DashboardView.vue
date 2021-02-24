@@ -1,7 +1,8 @@
 <template>
   <p>Min side</p>
-  <div class="p-d-flex">
-    <DashboardPage />
+  <div
+      class="p-d-flex">
+    <DashboardPage/>
   </div>
 </template>
 
@@ -15,7 +16,8 @@ export default defineComponent({
   components: {
     DashboardPage,
   },
-   props: {},
+   props: {
+  }
 })
 </script>
 
