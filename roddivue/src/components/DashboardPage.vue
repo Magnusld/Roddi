@@ -1,16 +1,10 @@
 <template>
-  <p></p>
-
-<div class="sizes">
-
-    <Button label="Large" icon="pi pi-check" class="p-button"
-          >Opprett dødsbo</Button>
-
+  <div class="sizes">
+    <Button label="Large" icon="pi pi-check" class="p-button">
+      Opprett dødsbo
+    </Button>
   <!---@click="handleClick($event)"-->
-
-
-</div>
-
+  </div>
 </template>
 
 <script lang="ts">

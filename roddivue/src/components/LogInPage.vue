@@ -70,7 +70,7 @@ export default defineComponent({
 
               localStorage.setItem("token", token)
 
-              this.$router.push('')
+              this.$router.push('minside')
           })
           .catch(error => {
               if (error.response) {

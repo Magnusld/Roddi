@@ -6,7 +6,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import store from './store'
 import axios from "axios";
 
 export default defineComponent({

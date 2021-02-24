@@ -1,9 +1,7 @@
 <template>
   <p>Min side</p>
-
-  <div
-      class="p-d-flex">
-    <DashboardPage v-if="mode === 'login'"/>
+  <div class="p-d-flex">
+    <DashboardPage />
   </div>
 </template>
 
@@ -11,18 +9,13 @@
 import DashboardPage from "@/components/DashboardPage.vue";
 import { defineComponent } from "vue"
 
+
 export default defineComponent({
-  name: "DashboardView", // name should in most cases be the same as the file name
-  components: {DashboardPage,
-
+  name: "DashboardView",
+  components: {
+    DashboardPage,
   },
-
-   props: {
-    mode: {
-      type: String,
-      default: "login"
-    }
-  }
+   props: {},
 })
 </script>
 

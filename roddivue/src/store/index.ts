@@ -1,7 +1,7 @@
-// eslint-disable-next-line
 import { createStore } from 'vuex'
 
-export default createStore({
+
+export const store =  createStore({
     state: {
         user: {
           username: ''
