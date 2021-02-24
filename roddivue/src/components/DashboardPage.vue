@@ -1,8 +1,19 @@
 <template>
-  <div class="items">
-    <Button label="Large" icon="pi pi-check" class="p-button">
-      Opprett dødsbo
-    </Button>
+  <div class="p-d-flex">
+    <div class="items">
+      <Button label="Large" icon="pi pi-check" class="p-button" @click="swapState">
+        Opprett nytt dødsbo
+      </Button>
+    </div>
+    <Divider layout="vertical" />
+    <Card style="width: 25rem; margin-bottom: 2em" v-if="newEstate === true">
+      <template #content>
+        <h4>Navn på nytt Dødsbo:</h4>
+        <InputText type="text" v-model="estateName"></InputText>
+        <Button icon="pi pi-check" class="p-button" @click="swapState">Send</Button>
+      </template>
+    </Card>
+
   </div>
 </template>
 
@@ -10,26 +21,47 @@
 
 import {defineComponent} from "vue";
 import Button from 'primevue/button';
+import Card from "primevue/card";
+import InputText from "primevue/inputtext";
+import Divider from 'primevue/divider';
+
 export default defineComponent({
   name: "DashboardPage",
   props: {
   },
   components: {
-    Button
+    Button,
+    Card,
+    InputText,
+    Divider
   },
   setup() {
     return {
     }
   },
   methods: {
-  }
+    swapState() {
+      if (this.newEstate == false)
+        this.newEstate = true
+      else
+        this.newEstate = false
+    }
+  },
+  data() {
+    return {
+      estateName: "",
+      newEstate: false
+    }
+  },
 })
 </script>
 
 
 <style scoped lang="scss">
 .items {
-  justify-content: left;
+  position: absolute;
+  left: 0;
+  padding-top: 40px;
 }
 
 </style>
