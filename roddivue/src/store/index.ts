@@ -1,7 +1,7 @@
-// eslint-disable-next-line
 import { createStore } from 'vuex'
 
-export default createStore({
+
+export const store =  createStore({
     state: {
         user: {
           username: ''
@@ -23,6 +23,12 @@ export default createStore({
             state.token = token
             state.isAuthenticated = true
         },
+        setUsername(state, username) {
+            state.user.username = username
+        },
+        removeUsername(state) {
+            state.user.username = ''
+        },
         removeToken(state) {
             state.token = ''
             state.isAuthenticated = false
@@ -31,5 +37,9 @@ export default createStore({
     actions: {
     },
     modules: {
+    },
+    getters: {
+        getUsername: state => state.user.username,
+        getLoggedInStatus: state => state.isAuthenticated
     }
 })

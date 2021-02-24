@@ -1,6 +1,10 @@
 import {createWebHistory, createRouter} from "vue-router";
 import LogInView from "@/Views/LogInView.vue";
-import store from '../store'
+import DashboardView from "@/Views/DashboardView.vue"
+import {store} from "@/store";
+import UserView from "@/Views/UserView.vue";
+import EstateView from "@/Views/EstateView.vue";
+
 const routerHistory = createWebHistory()
 
 const router = createRouter({
@@ -17,7 +21,39 @@ const router = createRouter({
             component: LogInView,
             props: {mode: "signup"}
         },
+        {
+            path: "/",
+            name: "Min Side",
+            component: DashboardView,
+            meta: {
+                requireLogin:true
+            }
+        },
+        {
+            path: "/user",
+            name: "Bruker",
+            component: UserView,
+            meta: {
+                requireLogin:true
+            }
+        },
+        {
+            path: "/estates",
+            name: "Dødsbo",
+            component: EstateView,
+            meta: {
+                requireLogin:true
+            }
+        },
     ],
 });
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requireLogin) && !store.state.isAuthenticated) {
+    next('/login')
+  } else {
+    next()
+  }
+})
 
 export default router;
