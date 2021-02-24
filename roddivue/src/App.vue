@@ -1,4 +1,5 @@
 <template>
+  <TabMenu :model="items" v-if="StoreStateLoggedIn"/>
   <div>
     <router-view />
   </div>
@@ -7,9 +8,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import axios from "axios";
+import TabMenu from "primevue/tabmenu";
 
 export default defineComponent({
   name: 'App',
+  components: {
+    TabMenu
+  },
   beforeCreate() {
       this.$store.commit('initializeStore')
       const token = this.$store.state.token
@@ -17,6 +22,19 @@ export default defineComponent({
         axios.defaults.headers.common['Authorization'] = "Token " + token
       } else {
         axios.defaults.headers.common['Authorization'] = ""
+      }
+    },
+    data () {
+    return {
+      items: [
+        {label: 'Hjem', icon: 'pi pi-fw pi-home', to: '/'},
+        {label: 'Bruker', icon: 'pi pi-fw pi-cog', to: '/user'}
+        ]
+      }
+    },
+    computed: {
+      StoreStateLoggedIn () {
+        return this.$store.getters.getLoggedInStatus
       }
     }
 });
@@ -29,6 +47,6 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0;
 }
 </style>

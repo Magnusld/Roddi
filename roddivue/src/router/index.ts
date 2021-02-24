@@ -2,6 +2,7 @@ import {createWebHistory, createRouter} from "vue-router";
 import LogInView from "@/Views/LogInView.vue";
 import DashboardView from "@/Views/DashboardView.vue"
 import {store} from "@/store";
+import UserView from "@/Views/UserView.vue";
 
 const routerHistory = createWebHistory()
 
@@ -20,9 +21,17 @@ const router = createRouter({
             props: {mode: "signup"}
         },
         {
-            path: "/minside",
+            path: "/",
             name: "Min Side",
             component: DashboardView,
+            meta: {
+                requireLogin:true
+            }
+        },
+        {
+            path: "/user",
+            name: "Bruker",
+            component: UserView,
             meta: {
                 requireLogin:true
             }

@@ -9,7 +9,6 @@
 <script lang="ts">
 import { defineComponent } from "vue"
 import LogInPage from "@/components/LogInPage.vue";
-import axios from "axios";
 import SignUpPage from "@/components/SignUpPage.vue";
 
 export default defineComponent({

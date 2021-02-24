@@ -1,26 +1,19 @@
 <template>
-    <DashboardPage/>
+  <UserPage />
 </template>
 
 <script lang="ts">
-import DashboardPage from "@/components/DashboardPage.vue";
 import { defineComponent } from "vue"
-
+import UserPage from "@/components/UserPage.vue"
 
 export default defineComponent({
-  name: "DashboardView",
+  name: "UserView",
   components: {
-    DashboardPage,
-  },
-   props: {
+    UserPage
   }
 })
 </script>
 
 <style scoped lang="scss">
-
-.p-d-flex {
-  justify-content: center;
-}
 
 </style>

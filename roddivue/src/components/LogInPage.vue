@@ -63,6 +63,7 @@ export default defineComponent({
               const token = response.data.auth_token
 
               this.$store.commit('setToken', token)
+              this.$store.commit('setUsername', formData.username)
 
               axios.defaults.headers.common["Authorization"] = "Token " + token
 
@@ -70,7 +71,7 @@ export default defineComponent({
 
               localStorage.setItem("token", token)
 
-              this.$router.push('/minside')
+              this.$router.push('/')
           })
           .catch(error => {
               if (error.response) {
