@@ -59,7 +59,7 @@ export default defineComponent({
       const formData = {
         email: this.email,
         username: this.username,
-        password: this.password
+        password: this.password,
       }
       console.log(formData);
       axios

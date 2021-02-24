@@ -3,7 +3,7 @@
 
   <div
       class="p-d-flex">
-    <DashboardPage v-if="mode === 'login'"/>
+    <DashboardPage/>
   </div>
 </template>
 
@@ -18,10 +18,6 @@ export default defineComponent({
   },
 
    props: {
-    mode: {
-      type: String,
-      default: "login"
-    }
   }
 })
 </script>
