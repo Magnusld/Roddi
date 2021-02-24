@@ -43,8 +43,6 @@ REST_FRAMEWORK = {
     )
 }
 
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -58,7 +56,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'djoser',
-    'apps.notes'
+    'apps.estate',
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -122,6 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'users.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

@@ -1,0 +1,3 @@
+#Python cachefiler
+*.pyc
+__pycache__/
