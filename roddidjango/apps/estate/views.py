@@ -15,5 +15,4 @@ class EstateItemViewSet(viewsets.ModelViewSet):
     queryset = EstateItem.objects.all()
 
     def get_queryset(self):
-
-        return self.queryset.filter(belongs_to=self.request.query_params.get('estateID'))
+        return self.queryset.filter(belongs_to=self.request.query_params.get(key='estateID', default=None))
