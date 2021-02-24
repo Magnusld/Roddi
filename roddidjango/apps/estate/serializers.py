@@ -15,3 +15,5 @@ class EstateSerializer(serializers.ModelSerializer):
 class EstateItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = EstateItem
+
+        fields = '__all__'

@@ -10,10 +10,9 @@
       <template #content>
         <h4>Navn på nytt Dødsbo:</h4>
         <InputText type="text" v-model="estateName"></InputText>
-        <Button icon="pi pi-check" class="p-button" @click="swapState">Send</Button>
+        <Button icon="pi pi-check" class="p-button" @click="handleClick">Send</Button>
       </template>
     </Card>
-
   </div>
 </template>
 
@@ -24,6 +23,7 @@ import Button from 'primevue/button';
 import Card from "primevue/card";
 import InputText from "primevue/inputtext";
 import Divider from 'primevue/divider';
+import axios from "axios";
 
 export default defineComponent({
   name: "DashboardPage",
@@ -45,6 +45,14 @@ export default defineComponent({
         this.newEstate = true
       else
         this.newEstate = false
+    },
+    handleClick(){
+      axios
+          .post("api/estates/", { name: 'estate1' })
+          .then(response => {
+            console.log(response)
+            this.$router.push('')
+          })
     }
   },
   data() {

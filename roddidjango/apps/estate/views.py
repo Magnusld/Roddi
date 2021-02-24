@@ -13,3 +13,6 @@ class EstateViewSet(viewsets.ModelViewSet):
 class EstateItemViewSet(viewsets.ModelViewSet):
     serializer_class = EstateItemSerializer
     queryset = EstateItem.objects.all()
+
+    def get_queryset(self):
+        return self.queryset.filter(belongs_to=self.request.query_params.get(key='estateID', default=None))
