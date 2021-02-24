@@ -48,10 +48,10 @@ export default defineComponent({
     },
     handleClick(){
       axios
-          .post("api/estates/", { name: 'estate1' })
+          .post("api/estates/", { name: this.estateName })
           .then(response => {
             console.log(response)
-            this.$router.push('')
+            this.swapState()
           })
     }
   },
