@@ -1,7 +1,9 @@
 <template>
   <Card>
-    <p>{{key}}</p>
-    <p>{{name}}</p>
+    <template #content>
+      <p>{{id}}</p>
+      <p>{{name}}</p>
+    </template>
   </Card>
 </template>
 
@@ -12,8 +14,18 @@ import Card from "primevue/card";
 export default defineComponent({
   name: "EstateListing",
   props: {
-    key: Number,
-    name: String
+    key: {
+      default: null,
+      type: Number
+    },
+    id: {
+      default: null,
+      type: Number
+    },
+    name: {
+      default: "",
+      type: String
+    }
   },
   components: {
     Card,
