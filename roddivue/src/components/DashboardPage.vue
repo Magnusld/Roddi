@@ -3,8 +3,7 @@
 
 <div class="sizes">
 
-    <Button label="Large" icon="pi pi-check" class="p-button"
-          >Opprett dødsbo</Button>
+    <Button @click="handleClick()" label="Large" icon="pi pi-check" class="p-button">Opprett dødsbo</Button>
 
   <!---@click="handleClick($event)"-->
 
@@ -17,6 +16,7 @@
 
 import {defineComponent} from "vue";
 import Button from 'primevue/button';
+import axios from "axios";
 export default defineComponent({
   name: "DashboardPage",
   props: { //add props here if needed
@@ -27,8 +27,14 @@ export default defineComponent({
     }
   },
   methods: {
-   // handleClick(){
-   // }
+    handleClick(){
+      axios
+          .post("api/estates/", { name: 'estate1' })
+          .then(response => {
+            console.log(response)
+            this.$router.push('')
+          })
+    }
   }
 })
 </script>
