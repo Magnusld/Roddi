@@ -1,5 +1,12 @@
-# Røddi back-end
+# Roddi back-end
 
+### Installere dependencies
+For å installere alle dependencies vi bruker, skriv i terminalen:
+```
+pip install -r requirements.txt
+```
+
+### Starte server
 For å kjøre back-end serveren skriv i terminalen:
 ```
 python manage.py runserver 
