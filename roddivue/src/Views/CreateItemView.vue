@@ -1,0 +1,20 @@
+<template>
+  <p>Lag et dødsbo</p>
+</template>
+
+<script lang="ts">
+
+import { defineComponent } from "vue";
+import {CreateItem} from "@/components/CreateItem.vue"
+
+export default defineComponent({
+  name: "CreateItemView", // name should in most cases be the same as the file name
+  components: {
+    CreateItem
+  }
+})
+</script>
+
+<style scoped lang="scss">
+
+</style>
