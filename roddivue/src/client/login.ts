@@ -1,9 +1,9 @@
 import axios from "axios";
-import {LogInRequest} from "@/client/types";
+import {LogInRequest, SignUpRequest} from "@/client/types";
 import {store} from "@/store";
 import router from "@/router";
 
-export function login(loginRequest: LogInRequest) {
+export async function login(loginRequest: LogInRequest): Promise<void> {
     if (store.getters.getLoggedInStatus)
         throw { message: "Already logged in" };
 
@@ -13,16 +13,11 @@ export function login(loginRequest: LogInRequest) {
         .post("/api/token/login/", loginRequest)
         .then(response => {
             const token = response.data.auth_token
-
             store.commit('setToken', token)
             store.commit('setUsername', loginRequest.username)
-
             axios.defaults.headers.common["Authorization"] = "Token " + token
-
             console.log(token)
-
             localStorage.setItem("token", token)
-
             router.push('/')
         })
         .catch(error => {
@@ -30,6 +25,37 @@ export function login(loginRequest: LogInRequest) {
                 for (const property in error.response.data) {
                     //this.errors.push(`${property}: ${error.response.data[property]}`)
                 }
+                console.log(JSON.stringify(error.response.data))
+            } else if (error.message) {
+                console.log(JSON.stringify(error.message))
+            } else {
+                console.log(JSON.stringify(error))
+            }
+        })
+}
+
+export async function signup(signupRequest: SignUpRequest): Promise<void> {
+    console.log(signupRequest);
+    axios
+        .post("api/users/", signupRequest)
+        .then(response => {
+            console.log(response)
+            router.push('/login')
+        })
+}
+
+export async function logout(): Promise<void> {
+    axios
+        .post("/api/token/logout/")
+        .then(response => {
+            axios.defaults.headers.common["Authorization"] = ""
+            localStorage.removeItem("token")
+            store.commit('removeToken')
+            store.commit('removeUsername')
+            router.push('/login')
+        })
+        .catch(error => {
+            if (error.response) {
                 console.log(JSON.stringify(error.response.data))
             } else if (error.message) {
                 console.log(JSON.stringify(error.message))

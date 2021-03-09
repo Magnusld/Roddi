@@ -5,8 +5,8 @@
 
 <script lang="ts">
 import {defineComponent} from "vue";
-import axios from "axios";
 import Button from "primevue/button";
+import {logout} from "@/client/login";
 
 export default defineComponent({
   name: "UserPage",
@@ -21,24 +21,7 @@ export default defineComponent({
   },
   methods: {
     logout() {
-      axios
-          .post("/api/token/logout/")
-          .then(response => {
-            axios.defaults.headers.common["Authorization"] = ""
-            localStorage.removeItem("token")
-            this.$store.commit('removeToken')
-            this.$store.commit('removeUsername')
-            this.$router.push('/login')
-          })
-          .catch(error => {
-            if (error.response) {
-              console.log(JSON.stringify(error.response.data))
-            } else if (error.message) {
-              console.log(JSON.stringify(error.message))
-            } else {
-              console.log(JSON.stringify(error))
-            }
-          })
+      logout()
     }
   },
   computed: {
