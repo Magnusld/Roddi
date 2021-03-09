@@ -3,6 +3,7 @@ import LogInView from "@/Views/LogInView.vue";
 import DashboardView from "@/Views/DashboardView.vue"
 import {store} from "@/store";
 import UserView from "@/Views/UserView.vue";
+import EstatesView from "@/Views/EstatesView.vue";
 import EstateView from "@/Views/EstateView.vue";
 
 const routerHistory = createWebHistory()
@@ -40,11 +41,16 @@ const router = createRouter({
         {
             path: "/estates",
             name: "Dødsbo",
-            component: EstateView,
+            component: EstatesView,
             meta: {
                 requireLogin:true
             }
         },
+        {
+            path: "/estate",
+            name: "DødsboSide",
+            component: EstateView,
+        }
     ],
 });
 

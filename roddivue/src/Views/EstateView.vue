@@ -1,51 +1,59 @@
 <template>
-  <EstateList
-    v-bind:estates="estates"
-  />
+  <div>
+    <div class="left-side">
+      <h2>{{name}}</h2>
+      <Card>
+        <template #title>
+          Beskrivelse
+        </template>
+        <template #content>
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+          ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+          eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+          deserunt mollit anim id est laborum."
+        </template>
+      </Card>
+      <Card>
+        <template #title>
+          The BackEnd Boiz
+        </template>
+        <template #content>
+          <p> - Magnus </p>
+          <p> - Bjørn </p>
+          <p> - Yngve </p>
+        </template>
+      </Card>
+    </div>
+    <Divider layout="vertical"/>
+    <div class="right-side">
+
+    </div>
+  </div>
+
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue"
-import EstateList from "@/components/EstateList.vue";
-import axios from "axios";
-import { EstateResponse } from "@/client/types";
+import Card from "primevue/card";
+import Divider from "primevue/divider";
 
 export default defineComponent({
   name: "EstateView",
+  props: {
+    name: {
+      type: String,
+      default: "Dødsbo"
+    }
+  },
   components: {
-    EstateList
-  },
-  data() {
-    return{
-      estates: new Array<EstateResponse>()
-    }
-  },
-  methods: {
-    getAllEstates() {
-      console.log(axios.get('api/estates/'))
-      axios.get('api/estates/').then(response => {
-        for (let i = 0; i < response.data.length; i++) {
-          const estate: EstateResponse = {
-            id: response.data[i].id,
-            name: response.data[i].name,
-            participants: null,
-            items: null
-          }
-          console.log(response.data[i])
-          this.estates.push(estate)
-        }
-        console.log(this.estates[0])
-      }).catch(error => {
-            console.log(JSON.stringify(error))
-          })
-    }
-  },
-  mounted() {
-    this.getAllEstates()
+    Card,
+    Divider
   }
 })
 </script>
 
 <style scoped lang="scss">
+
 
 </style>
