@@ -37,7 +37,8 @@ import InputText from "primevue/inputtext";
 import Password from "primevue/password";
 import Card from "primevue/card";
 import Button from "primevue/button";
-import axios from "axios";
+import {SignUpRequest} from "@/client/types";
+import {signup} from "@/client/login";
 
 export default defineComponent({
   name: "SignUpPage",
@@ -56,18 +57,12 @@ export default defineComponent({
   },
   methods: {
     submitForm(){
-      const formData = {
+      const signupRequest: SignUpRequest = {
         email: this.email,
         username: this.username,
         password: this.password,
       }
-      console.log(formData);
-      axios
-          .post("api/users/", formData)
-          .then(response => {
-            console.log(response)
-            this.$router.push('/login')
-          })
+      signup(signupRequest)
     }
   }
 })
