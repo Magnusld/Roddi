@@ -2,8 +2,15 @@
   <p>Dette komponentet er kun et template</p>
 </template>
 
+<template>
+  <InputText type="text" v-model="value" />
+</template>
+
 <script lang="ts">
 import {defineComponent} from "vue";
+import InputText from 'primevue/inputtext';
+
+
 
 
 export default defineComponent({
