@@ -20,8 +20,8 @@ class EstateItem(models.Model):
     description = models.TextField()
     value = models.DecimalField(max_digits=12, decimal_places=2)
     belongs_to = models.ForeignKey(to=Estate, related_name="items", on_delete=models.CASCADE)
-    wants_item = models.ManyToManyField(to=settings.AUTH_USER_MODEL, related_name='users', blank=True, through='ItemPriority')
-    donate_or_throw = models.ManyToManyField(to=settings.AUTH_USER_MODEL, related_name='users', blank=True, through='ItemVote')
+    wants_item = models.ManyToManyField(to=settings.AUTH_USER_MODEL, related_name='userpriorities', blank=True, through='ItemPriority')
+    donate_or_throw = models.ManyToManyField(to=settings.AUTH_USER_MODEL, related_name='uservotes', blank=True, through='ItemVote')
 
     def __str__(self):
         return str(self.name) + " - " + str(self.belongs_to.name)
