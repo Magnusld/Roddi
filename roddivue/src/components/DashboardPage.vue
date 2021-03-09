@@ -23,7 +23,8 @@ import Button from 'primevue/button';
 import Card from "primevue/card";
 import InputText from "primevue/inputtext";
 import Divider from 'primevue/divider';
-import axios from "axios";
+import { NewEstateRequest } from '@/client/types';
+import {createNewEstate} from "@/client/estate";
 
 export default defineComponent({
   name: "DashboardPage",
@@ -47,12 +48,12 @@ export default defineComponent({
         this.newEstate = false
     },
     handleClick(){
-      axios
-          .post("api/estates/", { name: this.estateName })
-          .then(response => {
-            console.log(response)
-            this.swapState()
-          })
+      const newEstateRequest: NewEstateRequest = {
+        name: this.estateName,
+        participants: null
+      }
+      createNewEstate(newEstateRequest)
+      this.swapState()
     }
   },
   data() {

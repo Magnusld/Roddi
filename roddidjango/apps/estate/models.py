@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.contrib import admin
 
 from django.conf import settings
 
@@ -35,3 +36,14 @@ class ItemPriority(models.Model):
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     item = models.ForeignKey(to=EstateItem, on_delete=models.CASCADE)
     priority = models.IntegerField(validators=[MaxValueValidator(10),MinValueValidator(0)])
+
+
+# Extra classes for making manytomanyrelations visible to the admin panel
+class ItemVoteInline(admin.TabularInline):
+    model = ItemVote
+    extra = 3
+
+class ItemPriorityInline(admin.TabularInline):
+    model = ItemPriority
+    extra = 3
+

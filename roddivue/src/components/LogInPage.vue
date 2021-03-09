@@ -33,7 +33,8 @@ import InputText from 'primevue/inputtext';
 import Password from 'primevue/password';
 import Card from 'primevue/card';
 import Button from 'primevue/button';
-import axios from "axios";
+import {login} from "@/client/login";
+import { LogInRequest } from '@/client/types';
 
 export default defineComponent({
   name: "LogInPage",
@@ -51,40 +52,11 @@ export default defineComponent({
   },
   methods: {
     submitForm() {
-      axios.defaults.headers.common["Authorization"] = ""
-      localStorage.removeItem("token")
-      const formData = {
+      const loginRequest: LogInRequest = {
           username: this.username,
           password: this.password
       }
-      axios
-          .post("/api/token/login/", formData)
-          .then(response => {
-              const token = response.data.auth_token
-
-              this.$store.commit('setToken', token)
-              this.$store.commit('setUsername', formData.username)
-
-              axios.defaults.headers.common["Authorization"] = "Token " + token
-
-              console.log(token)
-
-              localStorage.setItem("token", token)
-
-              this.$router.push('/')
-          })
-          .catch(error => {
-              if (error.response) {
-                  for (const property in error.response.data) {
-                      //this.errors.push(`${property}: ${error.response.data[property]}`)
-                  }
-                  console.log(JSON.stringify(error.response.data))
-              } else if (error.message) {
-                  console.log(JSON.stringify(error.message))
-              } else {
-                  console.log(JSON.stringify(error))
-              }
-          })
+      login(loginRequest)
     }
   }
 });
