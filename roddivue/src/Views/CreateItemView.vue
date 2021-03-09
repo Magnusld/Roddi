@@ -1,5 +1,8 @@
 <template>
-  <p>Lag et dødsbo</p>
+  <p>Legg til en gjenstand</p>
+  <CreateItem/>
+
+
 </template>
 
 <script lang="ts">
@@ -11,6 +14,11 @@ export default defineComponent({
   name: "CreateItemView", // name should in most cases be the same as the file name
   components: {
     CreateItem,
+
+
+
+
+
   }
 })
 </script>
