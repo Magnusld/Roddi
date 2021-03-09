@@ -22,7 +22,7 @@ class ItemVoteViewSet(viewsets.ModelViewSet):
     queryset = ItemVote.objects.all()
 
     def get_queryset(self):
-        return self.queryset.filter(belongs_to=self.request.query_params.get(key='userID', default=None),
+        return self.queryset.filter(user=self.request.query_params.get(key='userID', default=None),
                                     item=self.request.query_params.get(key='itemID', default=None))
 
 class ItemPriorityViewSet(viewsets.ModelViewSet):
