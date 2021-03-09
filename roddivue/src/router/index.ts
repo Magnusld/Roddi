@@ -4,6 +4,7 @@ import DashboardView from "@/Views/DashboardView.vue"
 import {store} from "@/store";
 import UserView from "@/Views/UserView.vue";
 import EstateView from "@/Views/EstateView.vue";
+import CreateItemView from "@/Views/CreateItemView.vue";
 
 const routerHistory = createWebHistory()
 
@@ -44,6 +45,11 @@ const router = createRouter({
             meta: {
                 requireLogin:true
             }
+        },
+        {
+            path: "/createitem",
+            name: "Opprett eiendel",
+            component: CreateItemView
         },
     ],
 });
