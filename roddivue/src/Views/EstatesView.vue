@@ -7,7 +7,6 @@
 <script lang="ts">
 import { defineComponent } from "vue"
 import EstateList from "@/components/EstateList.vue";
-import axios from "axios";
 import { EstateResponse } from "@/client/types";
 import {getAllEstates} from "@/client/estate";
 
