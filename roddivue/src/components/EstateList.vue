@@ -4,19 +4,33 @@
                  :id="estate.id"
                  :name="estate.name"
                  />
+  <Button @click="checkEstates"></Button>
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import {defineComponent, PropType} from "vue";
 import EstateListing from "@/components/EstateListing.vue";
+import Button from "primevue/button";
+import {EstateResponse} from "@/client/types";
 
 export default defineComponent({
   name: "EstateList",
-  components: {EstateListing},
+  components: {
+    EstateListing,
+    Button
+  },
   props: {
     estates: {
       default: [],
-      type: Array<any>()
+      type: Object as PropType<EstateResponse[]>
+    }
+  },
+  mounted() {
+    this.checkEstates()
+  },
+  methods: {
+    checkEstates() {
+      console.log(this.estates)
     }
   },
   setup() {

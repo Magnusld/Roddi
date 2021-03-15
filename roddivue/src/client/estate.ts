@@ -20,12 +20,13 @@ export async function getAllEstates(): Promise<EstateResponse[]> {
                 participants: null,
                 items: null
             }
-            console.log(response.data[i])
+            //console.log(response.data[i])
             estates.push(estate)
         }
-        console.log(estates[0])
+        //console.log(estates[0])
     }).catch(error => {
         console.log(JSON.stringify(error))
     })
+    console.log(estates)
     return estates
 }

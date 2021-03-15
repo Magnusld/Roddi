@@ -20,8 +20,14 @@ export default defineComponent({
       estates: new Array<EstateResponse>()
     }
   },
-  async mounted(): Promise<void> {
-    this.estates = await getAllEstates()
+  methods: {
+    async updateEstates(): Promise<void> {
+      this.estates = await getAllEstates()
+      console.log(this.estates)
+    }
+  },
+  created(){
+    this.updateEstates()
   }
 })
 </script>
