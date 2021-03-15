@@ -4,20 +4,17 @@
                  :id="estate.id"
                  :name="estate.name"
                  />
-  <Button @click="checkEstates"></Button>
 </template>
 
 <script lang="ts">
 import {defineComponent, PropType} from "vue";
 import EstateListing from "@/components/EstateListing.vue";
-import Button from "primevue/button";
 import {EstateResponse} from "@/client/types";
 
 export default defineComponent({
   name: "EstateList",
   components: {
-    EstateListing,
-    Button
+    EstateListing
   },
   props: {
     estates: {
@@ -26,16 +23,8 @@ export default defineComponent({
     }
   },
   mounted() {
-    this.checkEstates()
-  },
-  methods: {
-    checkEstates() {
-      console.log(this.estates)
-    }
-  },
-  setup() {
-    return {}
-  },
+    console.log(this.estates)
+  }
 })
 </script>
 

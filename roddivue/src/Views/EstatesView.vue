@@ -5,10 +5,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue"
+import { defineComponent} from "vue"
 import EstateList from "@/components/EstateList.vue";
-import { EstateResponse } from "@/client/types";
-import {getAllEstates} from "@/client/estate";
+import {EstateResponse} from "@/client/types";
+import axios from "axios";
 
 export default defineComponent({
   name: "EstatesView",
@@ -16,17 +16,32 @@ export default defineComponent({
     EstateList
   },
   data() {
-    return{
+    return {
       estates: new Array<EstateResponse>()
     }
   },
   methods: {
-    async updateEstates(): Promise<void> {
-      this.estates = await getAllEstates()
+    updateEstates() {
+      console.log(axios.get('api/estates/'))
+      axios.get('api/estates/').then(response => {
+        for (let i = 0; i < response.data.length; i++) {
+          const estate: EstateResponse = {
+            id: response.data[i].id,
+            name: response.data[i].name,
+            participants: null,
+            items: null
+          }
+          //console.log(response.data[i])
+          this.estates.push(estate)
+        }
+        //console.log(estates[0])
+      }).catch(error => {
+        console.log(JSON.stringify(error))
+      })
       console.log(this.estates)
     }
   },
-  created(){
+  mounted() {
     this.updateEstates()
   }
 })

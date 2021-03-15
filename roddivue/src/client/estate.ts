@@ -8,8 +8,9 @@ export async function createNewEstate(newEstateRequest: NewEstateRequest): Promi
             console.log(response)
         })
 }
+/*
 
-export async function getAllEstates(): Promise<EstateResponse[]> {
+export function getAllEstates(): EstateResponse[] {
     const estates = new Array<EstateResponse>()
     console.log(axios.get('api/estates/'))
     axios.get('api/estates/').then(response => {
@@ -30,3 +31,5 @@ export async function getAllEstates(): Promise<EstateResponse[]> {
     console.log(estates)
     return estates
 }
+
+ */
