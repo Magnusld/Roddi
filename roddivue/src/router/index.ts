@@ -5,6 +5,7 @@ import {store} from "@/store";
 import UserView from "@/Views/UserView.vue";
 import EstatesView from "@/Views/EstatesView.vue";
 import EstateView from "@/Views/EstateView.vue";
+import GjenstandView from "@/Views/GjenstandView.vue";
 
 const routerHistory = createWebHistory()
 
