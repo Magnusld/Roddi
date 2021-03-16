@@ -5,6 +5,7 @@ import {store} from "@/store";
 import UserView from "@/Views/UserView.vue";
 import EstateView from "@/Views/EstateView.vue";
 import CreateItemView from "@/Views/CreateItemView.vue";
+import GjenstandView from "@/Views/GjenstandView.vue";
 
 const routerHistory = createWebHistory()
 
@@ -51,6 +52,10 @@ const router = createRouter({
             name: "Opprett eiendel",
             component: CreateItemView
         },
+            path: "/item",
+            name: "Gjenstand",
+            component: GjenstandView
+        }
     ],
 });
 
