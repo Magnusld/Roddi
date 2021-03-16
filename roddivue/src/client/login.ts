@@ -1,5 +1,5 @@
 import axios from "axios";
-import {LogInRequest, SignUpRequest} from "@/client/types";
+import {LogInRequest, SignUpRequest, ItemsRequest} from "@/client/types";
 import {store} from "@/store";
 import router from "@/router";
 
@@ -63,4 +63,12 @@ export async function logout(): Promise<void> {
                 console.log(JSON.stringify(error))
             }
         })
+}
+
+export async function submitItems(itemsRequest: ItemsRequest): Promise<void> {
+    console.log(itemsRequest);
+    axios
+        .post( url: "api/NAVN PÅ stedet ting lagres", itemsRequest)
+        .then()
+
 }
