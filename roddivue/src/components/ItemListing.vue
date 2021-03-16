@@ -1,14 +1,10 @@
 <template>
   <Card>
+    <template #subtitle>
+      <p>{{name}}</p>
+    </template>
     <template #content>
-      <!--
-      -->
-      <p>{{id}}</p>
-      <router-link style="color:black"
-                   class="title"
-                   :to="'/estate/' + id">
-        {{name}}
-      </router-link>
+      {{description}}
     </template>
   </Card>
 </template>
@@ -18,7 +14,10 @@ import {defineComponent} from "vue";
 import Card from "primevue/card";
 
 export default defineComponent({
-  name: "EstateListing",
+  name: "ItemListing",
+  components: {
+    Card
+  },
   props: {
     key: {
       default: null,
@@ -31,10 +30,11 @@ export default defineComponent({
     name: {
       default: "",
       type: String
+    },
+    description: {
+      default: "",
+      type: String
     }
-  },
-  components: {
-    Card,
   },
   setup() {
     return {

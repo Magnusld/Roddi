@@ -7,21 +7,24 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import {defineComponent, PropType} from "vue";
 import EstateListing from "@/components/EstateListing.vue";
+import {EstateResponse} from "@/client/types";
 
 export default defineComponent({
   name: "EstateList",
-  components: {EstateListing},
+  components: {
+    EstateListing
+  },
   props: {
     estates: {
       default: [],
-      type: Array<any>()
+      type: Object as PropType<EstateResponse[]>
     }
   },
-  setup() {
-    return {}
-  },
+  mounted() {
+    console.log(this.estates)
+  }
 })
 </script>
 

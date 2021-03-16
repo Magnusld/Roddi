@@ -1,7 +1,9 @@
 <template>
   <TabMenu :model="items" v-if="StoreStateLoggedIn"/>
   <div>
-    <router-view />
+    <suspense>
+      <router-view />
+    </suspense>
   </div>
 </template>
 

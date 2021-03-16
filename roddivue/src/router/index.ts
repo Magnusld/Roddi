@@ -3,6 +3,7 @@ import LogInView from "@/Views/LogInView.vue";
 import DashboardView from "@/Views/DashboardView.vue"
 import {store} from "@/store";
 import UserView from "@/Views/UserView.vue";
+import EstatesView from "@/Views/EstatesView.vue";
 import EstateView from "@/Views/EstateView.vue";
 import GjenstandView from "@/Views/GjenstandView.vue";
 
@@ -41,15 +42,21 @@ const router = createRouter({
         {
             path: "/estates",
             name: "Dødsbo",
-            component: EstateView,
+            component: EstatesView,
             meta: {
                 requireLogin:true
             }
         },
         {
-            path: "/item",
-            name: "Gjenstand",
-            component: GjenstandView
+            path: "/estate/:id",
+            name: "DødsboSide",
+            component: EstateView,
+            meta: {
+                requireLogin:true
+            },
+            props: route => ({
+                id: +route.params.id
+            })
         }
     ],
 });
