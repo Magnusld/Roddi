@@ -4,6 +4,7 @@ import DashboardView from "@/Views/DashboardView.vue"
 import {store} from "@/store";
 import UserView from "@/Views/UserView.vue";
 import EstateView from "@/Views/EstateView.vue";
+import GjenstandView from "@/Views/GjenstandView.vue";
 
 const routerHistory = createWebHistory()
 
@@ -45,6 +46,11 @@ const router = createRouter({
                 requireLogin:true
             }
         },
+        {
+            path: "/item",
+            name: "Gjenstand",
+            component: GjenstandView
+        }
     ],
 });
 
