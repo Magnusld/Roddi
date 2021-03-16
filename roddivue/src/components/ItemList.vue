@@ -1,5 +1,5 @@
 <template>
-  <ScrollPanel style="width: 100%; height: 320px">
+  <ScrollPanel style="width: 100%; height: 395px">
     <ItemListing v-for="item in items"
                  :key="item.id"
                  :id="item.id"

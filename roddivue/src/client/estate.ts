@@ -1,5 +1,5 @@
 import axios from "axios";
-import {EstateResponse, NewEstateRequest} from "@/client/types";
+import {EstateResponse, ItemResponse, NewEstateRequest, UserResponse} from "@/client/types";
 
 export async function createNewEstate(newEstateRequest: NewEstateRequest): Promise<void> {
     axios
@@ -31,5 +31,19 @@ export function getAllEstates(): EstateResponse[] {
     console.log(estates)
     return estates
 }
-
  */
+
+export async function getEstateById(id: number): Promise<EstateResponse> {
+    let estateResponse: EstateResponse;
+    await axios.get('api/estates/' + id).then(response => {
+        const estate: EstateResponse = {
+            id: response.data.id,
+            name: response.data.name,
+            participants: null,
+            items: null
+        }
+        estateResponse = estate
+    })
+    console.log(estateResponse!)
+    return estateResponse!
+}

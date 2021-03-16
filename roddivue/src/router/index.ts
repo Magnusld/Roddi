@@ -47,9 +47,15 @@ const router = createRouter({
             }
         },
         {
-            path: "/estate",
+            path: "/estate/:id",
             name: "DødsboSide",
             component: EstateView,
+            meta: {
+                requireLogin:true
+            },
+            props: route => ({
+                id: +route.params.id
+            })
         }
     ],
 });

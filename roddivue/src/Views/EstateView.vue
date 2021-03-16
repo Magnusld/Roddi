@@ -1,33 +1,33 @@
 <template>
-  <h2>{{estate.name}}</h2>
-  <div class="estatePage">
+    <h2>{{estate.name}}</h2>
+    <div class="estatePage">
       <div class="left-side">
-        <Card>
-          <template #title>
-            Beskrivelse
-          </template>
-          <template #content>
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-            ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-            eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum."
-          </template>
-        </Card>
-        <Card>
-          <template #title>
-            The BackEnd Boiz
-          </template>
-          <template #content>
-            <p> - Magnus </p>
-            <p> - Bjørn </p>
-            <p> - Yngve </p>
-          </template>
-        </Card>
+          <Card class="right-side-cards">
+            <template #title>
+              Beskrivelse
+            </template>
+            <template #content>
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+              magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+              ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+              eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+              deserunt mollit anim id est laborum. "
+            </template>
+          </Card>
+          <Card class="right-side-cards">
+            <template #title>
+              Deltakere
+            </template>
+            <template #content>
+              <p> - Magnus </p>
+              <p> - Bjørn </p>
+              <p> - Yngve </p>
+            </template>
+          </Card>
       </div>
       <Divider layout="vertical"/>
       <div class="right-side">
-        <Card>
+        <Card class="cards">
           <template #title>
             Gjenstander:
           </template>
@@ -59,7 +59,7 @@
           </template>
         </Card>
       </div>
-  </div>
+    </div>
 </template>
 
 <script lang="ts">
@@ -68,24 +68,41 @@ import Card from "primevue/card";
 import Divider from "primevue/divider";
 import {EstateResponse, ItemResponse, UserResponse} from "@/client/types";
 import ItemList from "@/components/ItemList.vue";
+import {getEstateById} from "@/client/estate";
 
 export default defineComponent({
   name: "EstateView",
   props: {
-    estate: {
-      type: Object as PropType<EstateResponse>,
-      default: {
-        id: 0,
-        name: 'Dødsbo',
-        participants: null,
-        items: null
-      }
+    id: {
+      type: Number,
+      default: 0
     }
   },
   components: {
     ItemList,
     Card,
-    Divider
+    Divider,
+  },
+  async setup(props) {
+    const estate: EstateResponse = {id: 0, name: '', items: null, participants: null}
+    try {
+      await getEstateById(props.id).then(promise => {
+        estate.id = promise.id
+        estate.name = promise.name
+        estate.items = promise.items
+        estate.participants = promise.participants
+      })
+      console.log(estate)
+    } catch (e) {
+      console.error(e)
+    }
+    return {
+      estate
+    }
+  },
+  mounted() {
+    console.log('Har blitt mounta')
+    console.log(this.estate)
   }
 })
 </script>
@@ -98,11 +115,15 @@ export default defineComponent({
 }
 .left-side {
   max-width: 65%;
-  min-height: 350px;
 }
 .right-side {
   min-width: 35%;
-  min-height: 350px;
+}
+.cards {
+  min-height: 500px;
+}
+.right-side-cards {
+  height: 250px;
 }
 
 </style>

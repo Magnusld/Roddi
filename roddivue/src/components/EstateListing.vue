@@ -1,8 +1,14 @@
 <template>
   <Card>
     <template #content>
+      <!--
+      -->
       <p>{{id}}</p>
-      <p>{{name}}</p>
+      <router-link style="color:black"
+                   class="title"
+                   :to="'/estate/' + id">
+        {{name}}
+      </router-link>
     </template>
   </Card>
 </template>
