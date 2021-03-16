@@ -1,25 +1,31 @@
 <template>
-  <ItemListing v-for="item in items"
-               :key="item.id"
-               :id="item.id"
-               :name="item.name"
-  />
+  <ScrollPanel style="width: 100%; height: 320px">
+    <ItemListing v-for="item in items"
+                 :key="item.id"
+                 :id="item.id"
+                 :name="item.name"
+                 :description="item.description"
+    />
+  </ScrollPanel>
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import {defineComponent, PropType} from "vue";
 import ItemListing from "@/components/ItemListing.vue";
+import {ItemResponse} from "@/client/types";
+import ScrollPanel from "primevue/scrollpanel";
 
 export default defineComponent({
   name: "ItemList",
   props: {
     items: {
       default: [],
-      type: Array<any>()
+      type: Object as PropType<ItemResponse[]>
     }
   },
   components: {
-    ItemListing
+    ItemListing,
+    ScrollPanel
   },
   setup() {
     return {
