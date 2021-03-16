@@ -1,6 +1,11 @@
 <template>
+    <div class = "tilbake">
+        <Button label="<- Tilbake" class="p-button-outlined" />
+    </div>
     <Card class = "Cardclass">
+
     <template #title>
+
         <div class = "Tittel">Navn</div>
     </template>
 </Card>
@@ -29,16 +34,18 @@
 </template>
 
 <script lang="ts">
-// This is a template file for future vue components, when you want want to make a new component
-// copy this file.
+
 import {defineComponent} from "vue";
 import Card from 'primevue/card';
+import Button from 'primevue/button';
+
 
 
 export default defineComponent({
   name: "ItemDesc",
   components: {
       Card,
+      Button,
     },
   props: { //add props here if needed
   },
@@ -52,8 +59,6 @@ export default defineComponent({
 <style scoped lang="scss">
 
 .Descs{
-
-
 }
 
 .Cardclass{
@@ -63,6 +68,10 @@ export default defineComponent({
 .Tittel{
     text-align: center;
     font-size: 35px;
+    }
+
+.tilbake{
+    text-align: left;
     }
 
 </style>
