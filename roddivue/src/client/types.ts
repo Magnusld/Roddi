@@ -43,3 +43,9 @@ export interface ItemResponse {
     name: string;
     description: string;
 }
+
+export interface ItemsRequest {
+    navn: string;
+    verdi: string;
+    beskrivelse: string;
+}
