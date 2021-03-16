@@ -19,3 +19,78 @@ Dersom man gjør endringer i databasen må må man migrere det for at serveren s
 python manage.py makemigrations
 python manage.py migrate
 ```
+
+### Utforming av URLer
+
+#### For å opprette dødsbo:
+```
+URL POST: /api/estates/
+json: { name: *navnpådødsbo*}
+```
+
+#### For å opprette gjenstand i dødsbo:
+```
+URL POST: /api/items/
+json: { name: *navnpågjenstand*,
+        description: *beskrivelse*
+        belongs_to: *dødsboID* }
+```
+
+#### For å endre gjenstand i dødsbo:
+```
+URL PATCH: /api/items/*gjenstandID*
+json: { *feltsomskalendres*: *nyverdi*
+        }
+```
+
+#### For å opprette relasjon for prioritering mellom bruker og gjenstand:
+```
+URL POST: /api/itempriority/
+json: { user: *brukerID*
+        item: *gjenstandID*
+        priority: *prioritet*}
+```
+
+#### For å endre prioritet mellom innlogget bruker og gjenstand:
+```
+URL PATCH: /api/itempriority/*relasjonsID*
+json: { priority: *prioritet*}
+```
+
+#### For å slette prioritet mellom innlogget bruker og gjenstand:
+```
+URL DELETE: /api/itempriority/*relasjonsID*
+```
+
+#### For å se relasjon for prioritet mellom innlogget bruker og en spesifikk gjenstand:
+```
+URL GET: /api/itempriority/?itemID=*gjenstandID*
+```
+OBS: JSON som kommer i retur er en iterable som er tom om det ikke finnes en relasjon eller på indeks 0 om den finnes.
+Det er også denne som må brukes for å hente relasjonsID for endring/sletting
+
+#### For å opprette relasjon for stemme mellom bruker og gjenstand:
+```
+URL POST: /api/itemvotes/
+json: { user: *brukerID*
+        item: *gjenstandID*
+        donate: *true hvis ja, false ellers*}
+```
+
+#### For å endre stemme for innlogget bruker og gjenstand:
+```
+URL PATCH: /api/itemvotes/*relasjonsID*
+json: { donate: *true hvis ja, false ellers*}
+```
+
+#### For å slette stemme mellom innlogget bruker og gjenstand (hvis bruker vil ha gjenstanden istedenfor):
+```
+URL DELETE: /api/itemvotes/*relasjonsID*
+```
+
+#### For å se relasjon for stemme for innlogget bruker og en spesifikk gjenstand:
+```
+URL GET: /api/itemvotes/?itemID=*gjenstandID*
+```
+OBS: JSON som kommer i retur er en iterable som er tom om det ikke finnes en relasjon eller på indeks 0 om den finnes.
+Det er også denne som må brukes for å hente relasjonsID for endring/sletting
