@@ -29,9 +29,6 @@ export default defineComponent({
   },
   setup(props) {
     console.log(props.items)
-  },
-  mounted() {
-    console.log(this.items)
   }
 })
 </script>

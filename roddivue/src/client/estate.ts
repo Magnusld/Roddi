@@ -9,7 +9,6 @@ export async function createNewEstate(newEstateRequest: NewEstateRequest): Promi
             console.log(response)
         })
 }
-/*
 
 export function getAllEstates(): EstateResponse[] {
     const estates = new Array<EstateResponse>()
@@ -32,7 +31,6 @@ export function getAllEstates(): EstateResponse[] {
     console.log(estates)
     return estates
 }
- */
 
 export async function getEstateById(id: number): Promise<EstateResponse> {
     let estateResponse: EstateResponse;
@@ -43,10 +41,10 @@ export async function getEstateById(id: number): Promise<EstateResponse> {
             participants: null,
             items: null
         }
-        getAllEstateItems(estate.id).then(response => {
-            estate.items = response
-        })
         estateResponse = estate
+    })
+    await getAllEstateItems(estateResponse!.id).then(response => {
+        estateResponse.items = response
     })
     console.log(estateResponse!)
     return estateResponse!

@@ -3,7 +3,7 @@ import {ItemResponse} from "@/client/types";
 
 export async function getAllEstateItems(estateId: number): Promise<ItemResponse[]> {
     const estateItems = new Array<ItemResponse>()
-    axios.get('api/items/?estateID=' + estateId).then(response => {
+    await axios.get('api/items/?estateID=' + estateId).then(response => {
         for (let i = 0; i < response.data.length; i++) {
             const item: ItemResponse = {
                 id: response.data[i].id,
@@ -13,5 +13,6 @@ export async function getAllEstateItems(estateId: number): Promise<ItemResponse[
             estateItems.push(item)
         }
     })
+    console.log(estateItems)
     return estateItems
 }

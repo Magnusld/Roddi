@@ -15,6 +15,11 @@ export default defineComponent({
   components: {
     EstateList
   },
+  async setup() {
+    const estates: EstateResponse[] = []
+    return
+  }
+  /*
   data() {
     return {
       estates: new Array<EstateResponse>()
@@ -44,6 +49,8 @@ export default defineComponent({
   mounted() {
     this.updateEstates()
   }
+
+   */
 })
 </script>
 

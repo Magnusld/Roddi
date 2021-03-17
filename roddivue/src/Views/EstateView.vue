@@ -32,8 +32,8 @@
             Gjenstander:
           </template>
           <template #content>
-              <ItemList v-bind:items="estate.items"/>
-            <!--
+            <ItemList v-bind:items="estate.items"/>
+          <!--
             <ItemList v-bind:items="[{
     key: 1,
     id: 1,
