@@ -20,9 +20,9 @@
             </template>
             <template #content>
               <ScrollPanel style="width: 100%; height: 150px">
-                <p v-for="participant in participants"
+                <p v-for="participant in estate.participants"
                 v-bind:key="participants.indexOf(participant)">
-                  {{participant}}
+                  {{participant.username}}
                 </p>
               </ScrollPanel>
             </template>
