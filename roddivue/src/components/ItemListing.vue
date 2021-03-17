@@ -1,7 +1,11 @@
 <template>
   <Card>
     <template #subtitle>
-      <p>{{name}}</p>
+      <router-link style="color:black"
+                   class="subtitle"
+                   :to="'/item/' + id">
+        {{name}}
+      </router-link>
     </template>
     <template #content>
       {{description}}

@@ -1,5 +1,6 @@
 import axios from "axios";
 import {EstateResponse, ItemResponse, NewEstateRequest, UserResponse} from "@/client/types";
+import {getAllEstateItems} from "@/client/item";
 
 export async function createNewEstate(newEstateRequest: NewEstateRequest): Promise<void> {
     axios
@@ -8,12 +9,10 @@ export async function createNewEstate(newEstateRequest: NewEstateRequest): Promi
             console.log(response)
         })
 }
-/*
 
-export function getAllEstates(): EstateResponse[] {
+export async function getAllEstates(): Promise<EstateResponse[]> {
     const estates = new Array<EstateResponse>()
-    console.log(axios.get('api/estates/'))
-    axios.get('api/estates/').then(response => {
+    await axios.get('api/estates/').then(response => {
         for (let i = 0; i < response.data.length; i++) {
             const estate: EstateResponse = {
                 id: response.data[i].id,
@@ -25,13 +24,9 @@ export function getAllEstates(): EstateResponse[] {
             estates.push(estate)
         }
         //console.log(estates[0])
-    }).catch(error => {
-        console.log(JSON.stringify(error))
     })
-    console.log(estates)
     return estates
 }
- */
 
 export async function getEstateById(id: number): Promise<EstateResponse> {
     let estateResponse: EstateResponse;
@@ -44,6 +39,8 @@ export async function getEstateById(id: number): Promise<EstateResponse> {
         }
         estateResponse = estate
     })
-    console.log(estateResponse!)
+    await getAllEstateItems(estateResponse!.id).then(response => {
+        estateResponse.items = response
+    })
     return estateResponse!
 }

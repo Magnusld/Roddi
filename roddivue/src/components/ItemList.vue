@@ -1,11 +1,11 @@
 <template>
   <ScrollPanel style="width: 100%; height: 395px">
-    <ItemListing v-for="item in items"
-                 :key="item.id"
-                 :id="item.id"
-                 :name="item.name"
-                 :description="item.description"
-    />
+      <ItemListing v-for="item in items"
+                   :key="item.id"
+                   :id="item.id"
+                   :name="item.name"
+                   :description="item.description"
+      />
   </ScrollPanel>
 </template>
 
@@ -27,9 +27,8 @@ export default defineComponent({
     ItemListing,
     ScrollPanel
   },
-  setup() {
-    return {
-    }
+  setup(props) {
+    console.log(props.items)
   }
 })
 </script>
