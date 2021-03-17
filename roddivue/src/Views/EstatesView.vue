@@ -23,7 +23,6 @@ export default defineComponent({
         estates.push(response[i])
       }
     })
-    console.log(estates)
     return {
       estates
     }

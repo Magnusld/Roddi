@@ -25,7 +25,6 @@ export async function getAllEstates(): Promise<EstateResponse[]> {
         }
         //console.log(estates[0])
     })
-    console.log(estates)
     return estates
 }
 
@@ -43,6 +42,5 @@ export async function getEstateById(id: number): Promise<EstateResponse> {
     await getAllEstateItems(estateResponse!.id).then(response => {
         estateResponse.items = response
     })
-    console.log(estateResponse!)
     return estateResponse!
 }

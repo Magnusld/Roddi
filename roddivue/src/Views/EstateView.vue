@@ -19,9 +19,12 @@
               Deltakere
             </template>
             <template #content>
-              <p> - Magnus </p>
-              <p> - Bjørn </p>
-              <p> - Yngve </p>
+              <ScrollPanel style="width: 100%; height: 150px">
+                <p v-for="participant in participants"
+                v-bind:key="participants.indexOf(participant)">
+                  {{participant}}
+                </p>
+              </ScrollPanel>
             </template>
           </Card>
       </div>
@@ -33,32 +36,6 @@
           </template>
           <template #content>
             <ItemList v-bind:items="estate.items"/>
-          <!--
-            <ItemList v-bind:items="[{
-    key: 1,
-    id: 1,
-    name: 'TestGjenstand 1',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-            },
-            {
-    key: 2,
-    id: 2,
-    name: 'TestGjenstand 2',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-            },
-            {
-    key: 3,
-    id: 3,
-    name: 'TestGjenstand 3',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-            },
-            {
-    key: 4,
-    id: 4,
-    name: 'TestGjenstand 4',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-            }]"/>
-            -->
           </template>
         </Card>
       </div>
@@ -66,12 +43,13 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType} from "vue"
+import {defineComponent} from "vue"
 import Card from "primevue/card";
 import Divider from "primevue/divider";
 import {EstateResponse, ItemResponse, UserResponse} from "@/client/types";
 import ItemList from "@/components/ItemList.vue";
 import {getEstateById} from "@/client/estate";
+import ScrollPanel from "primevue/scrollpanel";
 
 export default defineComponent({
   name: "EstateView",
@@ -85,6 +63,7 @@ export default defineComponent({
     ItemList,
     Card,
     Divider,
+    ScrollPanel,
   },
   async setup(props) {
     const estate: EstateResponse = {id: 0, name: '', items: null, participants: null}
@@ -103,6 +82,11 @@ export default defineComponent({
       estate
     }
   },
+  data() {
+    return {
+      participants: ['Magnus', 'Yngve', 'Bjørn', 'Emilie', 'Sondre', 'Knut', 'Martine']
+    }
+  }
 })
 </script>
 

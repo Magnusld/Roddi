@@ -13,6 +13,5 @@ export async function getAllEstateItems(estateId: number): Promise<ItemResponse[
             estateItems.push(item)
         }
     })
-    console.log(estateItems)
     return estateItems
 }
