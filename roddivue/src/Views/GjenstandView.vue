@@ -6,17 +6,20 @@
 </template>
 
 <script lang="ts">
-// This is a template file for future vue views, when you want want to make a new view
-// copy this file.
 import { defineComponent } from "vue"
 import ItemDesc from "@/components/ItemDesc.vue";
 import ItemChoices from "@/components/ItemChoices.vue";
+import Button from "primevue/button";
+import {getAllEstateItems} from "@/client/item";
 
 export default defineComponent({
-  name: "GjenstandView", // name should in most cases be the same as the file name
-  components: { // add the components that the view should show
+  name: "GjenstandView",
+  components: {
     ItemDesc,
     ItemChoices
+  },
+  methods: {
+
   }
 })
 </script>

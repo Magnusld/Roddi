@@ -32,6 +32,8 @@
             Gjenstander:
           </template>
           <template #content>
+              <ItemList v-bind:items="estate.items"/>
+            <!--
             <ItemList v-bind:items="[{
     key: 1,
     id: 1,
@@ -56,6 +58,7 @@
     name: 'TestGjenstand 4',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
             }]"/>
+            -->
           </template>
         </Card>
       </div>
@@ -97,13 +100,9 @@ export default defineComponent({
       console.error(e)
     }
     return {
-      estate
+      estate,
     }
   },
-  mounted() {
-    console.log('Har blitt mounta')
-    console.log(this.estate)
-  }
 })
 </script>
 

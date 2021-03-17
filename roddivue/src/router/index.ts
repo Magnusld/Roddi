@@ -57,6 +57,17 @@ const router = createRouter({
             props: route => ({
                 id: +route.params.id
             })
+        },
+        {
+            path: "/item/:id",
+            name: "Gjenstand",
+            component: GjenstandView,
+            meta: {
+                requireLogin:true
+            },
+            props: route => ({
+                id: +route.params.id
+            })
         }
     ],
 });
