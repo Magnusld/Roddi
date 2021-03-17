@@ -5,7 +5,7 @@ import {store} from "@/store";
 import UserView from "@/Views/UserView.vue";
 import EstatesView from "@/Views/EstatesView.vue";
 import EstateView from "@/Views/EstateView.vue";
-import GjenstandView from "@/Views/GjenstandView.vue";
+import ItemView from "@/Views/ItemView.vue";
 
 const routerHistory = createWebHistory()
 
@@ -61,7 +61,7 @@ const router = createRouter({
         {
             path: "/item/:id",
             name: "Gjenstand",
-            component: GjenstandView,
+            component: ItemView,
             meta: {
                 requireLogin:true
             },

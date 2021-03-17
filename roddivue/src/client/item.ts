@@ -15,3 +15,17 @@ export async function getAllEstateItems(estateId: number): Promise<ItemResponse[
     })
     return estateItems
 }
+
+export async function getItemById(itemId: number): Promise<ItemResponse> {
+    let item: ItemResponse
+    await axios.get('api/items/'+ itemId).then( response => {
+        const itemResponse: ItemResponse = {
+            id: response.data.id,
+            name: response.data.name,
+            description: response.data.description
+        }
+        item = itemResponse
+    })
+    console.log(item!)
+    return item!
+}

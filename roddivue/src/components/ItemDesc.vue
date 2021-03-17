@@ -6,7 +6,7 @@
 
     <template #title>
 
-        <div class = "Tittel">Navn</div>
+        <div class = "Tittel">{{name}}</div>
     </template>
 </Card>
   <Card class = "Cardclass">
@@ -15,8 +15,7 @@
     </template>
     <template #content>
         <div class = "Descs">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
-        quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
+        {{description}}
         </div>
     </template>
 </Card>
@@ -47,7 +46,15 @@ export default defineComponent({
       Card,
       Button,
     },
-  props: { //add props here if needed
+  props: {
+    name: {
+      type: String,
+      default: 'Name'
+    },
+    description: {
+      type: String,
+      default: ' '
+    }
   },
   setup() { //add code for setup if needed
     return {
