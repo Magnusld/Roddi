@@ -8,7 +8,8 @@
 import { defineComponent} from "vue"
 import EstateList from "@/components/EstateList.vue";
 import {EstateResponse} from "@/client/types";
-import axios from "axios";
+// import axios from "axios";
+import {getAllEstates} from "@/client/estate";
 
 export default defineComponent({
   name: "EstatesView",
@@ -17,7 +18,15 @@ export default defineComponent({
   },
   async setup() {
     const estates: EstateResponse[] = []
-    return
+    await getAllEstates().then(response => {
+      for (let i = 0; i < response.length; i++) {
+        estates.push(response[i])
+      }
+    })
+    console.log(estates)
+    return {
+      estates
+    }
   }
   /*
   data() {

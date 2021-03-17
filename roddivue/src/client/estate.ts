@@ -10,10 +10,9 @@ export async function createNewEstate(newEstateRequest: NewEstateRequest): Promi
         })
 }
 
-export function getAllEstates(): EstateResponse[] {
+export async function getAllEstates(): Promise<EstateResponse[]> {
     const estates = new Array<EstateResponse>()
-    console.log(axios.get('api/estates/'))
-    axios.get('api/estates/').then(response => {
+    await axios.get('api/estates/').then(response => {
         for (let i = 0; i < response.data.length; i++) {
             const estate: EstateResponse = {
                 id: response.data[i].id,
@@ -25,8 +24,6 @@ export function getAllEstates(): EstateResponse[] {
             estates.push(estate)
         }
         //console.log(estates[0])
-    }).catch(error => {
-        console.log(JSON.stringify(error))
     })
     console.log(estates)
     return estates
