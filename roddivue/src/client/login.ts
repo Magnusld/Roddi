@@ -52,6 +52,7 @@ export async function logout(): Promise<void> {
             localStorage.removeItem("token")
             store.commit('removeToken')
             store.commit('removeUsername')
+            store.commit('removeUserID')
             router.push('/login')
         })
         .catch(error => {

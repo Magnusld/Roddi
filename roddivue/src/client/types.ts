@@ -43,3 +43,29 @@ export interface ItemResponse {
     name: string;
     description: string;
 }
+
+export interface NewUserItemVoteRequest {
+    user: number;
+    item: number;
+    donate: boolean;
+}
+
+export interface NewUserItemPriorityRequest {
+    user: number;
+    item: number;
+    priority: number;
+}
+
+export interface UserItemVoteResponse {
+    id: number;
+    user: number;
+    item: number;
+    donate: boolean;
+}
+
+export interface UserItemPriorityResponse {
+    id: number;
+    user: number;
+    item: number;
+    priority: number;
+}
