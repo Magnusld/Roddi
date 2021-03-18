@@ -9,9 +9,8 @@ export async function login(loginRequest: LogInRequest): Promise<void> {
 
     axios.defaults.headers.common["Authorization"] = ""
     localStorage.removeItem("token")
-    axios
-        .post("/api/token/login/", loginRequest)
-        .then(response => {
+    axios.post("/api/token/login/", loginRequest).then(response => {
+            console.log(response)
             const token = response.data.auth_token
             store.commit('setToken', token)
             store.commit('setUsername', loginRequest.username)
@@ -45,9 +44,7 @@ export async function signup(signupRequest: SignUpRequest): Promise<void> {
 }
 
 export async function logout(): Promise<void> {
-    axios
-        .post("/api/token/logout/")
-        .then(response => {
+    axios.post("/api/token/logout/").then(response => {
             axios.defaults.headers.common["Authorization"] = ""
             localStorage.removeItem("token")
             store.commit('removeToken')

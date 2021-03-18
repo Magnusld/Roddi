@@ -2,6 +2,13 @@ import axios from "axios";
 import {EstateResponse, UserResponse} from "@/client/types";
 
 export async function getAllEstateUsers(estateId: number): Promise<UserResponse[]> {
+    /*
+    let users: UserResponse[]
+    await axios.get('api/estates/' + estateId).then(response => {
+        console.log(response)
+    })
+    return users!
+     */
     let estateUserIDs = new Array<number>()
     await axios.get('api/estates/' + estateId).then(response => {
             const users = {
@@ -21,7 +28,9 @@ export async function getAllEstateUsers(estateId: number): Promise<UserResponse[
             }
         }
     })
+    console.log(estateUsers)
     return estateUsers
+
 }
 
 export async function getUserById(userId: number): Promise<UserResponse> {
