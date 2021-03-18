@@ -6,6 +6,7 @@ import UserView from "@/Views/UserView.vue";
 import EstatesView from "@/Views/EstatesView.vue";
 import EstateView from "@/Views/EstateView.vue";
 import ItemView from "@/Views/ItemView.vue";
+import CreateItemView from "@/Views/CreateItemView.vue";
 
 const routerHistory = createWebHistory()
 
@@ -57,6 +58,11 @@ const router = createRouter({
             props: route => ({
                 id: +route.params.id
             })
+        },
+        {
+            path: "/createitem",
+            name: "Opprett eiendel",
+            component: CreateItemView
         },
         {
             path: "/item/:id",
