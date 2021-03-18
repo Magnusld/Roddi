@@ -1,8 +1,6 @@
 <template>
   <p>Legg til en gjenstand</p>
-  <CreateItem/>
-
-
+  <CreateItem v-bind:estateId = estateId />
 </template>
 
 <script lang="ts">
@@ -12,16 +10,16 @@ import CreateItem from "@/components/CreateItem.vue";
 import axios from "axios";
 
 export default defineComponent({
-  name: "CreateItemView", // name should in most cases be the same as the file name
+  name: "CreateItemView",
   components: {
     CreateItem,
-
-
-
-
-
   },
-
+  props: {
+    estateId: {
+      type: Number,
+      default: 0
+    }
+  }
 })
 </script>
 

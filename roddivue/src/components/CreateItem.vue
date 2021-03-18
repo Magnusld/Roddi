@@ -63,8 +63,12 @@ export default defineComponent({
 
   },
   props: {
+    estateId: {
+      type: Number,
+      default: 0
+    }
   },
-  setup() { //add code for setup if needed
+  setup() {
     return {
     }
   },
@@ -73,7 +77,6 @@ export default defineComponent({
             navn: null,
             verdi: null,
             beskrivelse: null,
-
 		}
 	},
 })
