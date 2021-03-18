@@ -45,3 +45,11 @@ export async function getUserById(userId: number): Promise<UserResponse> {
     console.log(user!)
     return user!
 }
+
+export async function getCurrentUserId(): Promise<number> {
+    let id: number;
+    await axios.get('api/UserId/').then( response => {
+        id = response.data[0].id;
+    })
+    return id!;
+}
