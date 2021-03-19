@@ -1,6 +1,6 @@
 <template>
   <p>Legg til en gjenstand</p>
-  <CreateItem v-bind:estateId = estateId />
+  <CreateItem/>
 </template>
 
 <script lang="ts">
@@ -14,12 +14,6 @@ export default defineComponent({
   components: {
     CreateItem,
   },
-  props: {
-    estateId: {
-      type: Number,
-      default: 0
-    }
-  }
 })
 </script>
 

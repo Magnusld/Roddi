@@ -60,15 +60,12 @@ const router = createRouter({
             })
         },
         {
-            path: "/createitem:estateId",
+            path: "/createitem",
             name: "Opprett eiendel",
             component: CreateItemView,
             meta: {
                 requireLogin:true
             },
-            props: route => ({
-                estateId: +route.params.id
-            })
         },
         {
             path: "/item/:id",
@@ -77,6 +74,9 @@ const router = createRouter({
             meta: {
                 requireLogin:true
             },
+            props: route => ({
+                id: +route.params.id
+            })
         }
     ],
 });

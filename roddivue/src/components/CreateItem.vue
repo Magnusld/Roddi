@@ -1,24 +1,17 @@
 <template>
-
-
   <div class="InputFields">
-
-            <span class="p-float-label InputField">
-              <InputText id="TypeGjenstand" type="text" v-model="navn" />
-              <label for="TypeGjenstand"></label>
+            <span class="p-field InputField">
+              <label for="itemName">Navn på gjenstand: </label>
+              <InputText id="itemName" type="text" v-model="name"/>
             </span>
           </div>
 
    <div class="InputFields2">
-
-            <span class="p-float-label InputField">
-              <InputText id="VerdiGjenstand" type="text" v-model="verdi" />
-              <label for="VerdiGjenstand"></label>
+            <span class="p-field InputField">
+              <label for="itemValue">Verdi på gjenstand: </label>
+              <InputText id="itemValue" type="text" v-model="value" />
             </span>
           </div>
-
-
-
   <!-- <Card class="card">
     <h5>Left Icon</h5>
     <span class="p-input-icon-left">
@@ -26,31 +19,28 @@
         <InputText type="text" v-model="value1" placeholder="Search" />
     </span>
   </Card> -->
-
-<h6>Beskrivelse av gjenstand</h6>
-
-  <textarea class = "Tekstboks" v-model="beskrivelse" >
-  </textarea>
-
-
+  <span class="p-field">
+    <p>Beskrivelse av gjenstand: </p>
+    <textarea id="itemDescription" class="Tekstboks" v-model="description"/>
+  </span>
+  <!--
   <div class="filDiv">
   <FileUpload class = "filer" name="demo[]" url="./upload" :multiple="true" />
   </div>
-
-
+  -->
    <div class="ButtonBar">
-          <Button class="submit" @click="$router.push('Items')">Legg til gjenstand</Button>
+          <Button class="submit" @click="submitItem">Legg til gjenstand</Button>
         </div>
-
 </template>
-
 
 
 <script lang="ts">
 import {defineComponent} from "vue";
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
-import FileUpload from 'primevue/fileupload';
+import {NewItemRequest} from "@/client/types";
+import {createNewItem} from "@/client/item";
+//import FileUpload from 'primevue/fileupload';
 
 
 
@@ -59,8 +49,7 @@ export default defineComponent({
   components: {
     InputText,
     Button,
-    FileUpload,
-
+    //FileUpload,
   },
   props: {
     estateId: {
@@ -72,11 +61,21 @@ export default defineComponent({
     return {
     }
   },
+  methods: {
+    submitItem() {
+      const item: NewItemRequest = {
+        name: this.name,
+        description: this.description,
+        belongsTo: this.estateId
+      }
+      createNewItem(item)
+    }
+  },
   data() {
 		return {
-            navn: null,
-            verdi: null,
-            beskrivelse: null,
+            name: '',
+            value: 0,
+            description: '',
 		}
 	},
 })
@@ -87,7 +86,6 @@ export default defineComponent({
 .InputFields2 {
   margin-top: 10px;
   margin-bottom: 10px;
-
 }
 
 .Tekstboks {
@@ -102,6 +100,4 @@ export default defineComponent({
   margin-left: 432px;
   margin-bottom: 10px;
 }
-
-
 </style>
