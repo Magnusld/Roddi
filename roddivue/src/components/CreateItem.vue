@@ -63,10 +63,12 @@ export default defineComponent({
     submitItem() {
       const item: NewItemRequest = {
         name: this.name,
+        value: this.value,
         description: this.description,
         belongsTo: this.estateId
       }
-      createNewItem(item)
+      createNewItem(item).catch(error =>
+      console.log(error))
     }
   },
   data() {

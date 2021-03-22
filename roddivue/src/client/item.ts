@@ -31,9 +31,9 @@ export async function getItemById(itemId: number): Promise<ItemResponse> {
 }
 
 export async function createNewItem(item: NewItemRequest): Promise<void> {
-    await axios.post('api/items/',
+    await axios.post('api/items/', //Ingen anelse hvorfor dette ikke fungere, spør Bjørn om backendstøtten
         // eslint-disable-next-line @typescript-eslint/camelcase
-        {name: item.name, description: item.description, belongs_to: item.belongsTo}).then( promise => {
+        {name: item.name, description: item.description, value: item.value,  belongs_to: item.belongsTo}).then( promise => {
         console.log(promise)
     })
 }

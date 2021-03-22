@@ -34,6 +34,7 @@ export interface EstateResponse {
 
 export interface NewItemRequest {
     name: string;
+    value: number;
     description: string;
     belongsTo: number; //EstateId
 }
