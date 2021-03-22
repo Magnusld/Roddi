@@ -31,7 +31,9 @@ export async function getItemById(itemId: number): Promise<ItemResponse> {
 }
 
 export async function createNewItem(item: NewItemRequest): Promise<void> {
-    await axios.post('api/items', item).then( promise => {
+    await axios.post('api/items/',
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        {name: item.name, description: item.description, belongs_to: item.belongsTo}).then( promise => {
         console.log(promise)
     })
 }

@@ -42,8 +42,6 @@ import {NewItemRequest} from "@/client/types";
 import {createNewItem} from "@/client/item";
 //import FileUpload from 'primevue/fileupload';
 
-
-
 export default defineComponent({
   name: "CreateItem",
   components: {
@@ -54,7 +52,7 @@ export default defineComponent({
   props: {
     estateId: {
       type: Number,
-      default: 0
+      default: 8
     }
   },
   setup() {
