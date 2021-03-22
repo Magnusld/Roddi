@@ -20,9 +20,9 @@
             </template>
             <template #content>
               <ScrollPanel style="width: 100%; height: 150px">
-                <p v-for="participant in participants"
+                <p v-for="participant in estate.participants"
                 v-bind:key="participants.indexOf(participant)">
-                  {{participant}}
+                  {{participant.username}}
                 </p>
               </ScrollPanel>
             </template>
@@ -35,6 +35,9 @@
             Gjenstander:
           </template>
           <template #content>
+            <router-link to="/createitem">
+              <Button>Legg til ny gjenstand</Button>
+            </router-link>
             <ItemList v-bind:items="estate.items"/>
           </template>
         </Card>
@@ -50,6 +53,7 @@ import {EstateResponse, ItemResponse, UserResponse} from "@/client/types";
 import ItemList from "@/components/ItemList.vue";
 import {getEstateById} from "@/client/estate";
 import ScrollPanel from "primevue/scrollpanel";
+import Button from "primevue/button";
 
 export default defineComponent({
   name: "EstateView",
@@ -64,6 +68,7 @@ export default defineComponent({
     Card,
     Divider,
     ScrollPanel,
+    Button
   },
   async setup(props) {
     const estate: EstateResponse = {id: 0, name: '', items: null, participants: null}

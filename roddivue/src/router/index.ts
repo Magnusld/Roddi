@@ -5,7 +5,8 @@ import {store} from "@/store";
 import UserView from "@/Views/UserView.vue";
 import EstatesView from "@/Views/EstatesView.vue";
 import EstateView from "@/Views/EstateView.vue";
-import GjenstandView from "@/Views/GjenstandView.vue";
+import ItemView from "@/Views/ItemView.vue";
+import CreateItemView from "@/Views/CreateItemView.vue";
 
 const routerHistory = createWebHistory()
 
@@ -59,9 +60,17 @@ const router = createRouter({
             })
         },
         {
+            path: "/createitem",
+            name: "Opprett eiendel",
+            component: CreateItemView,
+            meta: {
+                requireLogin:true
+            },
+        },
+        {
             path: "/item/:id",
             name: "Gjenstand",
-            component: GjenstandView,
+            component: ItemView,
             meta: {
                 requireLogin:true
             },

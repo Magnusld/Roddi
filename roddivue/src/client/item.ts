@@ -1,5 +1,5 @@
 import axios from "axios";
-import {ItemResponse} from "@/client/types";
+import {ItemResponse, NewItemRequest} from "@/client/types";
 
 export async function getAllEstateItems(estateId: number): Promise<ItemResponse[]> {
     const estateItems = new Array<ItemResponse>()
@@ -14,4 +14,26 @@ export async function getAllEstateItems(estateId: number): Promise<ItemResponse[
         }
     })
     return estateItems
+}
+
+export async function getItemById(itemId: number): Promise<ItemResponse> {
+    let item: ItemResponse
+    await axios.get('api/items/'+ itemId).then( response => {
+        const itemResponse: ItemResponse = {
+            id: response.data.id,
+            name: response.data.name,
+            description: response.data.description
+        }
+        item = itemResponse
+    })
+    console.log(item!)
+    return item!
+}
+
+export async function createNewItem(item: NewItemRequest): Promise<void> {
+    await axios.post('api/items/', //Ingen anelse hvorfor dette ikke fungere, spør Bjørn om backendstøtten
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        {name: item.name, description: item.description, value: item.value,  belongs_to: item.belongsTo}).then( promise => {
+        console.log(promise)
+    })
 }

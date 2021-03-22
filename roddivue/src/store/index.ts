@@ -3,7 +3,8 @@ import { createStore } from 'vuex'
 export const store =  createStore({
     state: {
         user: {
-          username: ''
+          username: '',
+            userID: ''
         },
         isAuthenticated: false,
         token: ''
@@ -28,6 +29,12 @@ export const store =  createStore({
         removeUsername(state) {
             state.user.username = ''
         },
+        setUserID(state, userID) {
+            state.user.userID = userID
+        },
+        removeUserID(state) {
+            state.user.userID = ''
+        },
         removeToken(state) {
             state.token = ''
             state.isAuthenticated = false
@@ -38,6 +45,7 @@ export const store =  createStore({
     modules: {
     },
     getters: {
+        getUserID: state => state.user.userID,
         getUsername: state => state.user.username,
         getLoggedInStatus: state => state.isAuthenticated
     }

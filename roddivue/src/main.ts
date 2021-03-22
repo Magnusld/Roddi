@@ -10,9 +10,14 @@ import 'primevue/resources/primevue.min.css'                 //core css
 import 'primeicons/primeicons.css'                           //icons
 import 'primeflex/primeflex.css'
 
+
+
+
+
 axios.defaults.baseURL = 'http://127.0.0.1:8000'
 
 const app = createApp(App)
 
 app.use(store).use(router, axios).use(PrimeVue).mount('#app')
+
 

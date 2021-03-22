@@ -34,12 +34,45 @@ export interface EstateResponse {
 
 export interface NewItemRequest {
     name: string;
+    value: number;
     description: string;
-    belongs_to: EstateResponse;
+    belongsTo: number; //EstateId
 }
 
 export interface ItemResponse {
     id: number;
     name: string;
     description: string;
+}
+
+export interface ItemsRequest {
+    navn: string;
+    verdi: string;
+    beskrivelse: string;
+}
+
+export interface NewUserItemVoteRequest {
+    user: number;
+    item: number;
+    donate: boolean;
+}
+
+export interface NewUserItemPriorityRequest {
+    user: number;
+    item: number;
+    priority: number;
+}
+
+export interface UserItemVoteResponse {
+    id: number;
+    user: number;
+    item: number;
+    donate: boolean;
+}
+
+export interface UserItemPriorityResponse {
+    id: number;
+    user: number;
+    item: number;
+    priority: number;
 }
