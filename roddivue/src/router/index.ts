@@ -7,6 +7,7 @@ import EstatesView from "@/Views/EstatesView.vue";
 import EstateView from "@/Views/EstateView.vue";
 import ItemView from "@/Views/ItemView.vue";
 import CreateItemView from "@/Views/CreateItemView.vue";
+import PrioritiesView from "@/Views/PrioritiesView.vue";
 
 const routerHistory = createWebHistory()
 
@@ -77,7 +78,18 @@ const router = createRouter({
             props: route => ({
                 id: +route.params.id
             })
-        }
+        },
+        {
+            path: "/priorities",
+            name: "Se prioriteringer",
+            component: PrioritiesView,
+            /*
+            meta: {
+                requireLogin:true
+            },
+
+             */
+        },
     ],
 });
 
