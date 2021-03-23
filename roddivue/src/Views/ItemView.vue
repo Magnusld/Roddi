@@ -2,7 +2,7 @@
   <div class="grid-container">
     <div class="grid-item-1"><ItemDesc v-bind:name="item.name"
                                        v-bind:description="item.description"/></div>
-    <div class="grid-item-2"><ItemChoices/></div>
+    <div class="grid-item-2"><ItemChoices v-bind:itemId="id"/></div>
   </div>
 </template>
 

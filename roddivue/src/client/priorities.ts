@@ -16,20 +16,18 @@ export async function getLoggedInUserItemPriority(itemID: number): Promise<UserI
 }
 
 export async function setUserItemPriority( newUserItemPriority: NewUserItemPriorityRequest): Promise<void> {
-    axios
-        .post("api/itempriority/", {
-            user: newUserItemPriority.user,
-            item: newUserItemPriority.item,
+    console.log(newUserItemPriority)
+    await axios.post("api/itempriority/", {
+            user: newUserItemPriority.userId,
+            item: newUserItemPriority.itemId,
             donate: newUserItemPriority.priority
-        })
-        .then(response => {
+        }).then(response => {
             console.log(response)
         })
 }
 
 export async function removeUserItemPriority(id: number) {
-    axios
-        .delete("api/itempriority/"+id)
+    await axios.delete("api/itempriority/"+id)
         .then(response => {
             console.log(response)
         })

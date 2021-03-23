@@ -5,14 +5,14 @@
     </div>
     <div v-show="priShow" class = "Prioritering">
         <h5>Prioritering</h5>
-        <Rating v-model="value2" v-on:click="rateChoice" :stars='10' :cancel="false" />
+        <Rating v-model="priority" v-on:click="rateChoice" :stars='10' :cancel="false" />
     </div>
     <div v-show="kastShow" class = "KastDoner">
         <h5>Skal gjenstanden:</h5>
-        <SelectButton v-model="value3" v-on:click="kastChoice" :options="options2" />
+        <SelectButton v-model="donate" v-on:click="kastChoice" :options="options2" />
     </div>
     <div v-show="lagreShow" class = "submit">
-        <Button label="Lagre" icon="pi pi-check" iconPos="right" />
+        <Button @click="save" label="Lagre" icon="pi pi-check" iconPos="right" />
     </div>
 </template>
 
@@ -21,12 +21,19 @@ import {defineComponent} from "vue";
 import SelectButton from 'primevue/selectbutton';
 import Rating from 'primevue/rating';
 import Button from 'primevue/button';
+import {NewUserItemPriorityRequest, NewUserItemVoteRequest} from "@/client/types";
+import {setUserItemPriority} from "@/client/priorities";
+import {setUserItemVote} from "@/client/votes";
 
 
 
 export default defineComponent({
   name: "ItemChoices",
-  props: { //add props here if needed
+  props: {
+    itemId: {
+      type: Number,
+      default: 0
+    }
   },
   components: {
       SelectButton,
@@ -41,8 +48,9 @@ export default defineComponent({
       return {
           value1: null,
           options: ['Ja', 'Nei'],
-          value2: null,
-          value3: null,
+          priority: 0,
+          donate: false,
+          setDonate: null,
           options2: ['Kastes', 'Doneres bort'],
           priShow: false,
           kastShow: false,
@@ -54,7 +62,7 @@ export default defineComponent({
     methods: {
       wishChoice() {
           console.log(this.value1);
-          if ((this.value3 == null ) || (this.value2 == null )) {
+          if ((this.donate == null ) || (this.priority == 0 )) {
                 this.lagreShow = false;
             }
         if (this.value1 == "Nei") {
@@ -71,15 +79,35 @@ export default defineComponent({
 
       },
       kastChoice() {
-          if (!(this.value3 == null )) {
+          if (!(this.setDonate == null )) {
                 this.lagreShow = true;
             }
         },
       rateChoice() {
-          if (!(this.value2 == null )) {
+          if (!(this.priority == 0 )) {
                 this.lagreShow = true;
             }
         },
+      save() {
+        console.log(this.priority)
+        console.log(this.donate)
+        if (this.priShow) {
+          const itemPriority: NewUserItemPriorityRequest = {
+            userId: this.$store.getters.getUserID,
+            itemId: this.itemId,
+            priority: this.priority
+          }
+          setUserItemPriority(itemPriority)
+        }
+        else if (this.kastShow) {
+          const itemVote: NewUserItemVoteRequest = {
+            userId: this.$store.getters.getUserID,
+            itemId: this.itemId,
+            donate: this.donate
+          }
+          setUserItemVote(itemVote)
+        }
+      }
     },
 
 })

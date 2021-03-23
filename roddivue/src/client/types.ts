@@ -52,14 +52,14 @@ export interface ItemsRequest {
 }
 
 export interface NewUserItemVoteRequest {
-    user: number;
-    item: number;
-    donate: boolean;
+    userId: number;
+    itemId: number;
+    donate: boolean | null;
 }
 
 export interface NewUserItemPriorityRequest {
-    user: number;
-    item: number;
+    userId: number;
+    itemId: number;
     priority: number;
 }
 
@@ -67,12 +67,12 @@ export interface UserItemVoteResponse {
     id: number;
     user: number;
     item: number;
-    donate: boolean;
+    donate: boolean | null;
 }
 
 export interface UserItemPriorityResponse {
     id: number;
     user: number;
     item: number;
-    priority: number;
+    priority: number | null;
 }

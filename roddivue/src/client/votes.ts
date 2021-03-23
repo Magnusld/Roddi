@@ -3,7 +3,11 @@ import {NewUserItemVoteRequest, UserItemVoteResponse} from "@/client/types";
 
 
 export async function setUserItemVote(userVote: NewUserItemVoteRequest): Promise<void> {
-    await axios.post('api/itemvotes', userVote).then(response => {
+    console.log(userVote)
+    await axios.post('api/itemvotes', {
+        user: userVote.userId,
+        item: userVote.itemId,
+        donate: userVote.donate}).then(response => {
         console.log(response)
     })
 }
