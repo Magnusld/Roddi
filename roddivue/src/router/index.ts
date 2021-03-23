@@ -7,6 +7,8 @@ import EstatesView from "@/Views/EstatesView.vue";
 import EstateView from "@/Views/EstateView.vue";
 import ItemView from "@/Views/ItemView.vue";
 import CreateItemView from "@/Views/CreateItemView.vue";
+import SettlementView from "@/Views/SettlementView.vue";
+import ThrowView from "@/Views/ThrowView.vue";
 
 const routerHistory = createWebHistory()
 
@@ -77,7 +79,17 @@ const router = createRouter({
             props: route => ({
                 id: +route.params.id
             })
-        }
+        },
+        {
+            path: "/settlement",
+            name: "Oppgjør",
+            component: SettlementView,
+        },
+        {
+            path: "/throw",
+            name: "Kastet",
+            component: ThrowView,
+        },
     ],
 });
 
