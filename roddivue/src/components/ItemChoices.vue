@@ -22,8 +22,8 @@ import SelectButton from 'primevue/selectbutton';
 import Rating from 'primevue/rating';
 import Button from 'primevue/button';
 import {NewUserItemPriorityRequest, NewUserItemVoteRequest} from "@/client/types";
-import {setUserItemPriority} from "@/client/priorities";
-import {setUserItemVote} from "@/client/votes";
+import {getLoggedInUserItemPriority, removeUserItemPriority, setUserItemPriority} from "@/client/priorities";
+import {getLoggedInUserItemVote, removeUserItemVote, setUserItemVote} from "@/client/votes";
 
 
 
@@ -41,28 +41,28 @@ export default defineComponent({
       Button
     },
   setup() { //add code for setup if needed
-    return {
-    }
   },
   data() {
       return {
           value1: null,
           options: ['Ja', 'Nei'],
           priority: 0,
+          havePreviousPriority: false,
+          previousPriorityId: 0,
           donate: false,
-          setDonate: null,
+          havePreviousVote: false,
+          previousVoteId: 0,
           options2: ['Kastes', 'Doneres bort'],
           priShow: false,
           kastShow: false,
           lagreShow: false,
-
       }
 
   },
     methods: {
       wishChoice() {
           console.log(this.value1);
-          if ((this.donate == null ) || (this.priority == 0 )) {
+          if (this.priority == 0 ) {
                 this.lagreShow = false;
             }
         if (this.value1 == "Nei") {
@@ -75,41 +75,71 @@ export default defineComponent({
             this.priShow = true;
             this.kastShow = false;
         }
-
-
       },
       kastChoice() {
-          if (!(this.setDonate == null )) {
-                this.lagreShow = true;
-            }
+          this.lagreShow = true
         },
       rateChoice() {
           if (!(this.priority == 0 )) {
                 this.lagreShow = true;
             }
         },
-      save() {
+      async save() {
         console.log(this.priority)
         console.log(this.donate)
         if (this.priShow) {
+          if (this.havePreviousPriority){ await removeUserItemPriority(this.previousPriorityId).then(response => {
+            console.log("PreviousPriority have been deleted", response)
+          }) }
+          if (this.havePreviousVote){ await removeUserItemVote(this.previousVoteId).then(response => {
+            console.log("PreviousPriority have been deleted", response)
+          })  }
           const itemPriority: NewUserItemPriorityRequest = {
             userId: this.$store.getters.getUserID,
             itemId: this.itemId,
             priority: this.priority
           }
-          setUserItemPriority(itemPriority)
+          await setUserItemPriority(itemPriority)
         }
         else if (this.kastShow) {
+          if (this.havePreviousVote){ await removeUserItemVote(this.previousVoteId).then(response => {
+            console.log("PreviousPriority have been deleted", response)
+          })  }
+          if (this.havePreviousPriority){ await removeUserItemPriority(this.previousPriorityId).then(response => {
+            console.log("PreviousPriority have been deleted", response)
+          })  }
           const itemVote: NewUserItemVoteRequest = {
             userId: this.$store.getters.getUserID,
             itemId: this.itemId,
             donate: this.donate
           }
-          setUserItemVote(itemVote)
+          await setUserItemVote(itemVote)
+        }
+      },
+      async getUserPriorities() {
+        await getLoggedInUserItemPriority(this.itemId).then(response => {
+          if (!(response.priority == 0)) {
+            this.priority = response.priority
+            this.havePreviousPriority = true
+            this.previousPriorityId = response.id
+          }
+          console.log(this.priority)
+        })
+        if (!this.havePreviousPriority) {
+          await getLoggedInUserItemVote(this.itemId).then(response => {
+            if (!(response.donate == false)) {
+              this.donate = response.donate
+              this.havePreviousVote = true
+              this.previousVoteId = response.id
+            }
+            console.log(this.donate)
+          })
         }
       }
     },
-
+    async mounted() {
+    await this.getUserPriorities()
+    }
 })
 </script>
 

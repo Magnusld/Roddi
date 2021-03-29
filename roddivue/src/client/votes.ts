@@ -20,8 +20,20 @@ export async function getLoggedInUserItemVote(itemId: number): Promise<UserItemV
             userVote.id = response.data[0].id;
             userVote.user = response.data[0].user;
             userVote.item = response.data[0].item;
-            userVote.donate = response.data[0].donate;
+            if (response.data[0].donate instanceof Boolean) {
+                userVote.donate = response.data[0].donate;
+            }
+            else {
+               userVote.donate = false;
+            }
         }
     })
     return userVote!
+}
+
+export async function removeUserItemVote(id: number): Promise<void> {
+    await axios.delete("api/itemvotes/"+id)
+        .then(response => {
+            console.log(response)
+        })
 }

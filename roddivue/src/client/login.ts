@@ -2,6 +2,7 @@ import axios from "axios";
 import {LogInRequest, SignUpRequest} from "@/client/types";
 import {store} from "@/store";
 import router from "@/router";
+import {getCurrentUserId} from "@/client/user";
 
 export async function login(loginRequest: LogInRequest): Promise<void> {
     if (store.getters.getLoggedInStatus)
@@ -9,7 +10,7 @@ export async function login(loginRequest: LogInRequest): Promise<void> {
 
     axios.defaults.headers.common["Authorization"] = ""
     localStorage.removeItem("token")
-    axios.post("/api/token/login/", loginRequest).then(response => {
+    await axios.post("/api/token/login/", loginRequest).then(response => {
             console.log(response)
             const token = response.data.auth_token
             store.commit('setToken', token)
@@ -31,6 +32,10 @@ export async function login(loginRequest: LogInRequest): Promise<void> {
                 console.log(JSON.stringify(error))
             }
         })
+    await getCurrentUserId().then(response => {
+        console.log(response)
+        store.commit('setUserID', response)
+    })
 }
 
 export async function signup(signupRequest: SignUpRequest): Promise<void> {
