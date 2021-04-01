@@ -21,10 +21,12 @@ import {defineComponent} from "vue";
 import SelectButton from 'primevue/selectbutton';
 import Rating from 'primevue/rating';
 import Button from 'primevue/button';
+/*
 import {NewUserItemPriorityRequest, NewUserItemVoteRequest} from "@/client/types";
 import {getLoggedInUserItemPriority, removeUserItemPriority, setUserItemPriority} from "@/client/priorities";
 import {getLoggedInUserItemVote, removeUserItemVote, setUserItemVote} from "@/client/votes";
 
+ */
 
 
 export default defineComponent({
@@ -61,38 +63,41 @@ export default defineComponent({
   },
     methods: {
       wishChoice() {
-          console.log(this.value1);
-          if (this.priority == 0 ) {
-                this.lagreShow = false;
-            }
+        console.log(this.value1);
+        if (this.priority == 0) {
+          this.lagreShow = false;
+        }
         if (this.value1 == "Nei") {
-            console.log("Nei");
-            this.priShow = false;
-            this.kastShow = true;
+          console.log("Nei");
+          this.priShow = false;
+          this.kastShow = true;
 
         } else {
-            console.log("Ja");
-            this.priShow = true;
-            this.kastShow = false;
+          console.log("Ja");
+          this.priShow = true;
+          this.kastShow = false;
         }
       },
       kastChoice() {
-          this.lagreShow = true
-        },
+        this.lagreShow = true
+      },
       rateChoice() {
-          if (!(this.priority == 0 )) {
-                this.lagreShow = true;
-            }
-        },
+        if (!(this.priority == 0)) {
+          this.lagreShow = true;
+        }
+      }
+      /*
       async save() {
         console.log(this.priority)
         console.log(this.donate)
         if (this.priShow) {
           if (this.havePreviousPriority){ await removeUserItemPriority(this.previousPriorityId).then(response => {
-            console.log("PreviousPriority have been deleted", response)
+            console.log("PreviousPriority have been deleted")
+            console.log(response)
           }) }
           if (this.havePreviousVote){ await removeUserItemVote(this.previousVoteId).then(response => {
-            console.log("PreviousPriority have been deleted", response)
+            console.log("PreviousVote have been deleted")
+            console.log(response)
           })  }
           const itemPriority: NewUserItemPriorityRequest = {
             userId: this.$store.getters.getUserID,
@@ -103,10 +108,12 @@ export default defineComponent({
         }
         else if (this.kastShow) {
           if (this.havePreviousVote){ await removeUserItemVote(this.previousVoteId).then(response => {
-            console.log("PreviousPriority have been deleted", response)
+            console.log("PreviousPriority have been deleted")
+            console.log(response)
           })  }
           if (this.havePreviousPriority){ await removeUserItemPriority(this.previousPriorityId).then(response => {
-            console.log("PreviousPriority have been deleted", response)
+            console.log("PreviousVote have been deleted")
+            console.log(response)
           })  }
           const itemVote: NewUserItemVoteRequest = {
             userId: this.$store.getters.getUserID,
@@ -139,6 +146,9 @@ export default defineComponent({
     },
     async mounted() {
     await this.getUserPriorities()
+    }
+
+       */
     }
 })
 </script>

@@ -12,6 +12,15 @@
               <InputText id="itemValue" type="text" v-model="value" />
             </span>
           </div>
+  <div class="InputFields2">
+            <span class="p-field InputField">
+              <Dropdown id="EstateId" v-model="estateId"
+                        :options="estates"
+                        optionLabel="name"
+                        optionValue="id"
+                        placeholder="Velg dødsbo"/>
+            </span>
+          </div>
   <!-- <Card class="card">
     <h5>Left Icon</h5>
     <span class="p-input-icon-left">
@@ -23,6 +32,8 @@
     <p>Beskrivelse av gjenstand: </p>
     <textarea id="itemDescription" class="Tekstboks" v-model="description"/>
   </span>
+
+
   <!--
   <div class="filDiv">
   <FileUpload class = "filer" name="demo[]" url="./upload" :multiple="true" />
@@ -38,8 +49,10 @@
 import {defineComponent} from "vue";
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
-import {NewItemRequest} from "@/client/types";
+import {EstateResponse, NewItemRequest} from "@/client/types";
 import {createNewItem} from "@/client/item";
+import Dropdown from "primevue/dropdown";
+import {getAllEstates} from "@/client/estate";
 //import FileUpload from 'primevue/fileupload';
 
 export default defineComponent({
@@ -47,16 +60,18 @@ export default defineComponent({
   components: {
     InputText,
     Button,
+    Dropdown
     //FileUpload,
   },
-  props: {
-    estateId: {
-      type: Number,
-      default: 8
-    }
-  },
-  setup() {
+  async setup() {
+    const estates: EstateResponse[] = []
+    await getAllEstates().then(response => {
+      for (let i = 0; i < response.length; i++) {
+        estates.push(response[i])
+      }
+    })
     return {
+      estates
     }
   },
   methods: {
@@ -76,6 +91,7 @@ export default defineComponent({
             name: '',
             value: 0,
             description: '',
+            estateId: 0,
 		}
 	},
 })

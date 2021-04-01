@@ -35,7 +35,7 @@
             Gjenstander:
           </template>
           <template #content>
-            <router-link to="/createitem">
+            <router-link :to="'/createitem/' + id">
               <Button>Legg til ny gjenstand</Button>
             </router-link>
             <ItemList v-bind:items="estate.items"/>
