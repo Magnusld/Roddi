@@ -1,16 +1,12 @@
 <template>
-  <Card>
-    <template #content>
-      <!--
-      -->
-      <p>{{id}}</p>
-      <router-link style="color:black"
+  <div>
+    <router-link style="color:black; font-size: large"
                    class="title"
-                   :to="'/estate/' + id">
+                   :to="'/estate/' + id"
+    >
         {{name}}
       </router-link>
-    </template>
-  </Card>
+  </div>
 </template>
 
 <script lang="ts">
@@ -31,10 +27,9 @@ export default defineComponent({
     name: {
       default: "",
       type: String
-    }
+    },
   },
   components: {
-    Card,
   },
   setup() {
     return {

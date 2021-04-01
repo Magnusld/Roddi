@@ -4,7 +4,7 @@ export const store =  createStore({
     state: {
         user: {
           username: '',
-            userID: ''
+            userID: 0
         },
         isAuthenticated: false,
         token: ''
@@ -33,7 +33,7 @@ export const store =  createStore({
             state.user.userID = userID
         },
         removeUserID(state) {
-            state.user.userID = ''
+            state.user.userID = 0
         },
         removeToken(state) {
             state.token = ''
