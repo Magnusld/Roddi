@@ -29,8 +29,7 @@ export default defineComponent({
     data () {
     return {
       items: [
-        {label: 'Hjem', icon: 'pi pi-fw pi-home', to: '/'},
-        {label: 'Dødsbo', icon: 'pi pi-fw pi-home', to: '/estates'},
+        {label: 'Admin', icon: 'pi pi-fw pi-home', to: '/'},
         {label: 'Bruker', icon: 'pi pi-fw pi-cog', to: '/user'}
         ]
       }

@@ -1,5 +1,20 @@
 <template>
-  <div class="InputFields">
+  <Card>
+    <template #title>
+      <p>Legg til en gjenstand</p>
+    </template>
+    <template #content>
+        <div class="InputFields2">
+            <span class="p-field InputField">
+              <Dropdown id="EstateId" v-model="estateId"
+                        :options="estates"
+                        optionLabel="name"
+                        optionValue="id"
+                        placeholder="Velg dødsbo"/>
+            </span>
+          </div>
+
+      <div class="InputFields">
             <span class="p-field InputField">
               <label for="itemName">Navn på gjenstand: </label>
               <InputText id="itemName" type="text" v-model="name"/>
@@ -9,18 +24,10 @@
    <div class="InputFields2">
             <span class="p-field InputField">
               <label for="itemValue">Verdi på gjenstand: </label>
-              <InputText id="itemValue" type="text" v-model="value" />
+              <InputText id="itemValue" type="text" v-model="value" default="" />
             </span>
           </div>
-  <div class="InputFields2">
-            <span class="p-field InputField">
-              <Dropdown id="EstateId" v-model="estateId"
-                        :options="estates"
-                        optionLabel="name"
-                        optionValue="id"
-                        placeholder="Velg dødsbo"/>
-            </span>
-          </div>
+
   <!-- <Card class="card">
     <h5>Left Icon</h5>
     <span class="p-input-icon-left">
@@ -42,6 +49,8 @@
    <div class="ButtonBar">
           <Button class="submit" @click="submitItem">Legg til gjenstand</Button>
         </div>
+    </template>
+  </Card>
 </template>
 
 
@@ -53,6 +62,7 @@ import {EstateResponse, NewItemRequest} from "@/client/types";
 import {createNewItem} from "@/client/item";
 import Dropdown from "primevue/dropdown";
 import {getAllEstates} from "@/client/estate";
+import Card from "primevue/card";
 //import FileUpload from 'primevue/fileupload';
 
 export default defineComponent({
@@ -60,7 +70,8 @@ export default defineComponent({
   components: {
     InputText,
     Button,
-    Dropdown
+    Dropdown,
+    Card
     //FileUpload,
   },
   async setup() {

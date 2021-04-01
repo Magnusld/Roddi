@@ -18,7 +18,6 @@ export async function login(loginRequest: LogInRequest): Promise<void> {
             axios.defaults.headers.common["Authorization"] = "Token " + token
             console.log(token)
             localStorage.setItem("token", token)
-            router.push('/')
         })
         .catch(error => {
             if (error.response) {
@@ -35,6 +34,7 @@ export async function login(loginRequest: LogInRequest): Promise<void> {
     await getCurrentUserId().then(response => {
         console.log(response)
         store.commit('setUserID', response)
+        router.push({path:'/user'})
     })
 }
 

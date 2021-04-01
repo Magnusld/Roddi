@@ -1,19 +1,27 @@
 <template>
-  <p>Innlogget bruker: {{StoreStateLoggedInUsername}}</p>
-  <Button @click="logout()">Logg ut</Button>
+  <Card>
+    <template #content>
+      <p>Innlogget som: {{StoreStateLoggedInUsername}}</p>
+    </template>
+    <template #footer>
+      <Button class="p-button-text" @click="logout()">Logg ut</Button>
+    </template>
+  </Card>
 </template>
 
 <script lang="ts">
 import {defineComponent} from "vue";
 import Button from "primevue/button";
 import {logout} from "@/client/login";
+import Card from "primevue/card";
 
 export default defineComponent({
   name: "UserPage",
   props: {
   },
   components: {
-    Button
+    Button,
+    Card
   },
   setup() {
     return {
@@ -36,5 +44,6 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
+
 
 </style>
