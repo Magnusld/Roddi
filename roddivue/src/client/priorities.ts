@@ -3,22 +3,18 @@ import {store} from "@/store";
 import {NewUserItemPriorityRequest, UserItemPriorityResponse} from "@/client/types";
 
 export async function getLoggedInUserItemPriority(itemID: number): Promise<UserItemPriorityResponse> {
-    let userItemPriorityResponse: UserItemPriorityResponse;
+    const userItemPriorityResponse: UserItemPriorityResponse = {id: 0, user: 0, item: 0, priority: 0}
     await axios.get("api/itempriority/?itemID="+itemID).then(response => {
         console.log(response)
         if (! (response.data.length == 0)) {
             userItemPriorityResponse.id = response.data[0].id;
             userItemPriorityResponse.user = response.data[0].user;
             userItemPriorityResponse.item = response.data[0].item;
-            if (response.data[0].priority instanceof Number) {
-                userItemPriorityResponse.priority = response.data[0].priority;
-            }
-            else {
-                userItemPriorityResponse.priority = 0;
-            }
+            userItemPriorityResponse.priority = response.data[0].priority;
         }
     })
-    return userItemPriorityResponse!;
+    console.log(userItemPriorityResponse)
+    return userItemPriorityResponse;
 }
 
 export async function setUserItemPriority( newUserItemPriority: NewUserItemPriorityRequest): Promise<void> {

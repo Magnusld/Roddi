@@ -4,7 +4,7 @@ import {NewUserItemVoteRequest, UserItemVoteResponse} from "@/client/types";
 
 export async function setUserItemVote(userVote: NewUserItemVoteRequest): Promise<void> {
     console.log(userVote)
-    await axios.post('api/itemvotes', {
+    await axios.post('api/itemvotes/', {
         user: userVote.userId,
         item: userVote.itemId,
         donate: userVote.donate}).then(response => {
@@ -13,22 +13,17 @@ export async function setUserItemVote(userVote: NewUserItemVoteRequest): Promise
 }
 
 export async function getLoggedInUserItemVote(itemId: number): Promise<UserItemVoteResponse> {
-    let userVote: UserItemVoteResponse
+    const userVote: UserItemVoteResponse = {id: 0, user:0, item: 0, donate: false}
     await axios.get('api/itemvotes/?itemID=' + itemId).then(response => {
         console.log(response)
-        if (!response.data.isEmpty()) {
+        if (! (response.data.length == 0)) {
             userVote.id = response.data[0].id;
             userVote.user = response.data[0].user;
             userVote.item = response.data[0].item;
-            if (response.data[0].donate instanceof Boolean) {
-                userVote.donate = response.data[0].donate;
-            }
-            else {
-               userVote.donate = false;
-            }
+            userVote.donate = response.data[0].donate;
         }
     })
-    return userVote!
+    return userVote
 }
 
 export async function removeUserItemVote(id: number): Promise<void> {

@@ -9,7 +9,7 @@
     </div>
     <div v-show="kastShow" class = "KastDoner">
         <h5>Skal gjenstanden:</h5>
-        <SelectButton v-model="donate" v-on:click="kastChoice" :options="options2" />
+        <SelectButton v-model="donateString" v-on:click="kastChoice" :options="options2" />
     </div>
     <div v-show="lagreShow" class = "submit">
         <Button @click="save" label="Lagre" icon="pi pi-check" iconPos="right" />
@@ -21,12 +21,10 @@ import {defineComponent} from "vue";
 import SelectButton from 'primevue/selectbutton';
 import Rating from 'primevue/rating';
 import Button from 'primevue/button';
-/*
 import {NewUserItemPriorityRequest, NewUserItemVoteRequest} from "@/client/types";
 import {getLoggedInUserItemPriority, removeUserItemPriority, setUserItemPriority} from "@/client/priorities";
 import {getLoggedInUserItemVote, removeUserItemVote, setUserItemVote} from "@/client/votes";
 
- */
 
 
 export default defineComponent({
@@ -42,24 +40,57 @@ export default defineComponent({
       Rating,
       Button
     },
-  setup() { //add code for setup if needed
+  async setup(props) {
+    let priority = 0
+    let havePreviousPriority = false
+    let previousPriorityId = 0
+    let donate = false
+    let havePreviousVote = false
+    let previousVoteId = 0
+    let donateString = ""
+    await getLoggedInUserItemPriority(props.itemId).then(response => {
+      if (!(response.priority == 0)) {
+        priority = response.priority
+        havePreviousPriority = true
+        previousPriorityId = response.id
+      }
+    console.log(priority)
+    })
+    if (!havePreviousPriority) {
+       await getLoggedInUserItemVote(props.itemId).then(response => {
+            if (response.donate) {
+              donate = response.donate
+              havePreviousVote = true
+              previousVoteId = response.id
+            }
+            console.log(donate)
+          })
+    }
+    if (donate) {
+      donateString = "Doneres bort"
+    }
+    else if (havePreviousVote) {
+      donateString = "Kastes"
+    }
+    return {
+      priority,
+      havePreviousPriority,
+      previousPriorityId,
+      donate,
+      havePreviousVote,
+      previousVoteId,
+      donateString
+    }
   },
   data() {
       return {
           value1: null,
           options: ['Ja', 'Nei'],
-          priority: 0,
-          havePreviousPriority: false,
-          previousPriorityId: 0,
-          donate: false,
-          havePreviousVote: false,
-          previousVoteId: 0,
           options2: ['Kastes', 'Doneres bort'],
           priShow: false,
           kastShow: false,
           lagreShow: false,
       }
-
   },
     methods: {
       wishChoice() {
@@ -85,36 +116,51 @@ export default defineComponent({
         if (!(this.priority == 0)) {
           this.lagreShow = true;
         }
-      }
-      /*
+      },
+
       async save() {
+        if (!(this.donateString == "")) {
+          if (this.donateString == "Doneres bort") {
+            this.donate = true
+          }
+          else {
+            this.donate = false
+          }
+        }
         console.log(this.priority)
         console.log(this.donate)
         if (this.priShow) {
-          if (this.havePreviousPriority){ await removeUserItemPriority(this.previousPriorityId).then(response => {
-            console.log("PreviousPriority have been deleted")
-            console.log(response)
-          }) }
-          if (this.havePreviousVote){ await removeUserItemVote(this.previousVoteId).then(response => {
-            console.log("PreviousVote have been deleted")
-            console.log(response)
-          })  }
+          if (this.havePreviousPriority) {
+            await removeUserItemPriority(this.previousPriorityId).then(response => {
+              console.log("PreviousPriority have been deleted")
+              console.log(response)
+            })
+          }
+          if (this.havePreviousVote) {
+            await removeUserItemVote(this.previousVoteId).then(response => {
+              console.log("PreviousVote have been deleted")
+              console.log(response)
+            })
+          }
           const itemPriority: NewUserItemPriorityRequest = {
             userId: this.$store.getters.getUserID,
             itemId: this.itemId,
             priority: this.priority
           }
           await setUserItemPriority(itemPriority)
-        }
-        else if (this.kastShow) {
-          if (this.havePreviousVote){ await removeUserItemVote(this.previousVoteId).then(response => {
-            console.log("PreviousPriority have been deleted")
-            console.log(response)
-          })  }
-          if (this.havePreviousPriority){ await removeUserItemPriority(this.previousPriorityId).then(response => {
-            console.log("PreviousVote have been deleted")
-            console.log(response)
-          })  }
+        } else if (this.kastShow) {
+          if (this.havePreviousVote) {
+            await removeUserItemVote(this.previousVoteId).then(response => {
+              console.log("PreviousPriority have been deleted")
+              console.log(response)
+            })
+          }
+          if (this.havePreviousPriority) {
+            await removeUserItemPriority(this.previousPriorityId).then(response => {
+              console.log("PreviousVote have been deleted")
+              console.log(response)
+            })
+          }
           const itemVote: NewUserItemVoteRequest = {
             userId: this.$store.getters.getUserID,
             itemId: this.itemId,
@@ -122,33 +168,7 @@ export default defineComponent({
           }
           await setUserItemVote(itemVote)
         }
-      },
-      async getUserPriorities() {
-        await getLoggedInUserItemPriority(this.itemId).then(response => {
-          if (!(response.priority == 0)) {
-            this.priority = response.priority
-            this.havePreviousPriority = true
-            this.previousPriorityId = response.id
-          }
-          console.log(this.priority)
-        })
-        if (!this.havePreviousPriority) {
-          await getLoggedInUserItemVote(this.itemId).then(response => {
-            if (!(response.donate == false)) {
-              this.donate = response.donate
-              this.havePreviousVote = true
-              this.previousVoteId = response.id
-            }
-            console.log(this.donate)
-          })
-        }
       }
-    },
-    async mounted() {
-    await this.getUserPriorities()
-    }
-
-       */
     }
 })
 </script>
