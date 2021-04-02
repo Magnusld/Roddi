@@ -26,11 +26,12 @@ export default defineComponent({
     }
   },
   async setup(props) {
-    const item: ItemResponse = {id: 0, name: '', description: ''}
+    const item: ItemResponse = {id: 0, name: '', description: '', value: 0}
     await getItemById(props.id).then(response => {
       item.id = response.id
       item.name = response.name
       item.description = response.description
+      item.value = response.value
     })
     return { item }
   },

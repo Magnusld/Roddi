@@ -1,5 +1,4 @@
 <template>
-  <p>Dette komponentet er kun et template</p>
   <Priorities/>
 
 </template>
