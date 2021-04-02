@@ -1,7 +1,4 @@
 <template>
-    <div class = "tilbake">
-        <Button label="<- Tilbake" class="p-button-outlined" />
-    </div>
     <Card class = "Cardclass">
 
     <template #title>
@@ -44,7 +41,6 @@ export default defineComponent({
   name: "ItemDesc",
   components: {
       Card,
-      Button,
     },
   props: {
     name: {
