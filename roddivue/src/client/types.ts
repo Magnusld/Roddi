@@ -52,14 +52,14 @@ export interface ItemsRequest {
 }
 
 export interface NewUserItemVoteRequest {
-    user: number;
-    item: number;
+    userId: number;
+    itemId: number;
     donate: boolean;
 }
 
 export interface NewUserItemPriorityRequest {
-    user: number;
-    item: number;
+    userId: number;
+    itemId: number;
     priority: number;
 }
 

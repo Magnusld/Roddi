@@ -1,13 +1,14 @@
 import {createWebHistory, createRouter} from "vue-router";
 import LogInView from "@/Views/LogInView.vue";
-import DashboardView from "@/Views/DashboardView.vue"
+import AdminView from "@/Views/AdminView.vue"
 import {store} from "@/store";
 import UserView from "@/Views/UserView.vue";
-import EstatesView from "@/Views/EstatesView.vue";
+import EstatesView from "@/components/EstatesView.vue";
 import EstateView from "@/Views/EstateView.vue";
 import ItemView from "@/Views/ItemView.vue";
 import CreateItemView from "@/Views/CreateItemView.vue";
 import PrioritiesView from "@/Views/PrioritiesView.vue";
+import ErrorPage from "@/Views/ErrorPage.vue";
 
 const routerHistory = createWebHistory()
 
@@ -27,24 +28,17 @@ const router = createRouter({
         },
         {
             path: "/",
-            name: "Min Side",
-            component: DashboardView,
+            name: "Admin",
+            component: AdminView,
             meta: {
                 requireLogin:true
+                //Legge inn krav om administrator tilgang for å kunne gå til denne siden
             }
         },
         {
             path: "/user",
             name: "Bruker",
             component: UserView,
-            meta: {
-                requireLogin:true
-            }
-        },
-        {
-            path: "/estates",
-            name: "Dødsbo",
-            component: EstatesView,
             meta: {
                 requireLogin:true
             }
@@ -61,12 +55,12 @@ const router = createRouter({
             })
         },
         {
-            path: "/createitem",
+            path: "/createitem/:estateId",
             name: "Opprett eiendel",
             component: CreateItemView,
             meta: {
                 requireLogin:true
-            },
+            }
         },
         {
             path: "/item/:id",
@@ -90,6 +84,11 @@ const router = createRouter({
 
              */
         },
+        {
+            path: "/:pathMatch(.*)*",
+            name: "404 Page Not Found",
+            component: ErrorPage
+        }
     ],
 });
 
