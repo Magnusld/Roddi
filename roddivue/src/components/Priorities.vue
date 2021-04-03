@@ -8,6 +8,7 @@
     <Column field="userPriority" header="Prioritet" sortable="true"/>
   </DataTable>
 
+
 </template>
 
 <script lang="ts">
@@ -70,7 +71,6 @@ export default defineComponent({
       userItems
     }
   },
-
 })
 </script>
 
