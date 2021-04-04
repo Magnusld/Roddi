@@ -42,13 +42,17 @@ export interface NewItemRequest {
 export interface ItemResponse {
     id: number;
     name: string;
+    value: number;
     description: string;
 }
 
-export interface ItemsRequest {
-    navn: string;
-    verdi: string;
-    beskrivelse: string;
+
+export interface ItemDisplay {
+    itemId: number;
+    name: string;
+    value: number;
+    estateName: string;
+    userPriority: any;
 }
 
 export interface NewUserItemVoteRequest {
