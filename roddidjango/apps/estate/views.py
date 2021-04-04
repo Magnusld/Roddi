@@ -44,3 +44,15 @@ class ItemPriorityViewSet(viewsets.ModelViewSet):
         else:
             return self.queryset.all().filter(user=self.request.user.id,
                                               item=self.request.query_params.get(key='itemID', default=None))
+
+
+class DistributeItemsViewSet(viewsets.ModelViewSet):
+    serializer_class = EstateItemSerializer
+    queryset = EstateItem.objects.all()
+
+    def get_queryset(self):
+        estateID = self.request.query_params.get(key='estateID', default=None)
+        if estateID is None:
+            return self.queryset.all()
+        else:
+            self.request.query_params.get(key='estateID', default=None).settleEstate()
