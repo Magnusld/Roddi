@@ -99,13 +99,13 @@ class DistributeItemsViewSet(viewsets.ModelViewSet):
     def normalizeDict(self, inputdict):
         d = inputdict
         factor = 1.0 / math.fsum(d.values())
-        factor = Decimal(factor)
+        factor = float(factor)
         for k in d:
-            decValue = Decimal(float(d[k]))
+            decValue = float(d[k])
             d[k] = decValue * factor
         key_for_max = max(d.items(), key=operator.itemgetter(1))[0]
         diff = 1.0 - math.fsum(d.values())
-        d[key_for_max] += Decimal(diff)
+        d[key_for_max] += float(diff)
         return d
 
     def giveItem(self, itemid):
@@ -113,16 +113,14 @@ class DistributeItemsViewSet(viewsets.ModelViewSet):
         for user in self.users:
             if itemid in self.userPrioDict[user.id].keys():
                 tempvalue = self.userNorValueDict[user.id]
-                if(tempvalue==0):
-                    tempvalue = 0.1
-                results[user.id] = self.userPrioDict[user.id][itemid] * (1/tempvalue)
+                results[user.id] = self.userPrioDict[user.id][itemid] + (5/(((tempvalue*10)+1)))
         winnerid = self.keywithmaxval(results)
         winner = self.users.get(id = winnerid)
         item = self.items.get(id = itemid)
         item.given_to = winner
         item.save()
         print(winner, item)
-        self.userValueDict[winnerid] = self.userValueDict[winnerid] + item.value 
+        self.userValueDict[winnerid] = self.userValueDict[winnerid] + float(item.value) 
         self.userNorValueDict = self.normalizeDict(self.userValueDict)
         
     
