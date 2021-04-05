@@ -1,8 +1,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib import admin
-import math
-import operator
+
 
 from django.conf import settings
 
@@ -14,68 +13,8 @@ class Estate(models.Model):
     def __str__(self):
         return self.name
 
-    def settleEstate(self):
-        users = self.participants.all()
-        items = EstateItem.objects.all().filter(belongs_to=self.id)
-        itemVotes = ItemVote.objects.all().filter(item__belongs_to=self.id)
-        itemPriorities = ItemPriority.objects.all().filter(item__belongs_to=self.id)
 
-        userValueDict = {
 
-        }
-
-        userNorValueDict = {
-
-        }
-
-        userPrioDict = {
-
-        }
-
-        
-        for user in users:
-            userValueDict[user.id] = 0
-            userNorValueDict[user.id] = 0
-            userPrioDict[user.id] = {}
-            for prio in itemPriorities:
-                if user.id == prio.user.id:
-                    userPrioDict[user.id][prio.item.id] = prio.priority
-        
-        
-        for item in items:
-            giveItem(item.id)
-            
-
-    def normalizeDict(inputdict):
-        d = inputdict
-        factor = 1.0 / math.fsum(d.values())
-        for k in d:
-            d[k] = d[k] * factor
-        key_for_max = max(d.items(), key=operator.itemgetter(1))[0]
-        diff = 1.0 - math.fsum(d.values())
-        d[key_for_max] += diff
-        return d
-
-    def giveItem(itemid):
-        results = {}
-        for user in users:
-            if itemid in userPrioDict[user.id].values:
-                tempvalue = userNorValueDict[user.id]
-                if(tempvalue==0):
-                    tempvalue = 0.1
-                results[user.id] = userPrioDict[user.id][itemid].value * (1/tempvalue)
-        winnerid = keywithmaxval(results)
-        winner = users.filter(id = winnerid)
-        item = items.filter(id = itemid)
-        item.given_to = winner
-        userValueDict[winnerid] = userValueDict[winnerid] + item.value 
-        userNorValueDict = normalizeDict(userValueDict)
-        
-    
-    def keywithmaxval(d):
-        v=list(d.values())
-        k=list(d.keys())
-        return k[v.index(max(v))]
 
 
 
