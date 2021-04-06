@@ -4,7 +4,8 @@ export const store =  createStore({
     state: {
         user: {
           username: '',
-            userID: 0
+            userID: 0,
+            isAdmin: false
         },
         isAuthenticated: false,
         token: ''
@@ -35,6 +36,12 @@ export const store =  createStore({
         removeUserID(state) {
             state.user.userID = 0
         },
+        setAdminStatus(state, adminStatus) {
+            state.user.isAdmin = adminStatus
+        },
+        removeAdminStatus(state) {
+            state.user.isAdmin = false
+        },
         removeToken(state) {
             state.token = ''
             state.isAuthenticated = false
@@ -47,6 +54,7 @@ export const store =  createStore({
     getters: {
         getUserID: state => state.user.userID,
         getUsername: state => state.user.username,
-        getLoggedInStatus: state => state.isAuthenticated
+        getLoggedInStatus: state => state.isAuthenticated,
+        getAdminStatus: state => state.user.isAdmin
     }
 })
