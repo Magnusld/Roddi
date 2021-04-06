@@ -21,7 +21,7 @@
             <template #content>
               <ScrollPanel style="width: 100%; height: 150px">
                 <p v-for="participant in estate.participants"
-                v-bind:key="participants.indexOf(participant)">
+                v-bind:key="estate.participants.indexOf(participant)">
                   {{participant.username}}
                 </p>
               </ScrollPanel>

@@ -84,6 +84,8 @@ class DistributeItemsViewSet(viewsets.ModelViewSet):
 
     userPrioDict = {}
 
+    userVoteDict = {}
+
     def get_queryset(self):
         estateID = self.request.query_params.get(key='estateID', default=None)
         if estateID is None:
@@ -100,9 +102,14 @@ class DistributeItemsViewSet(viewsets.ModelViewSet):
             self.userValueDict[user.id] = 0
             self.userNorValueDict[user.id] = 0
             self.userPrioDict[user.id] = {}
+            self.userVoteDict[user.id] = {}
             for prio in self.itemPriorities:
                 if user.id == prio.user.id:
                     self.userPrioDict[user.id][prio.item.id] = prio.priority
+            for vote in self.itemVotes:
+                if user.id == vote.user.id:
+                    print(vote.donate)
+                    self.userVoteDict[user.id][vote.item.id] = vote.donate
 
 
         for item in self.items:
@@ -125,18 +132,34 @@ class DistributeItemsViewSet(viewsets.ModelViewSet):
 
     def giveItem(self, itemid):
         results = {}
+        prioCount = 0
+        donateCount = 0
+        item = self.items.get(id=itemid)
         for user in self.users:
             if itemid in self.userPrioDict[user.id].keys():
+                prioCount = prioCount+1
                 tempvalue = self.userNorValueDict[user.id]
-                results[user.id] = self.userPrioDict[user.id][itemid] + (5/(((tempvalue*10)+1)))
-        winnerid = self.keywithmaxval(results)
-        winner = self.users.get(id = winnerid)
-        item = self.items.get(id = itemid)
-        item.given_to = winner
+                results[user.id] = self.userPrioDict[user.id][itemid] + (5 / ((tempvalue * 10) + 1))
+            if itemid in self.userVoteDict[user.id].keys():
+                if self.userVoteDict[user.id][itemid]:
+                    donateCount = donateCount + 1
+
+        if donateCount==0 and prioCount == 0:
+            item.donated_or_thrown = "thrown"
+            print(item.name, " thrown")
+        elif donateCount > prioCount:
+            item.donated_or_thrown = "donated"
+            print(item.name," donated")
+        else:
+            winnerid = self.keywithmaxval(results)
+            winner = self.users.get(id=winnerid)
+            item.given_to = winner
+            self.userValueDict[winnerid] = self.userValueDict[winnerid] + float(item.value)
+            self.userNorValueDict = self.normalizeDict(self.userValueDict)
+            print(winner, item)
+
         item.save()
-        print(winner, item)
-        self.userValueDict[winnerid] = self.userValueDict[winnerid] + float(item.value) 
-        self.userNorValueDict = self.normalizeDict(self.userValueDict)
+
         
     
     def keywithmaxval(self, d):

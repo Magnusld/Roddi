@@ -25,6 +25,7 @@ class EstateItem(models.Model):
     value = models.DecimalField(max_digits=12, decimal_places=2)
     belongs_to = models.ForeignKey(to=Estate, related_name="items", on_delete=models.CASCADE)
     given_to = models.ForeignKey(to=settings.AUTH_USER_MODEL, related_name="items", on_delete=models.SET_NULL, blank=True, null=True)
+    donated_or_thrown = models.CharField(max_length=10, blank=True, null=True)
     wants_item = models.ManyToManyField(to=settings.AUTH_USER_MODEL, related_name='userpriorities', blank=True, through='ItemPriority')
     donate_or_throw = models.ManyToManyField(to=settings.AUTH_USER_MODEL, related_name='uservotes', blank=True, through='ItemVote')
 
