@@ -9,6 +9,7 @@ from django.conf import settings
 class Estate(models.Model):
     name = models.CharField(max_length=255)
     participants = models.ManyToManyField(to=settings.AUTH_USER_MODEL, related_name='users', blank=True)
+    is_settled = models.BooleanField(blank=True, null=True)
 
     def __str__(self):
         return self.name

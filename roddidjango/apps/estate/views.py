@@ -115,8 +115,9 @@ class DistributeItemsViewSet(viewsets.ModelViewSet):
         for item in self.items:
             itemid = item.id
             self.giveItem(itemid)
-            
 
+        estate.is_settled = True
+        estate.save()
 
     def normalizeDict(self, inputdict):
         d = inputdict
