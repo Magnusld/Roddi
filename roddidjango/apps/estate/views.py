@@ -1,12 +1,12 @@
 from django.db.models import QuerySet
 from rest_framework import viewsets
+from rest_framework.permissions import IsAdminUser
 
 from .serializers import EstateSerializer, EstateItemSerializer, ItemVoteSerializer, ItemPrioritySerializer
 from .models import Estate, EstateItem, ItemVote, ItemPriority
 from django.shortcuts import get_object_or_404
 import math
 import operator
-from decimal import Decimal
 
 
 class EstateViewSet(viewsets.ModelViewSet):
@@ -68,7 +68,7 @@ class ItemPriorityViewSet(viewsets.ModelViewSet):
 class DistributeItemsViewSet(viewsets.ModelViewSet):
     serializer_class = EstateItemSerializer
     queryset = Estate.objects.all()
-    permission_classes = []
+    permission_classes = [IsAdminUser]
     global users
     global items
     global ItemVotes
@@ -108,7 +108,6 @@ class DistributeItemsViewSet(viewsets.ModelViewSet):
                     self.userPrioDict[user.id][prio.item.id] = prio.priority
             for vote in self.itemVotes:
                 if user.id == vote.user.id:
-                    print(vote.donate)
                     self.userVoteDict[user.id][vote.item.id] = vote.donate
 
 
