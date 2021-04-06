@@ -1,16 +1,26 @@
-from django.shortcuts import render
-
 # Create your views here.
-from .models import User
+from django.db.models import QuerySet
 from rest_framework import viewsets
-from django.conf import settings
+from rest_framework import permissions
 
-from .serializers import UserIdSerializer
+from .models import User
+from .serializers import UserIdSerializer, UserIsAdminSerializer, UserReadOnlySerializer
 
 
-class UserIdViewSet(viewsets.ModelViewSet):
+class UserIdViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = UserIdSerializer
 
     def get_queryset(self):
         return User.objects.filter(id=self.request.user.id)
 
+
+class UserIsAdminViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = UserIsAdminSerializer
+
+    def get_queryset(self):
+        return User.objects.filter(id=self.request.user.id)
+
+
+class UserReadOnlyList(viewsets.ReadOnlyModelViewSet):
+    serializer_class = UserReadOnlySerializer
+    queryset = User.objects.all()
