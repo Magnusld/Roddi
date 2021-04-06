@@ -21,6 +21,7 @@ export default defineComponent({
       default: 0
     }
   },
+  /*
   async setup(props) {
     const estate: EstateResponse = {id: 0, name: '', items: null, participants: null}
     try {
@@ -38,6 +39,7 @@ export default defineComponent({
       estate
     }
   },
+   */
   components: { // add the components that the view should show
     SettlementTitle,
     SettlementOverview,

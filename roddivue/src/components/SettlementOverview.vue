@@ -1,6 +1,6 @@
 <template>
   <p>Her kommer det masse grids :))))))</p>
-  <Button label="Test" v-on:click="insertItem('teppe', 'Bruker2', 230)"/>
+  <Button label="Test" v-on:click="insertItem('teppe', 'Bruker2', '230 kr')"/>
   <div class="grid-container" id="grid-container">
     <div class="grid-user1" id="grid-user1">
       <p>Bruker1</p>
@@ -85,14 +85,17 @@ export default defineComponent({
           return str;
       }
     },
-    insertItem(name: string, owner: string, value: number ) {
+    insertItem(name: string, owner: string, value: string ) {
       // Opprette HTML klasse og element
       // Sette inn paragraph med navn og verdi
       const element = document.createElement("div");
       element.classList.add(name);
       const info = document.createElement("p");
-      info.textContent = name + "\n" + value.toString();
+      info.textContent = name;
+      const verdi = document.createElement("p");
+      verdi.textContent = value;
       element?.appendChild(info);
+      element?.appendChild(verdi);
       // Finne hvilken kolonne den skal i
       let colum = 1;
       for (let i = 1; i < 7; i++) {
