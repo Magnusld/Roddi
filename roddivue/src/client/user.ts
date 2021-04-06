@@ -17,7 +17,7 @@ export async function getAllEstateUsers(estateId: number): Promise<UserResponse[
             estateUserIDs = users.participants;
     })
     const estateUsers = new Array<UserResponse>()
-    await axios.get('api/users/').then(response => {
+    await axios.get('api/UserList/').then(response => {
         for (let i = 0; i < response.data.length; i++) {
             const user: UserResponse = {
                 id: response.data[i].id,

@@ -17,3 +17,14 @@ class UserIsAdminSerializer(serializers.ModelSerializer):
         fields = (
             "is_staff",
         )
+
+
+class UserReadOnlySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = (
+            "id",
+            "username",
+            "first_name",
+            "last_name",
+        )
