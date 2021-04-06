@@ -2,7 +2,7 @@
   <div class="grid-container">
     <div class="grid-item-1"><ItemDesc v-bind:name="item.name"
                                        v-bind:description="item.description"/></div>
-    <div class="grid-item-2"><ItemChoices/></div>
+    <div class="grid-item-2"><ItemChoices v-bind:itemId="id"/></div>
   </div>
 </template>
 
@@ -26,11 +26,12 @@ export default defineComponent({
     }
   },
   async setup(props) {
-    const item: ItemResponse = {id: 0, name: '', description: ''}
+    const item: ItemResponse = {id: 0, name: '', description: '', value: 0}
     await getItemById(props.id).then(response => {
       item.id = response.id
       item.name = response.name
       item.description = response.description
+      item.value = response.value
     })
     return { item }
   },
