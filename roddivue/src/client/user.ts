@@ -53,3 +53,11 @@ export async function getCurrentUserId(): Promise<number> {
     })
     return id!;
 }
+
+export async function getCurrentUserAdminStatus(): Promise<boolean> {
+    let admin = false
+    await axios.get('/api/IsStaff/').then(response => {
+        admin = response.data[0].is_staff;
+    })
+    return admin!
+}

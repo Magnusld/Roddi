@@ -2,7 +2,7 @@
   <div class="grid-container">
     <div class="grid-item-1"><ItemDesc v-bind:name="item.name"
                                        v-bind:description="item.description"/></div>
-    <div class="grid-item-2"><ItemChoices v-bind:itemId="id"/></div>
+    <div class="grid-item-2"><ItemChoices v-bind:itemId="id" v-if="!StoreStateAdmin"/></div>
   </div>
 </template>
 
@@ -12,6 +12,7 @@ import ItemDesc from "@/components/ItemDesc.vue";
 import ItemChoices from "@/components/ItemChoices.vue";
 import {getItemById} from "@/client/item";
 import {ItemResponse} from "@/client/types";
+import {store} from "@/store";
 
 export default defineComponent({
   name: "ItemView",
@@ -35,14 +36,11 @@ export default defineComponent({
     })
     return { item }
   },
-  /*
-  methods: {
-    async getItem() {
-      await getItemById(this.id)
+  computed: {
+    StoreStateAdmin() {
+      return store.getters.getAdminStatus
     }
   }
-
-   */
 })
 </script>
 
