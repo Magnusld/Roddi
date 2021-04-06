@@ -1,26 +1,20 @@
 <template>
-    <DashboardPage/>
+  <div>
+    <p>Error 404: Page Not Found</p>
+    <p>¯\_(ツ)_/¯</p>
+  </div>
 </template>
 
 <script lang="ts">
-import DashboardPage from "@/components/DashboardPage.vue";
 import { defineComponent } from "vue"
 
-
 export default defineComponent({
-  name: "DashboardView",
+  name: "ErrorPage",
   components: {
-    DashboardPage,
-  },
-   props: {
   }
 })
 </script>
 
 <style scoped lang="scss">
-
-.p-d-flex {
-  justify-content: center;
-}
 
 </style>

@@ -8,6 +8,7 @@ export async function getAllEstateItems(estateId: number): Promise<ItemResponse[
             const item: ItemResponse = {
                 id: response.data[i].id,
                 name: response.data[i].name,
+                value: response.data[i].value,
                 description: response.data[i].description
             }
             estateItems.push(item)
@@ -22,6 +23,7 @@ export async function getItemById(itemId: number): Promise<ItemResponse> {
         const itemResponse: ItemResponse = {
             id: response.data.id,
             name: response.data.name,
+            value: response.data.value,
             description: response.data.description
         }
         item = itemResponse
@@ -31,7 +33,8 @@ export async function getItemById(itemId: number): Promise<ItemResponse> {
 }
 
 export async function createNewItem(item: NewItemRequest): Promise<void> {
-    await axios.post('api/items/', //Ingen anelse hvorfor dette ikke fungere, spør Bjørn om backendstøtten
+    console.log(item)
+    await axios.post('api/items/',
         // eslint-disable-next-line @typescript-eslint/camelcase
         {name: item.name, description: item.description, value: item.value,  belongs_to: item.belongsTo}).then( promise => {
         console.log(promise)

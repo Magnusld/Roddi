@@ -35,9 +35,6 @@
             Gjenstander:
           </template>
           <template #content>
-            <router-link to="/createitem">
-              <Button>Legg til ny gjenstand</Button>
-            </router-link>
             <ItemList v-bind:items="estate.items"/>
           </template>
         </Card>
@@ -68,7 +65,6 @@ export default defineComponent({
     Card,
     Divider,
     ScrollPanel,
-    Button
   },
   async setup(props) {
     const estate: EstateResponse = {id: 0, name: '', items: null, participants: null}
@@ -87,11 +83,6 @@ export default defineComponent({
       estate
     }
   },
-  data() {
-    return {
-      participants: ['Magnus', 'Yngve', 'Bjørn', 'Emilie', 'Sondre', 'Knut', 'Martine']
-    }
-  }
 })
 </script>
 
