@@ -15,6 +15,29 @@ import SettlementThrow from "@/components/SettlementThrow.vue";
 
 export default defineComponent({
   name: "OppgjørView", // name should in most cases be the same as the file name
+  props: {
+    id: {
+      type: Number,
+      default: 0
+    }
+  },
+  async setup(props) {
+    const estate: EstateResponse = {id: 0, name: '', items: null, participants: null}
+    try {
+      await getEstateById(props.id).then(promise => {
+        estate.id = promise.id
+        estate.name = promise.name
+        estate.items = promise.items
+        estate.participants = promise.participants
+      })
+      console.log(estate)
+    } catch (e) {
+      console.error(e)
+    }
+    return {
+      estate
+    }
+  },
   components: { // add the components that the view should show
     SettlementTitle,
     SettlementOverview,

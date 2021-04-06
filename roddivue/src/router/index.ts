@@ -9,6 +9,7 @@ import ItemView from "@/Views/ItemView.vue";
 import CreateItemView from "@/Views/CreateItemView.vue";
 import SettlementView from "@/Views/SettlementView.vue";
 import ThrowView from "@/Views/ThrowView.vue";
+import DonateView from "@/Views/DonateView.vue";
 
 const routerHistory = createWebHistory()
 
@@ -89,6 +90,11 @@ const router = createRouter({
             path: "/throw",
             name: "Kastet",
             component: ThrowView,
+        },
+        {
+            path: "/donate",
+            name: "Donert",
+            component: DonateView,
         },
     ],
 });

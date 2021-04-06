@@ -1,5 +1,5 @@
 <template>
-  <p>Listen over kasta ting skal egentlig dukke opp her, lover!</p>
+  <p>Listen over donerte ting skal egentlig dukke opp her, lover!</p>
   <ScrollPanel style="width: 100%; height: 395px">
     <ItemListing v-for="item in items"
                    :key="item.id"
@@ -11,15 +11,13 @@
 </template>
 
 <script lang="ts">
-// This is a template file for future vue components, when you want want to make a new component
-// copy this file.
 import {defineComponent, PropType} from "vue";
 import ItemListing from "@/components/ItemListing.vue";
 import {ItemResponse} from "@/client/types";
 import ScrollPanel from "primevue/scrollpanel";
 
 export default defineComponent({
-  name: "ThrowList",
+  name: "DonateList",
   props: { //add props here if needed
     items: {
       default: [],
