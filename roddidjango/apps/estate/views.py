@@ -1,8 +1,8 @@
 from django.db.models import QuerySet
 from rest_framework import viewsets
 
-from .serializers import EstateSerializer, EstateItemSerializer, ItemVoteSerializer, ItemPrioritySerializer
 from .models import Estate, EstateItem, ItemVote, ItemPriority
+from .serializers import EstateSerializer, EstateItemSerializer, ItemVoteSerializer, ItemPrioritySerializer
 
 
 class EstateViewSet(viewsets.ModelViewSet):
@@ -47,7 +47,6 @@ class ItemVoteViewSet(viewsets.ModelViewSet):
             return self.queryset.all().filter(user=self.request.user.id,
                                               item=self.request.query_params.get(key='itemID', default=None))
 
-
 class ItemPriorityViewSet(viewsets.ModelViewSet):
     serializer_class = ItemPrioritySerializer
     queryset = ItemPriority.objects.all()
@@ -59,3 +58,21 @@ class ItemPriorityViewSet(viewsets.ModelViewSet):
         else:
             return self.queryset.all().filter(user=self.request.user.id,
                                               item=self.request.query_params.get(key='itemID', default=None))
+
+
+class ItemVoteListForItem(viewsets.ReadOnlyModelViewSet):
+    serializer_class = ItemVoteSerializer
+    queryset = ItemVote.objects.all()
+
+    def get_queryset(self):
+        item_id = self.request.query_params.get(key='itemID', default=None)
+        return self.queryset.all().filter(item=item_id)
+
+
+class ItemPrioListForItem(viewsets.ReadOnlyModelViewSet):
+    serializer_class = ItemPrioritySerializer
+    queryset = ItemPriority.objects.all()
+
+    def get_queryset(self):
+        item_id = self.request.query_params.get(key='itemID', default=None)
+        return self.queryset.all().filter(item=item_id)
