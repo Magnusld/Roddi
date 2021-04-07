@@ -79,17 +79,17 @@ const router = createRouter({
             })
         },
         {
-            path: "/settlement",
+            path: "/settlement/:id",
             name: "Oppgjør",
             component: SettlementView,
         },
         {
-            path: "/throw",
+            path: "/throw/:id",
             name: "Kastet",
             component: ThrowView,
         },
         {
-            path: "/donate",
+            path: "/donate/:id",
             name: "Donert",
             component: DonateView,
         },

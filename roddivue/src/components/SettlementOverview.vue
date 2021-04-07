@@ -24,11 +24,11 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import {defineComponent, PropType} from "vue";
 import Button from "primevue/button";
 import {SettlementItemResponse} from "@/client/types";
 import {getAllSettlementItems} from "@/client/settlement";
-import {defineComponent, PropType} from "vue";
+
 
 export default defineComponent({
   name: "SettlementOverview",
@@ -45,7 +45,7 @@ export default defineComponent({
   },
   async setup(props) {
     // Lage lista over items
-    let items = new Array<SettlementItemResponse>();
+    const items = new Array<SettlementItemResponse>();
       try {
         await getAllSettlementItems(props.id).then(promise => {
             // Må få inn lista over items
@@ -53,12 +53,14 @@ export default defineComponent({
               items.push(promise[i]);
             }
         })
+      } catch (e) {
+      console.error(e)
       }
 
     // iterere gjennom liste for å legge inn i frontend
 
-
     return {
+        items
     }
   },
   data() {
