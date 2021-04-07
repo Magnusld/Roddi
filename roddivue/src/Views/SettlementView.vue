@@ -1,16 +1,19 @@
-<template>
+<template class="settlementPage">
   <div>
     <SettlementTitle/>
   </div>
-
-  <div class="p-d-inline-flex">
-    <DataTable v-for="user in userGetItemInSettlement"
-               :key="user.userId"
-               :value="user.items">
-      <Column field="name" :header="user.userName"/>
-    </DataTable>
-  </div>
-  <SettlementThrow v-bind:id="id"/>
+  <Card class="listCard">
+    <template #content>
+      <div class="p-d-inline-flex">
+        <DataTable v-for="user in userGetItemInSettlement"
+                   :key="user.userId"
+                   :value="user.items">
+          <Column field="name" :header="user.userName"/>
+        </DataTable>
+      </div>
+      <SettlementThrow v-bind:id="id"/>
+    </template>
+  </Card>
 </template>
 
 
@@ -22,6 +25,7 @@ import {EstateResponse, ItemResponse, UserGetItem} from "@/client/types";
 import {getSettlementById} from "@/client/settlement";
 import Column from "primevue/column";
 import DataTable from "primevue/datatable";
+import Card from "primevue/card";
 
 export default defineComponent({
   name: "OppgjørView",
@@ -73,11 +77,18 @@ export default defineComponent({
     SettlementThrow,
     DataTable,
     Column,
+    Card
   }
 })
 </script>
 
 <style scoped lang="scss">
-
-
+.settlementPage {
+  display: flex;
+  justify-content: flex-start;
+}
+.listCard{
+  margin-right: 3vw;
+  margin-left: 3vw;
+}
 </style>

@@ -23,7 +23,6 @@ import UserItemVotes from "@/components/UserItemVotes.vue";
 export default defineComponent({
   name: "ItemView",
   components: {
-    UserItemVotes,
     ItemDesc,
     ItemChoices,
   },

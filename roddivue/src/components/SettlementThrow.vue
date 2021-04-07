@@ -1,5 +1,5 @@
 <template>
-  <p>Oversikt over det som skal doneres og kastes, enten knapper til eksterne views eller lister</p>
+  <p>Oversikt over det som skal doneres og kastes</p>
   <router-link :to="'/throw/' + id">
   <Button label="Kastet" />
   </router-link>
@@ -37,6 +37,8 @@ export default defineComponent({
   .p-button-secondary {
     margin-left: 10px;
   }
-
+  a{
+    text-decoration: none;
+  }
 
 </style>

@@ -1,6 +1,5 @@
 <template>
-  <p>Listen over kasta ting skal egentlig dukke opp her, lover!</p>
-  <ScrollPanel style="width: 100%; height: 395px">
+  <ScrollPanel class="panelclass">
     <ItemListing v-for="item in items"
                    :key="item.id"
                    :id="item.id"
@@ -51,5 +50,8 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-
+.panelclass{
+  width: 40%;
+  margin-left: 30vw;
+}
 </style>

@@ -1,9 +1,5 @@
 <template>
-
   <div class="Title">Oppgjør</div>
-  <div class="tekst">
-    <p>Her er fordelingen av gjenstandene</p>
-  </div>
 </template>
 
 <script lang="ts">
@@ -24,12 +20,10 @@ export default defineComponent({
 
 <style scoped lang="scss">
 
-  .tekst {
-    text-align: left;
-  }
 
   .Title {
     font-size: 35px;
-    text-align: left;
+    text-align: center;
+    margin: 1vw;
   }
 </style>
