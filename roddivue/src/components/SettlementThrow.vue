@@ -1,7 +1,11 @@
 <template>
   <p>Oversikt over det som skal doneres og kastes, enten knapper til eksterne views eller lister</p>
+  <router-link :to="'/throw/' + id">
   <Button label="Kastet" />
+  </router-link>
+  <router-link :to="'/donate/' + id">
   <Button label="Donert" class="p-button-secondary" />
+  </router-link>
 </template>
 
 <script lang="ts">
@@ -13,6 +17,10 @@ import Button from 'primevue/button';
 export default defineComponent({
   name: "SettlementThrow",
   props: { //add props here if needed
+    id: {
+      type: Number,
+      default: 0
+    }
   },
   components: {
     Button,

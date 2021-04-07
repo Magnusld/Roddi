@@ -1,7 +1,7 @@
 <template>
   <SettlementTitle />
   <SettlementOverview v-bind:id="id"/>
-  <SettlementThrow />
+  <SettlementThrow v-bind:id="id"/>
 </template>
 
 
