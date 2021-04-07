@@ -1,11 +1,11 @@
 <template>
   <Card>
     <template #content>
+      <img src="../assets/RODDI-logo-2.png">
       <p>Innlogget som: {{StoreStateLoggedInUsername}}</p>
-      <p>Administrator: {{StoreStateAdminStatus}}</p>
     </template>
     <template #footer>
-      <Button class="p-button-text" @click="logout()">Logg ut</Button>
+      <Button class="p-button-danger" @click="logout()">Logg ut</Button>
     </template>
   </Card>
 </template>

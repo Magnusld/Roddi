@@ -1,59 +1,50 @@
 <template>
-  <Card>
-    <template #title>
-      <div class="title">
-      <p>Profil</p>
-      </div>
-    </template>
-    <template #content>
-      <div class="p-d-flex">
-        <UserPage class="userPage"/>
-        <div class="estateList">
-          <Card>
-          <template #title>
-            <p v-if="StoreStateAdmin">Alle Dødsbo</p>
-            <p v-else> Mine Dødsbo</p>
-          </template>
-          <template #content>
-            <EstatesView />
-          </template>
-        </Card>
-        <Card v-if="!StoreStateAdmin">
-          <template #content>
-            <router-link to="/priorities">
+  <h1>Velkommen til Roddi</h1>
+  <div class="p-d-flex">
+    <UserPage class="userPage"/>
+    <div class="estateList">
+      <Card>
+      <template #title>
+        <p v-if="StoreStateAdmin">Alle Dødsbo</p>
+        <p v-else> Mine Dødsbo</p>
+      </template>
+      <template #content>
+        <EstatesView />
+      </template>
+    </Card>
+    <Card v-if="!StoreStateAdmin">
+      <template #content>
+        <router-link to="/priorities">
+        <Button class="p-button-secondary p-button-raised" style="font-size: large">
+          Mine Prioriteringer
+        </Button>
+        </router-link>
+      </template>
+    </Card>
+      <Card v-if="!StoreStateAdmin">
+      <template #content>
+        <router-link :to="'/settlement/' + id">
+        <Button class="p-button-secondary p-button-raised" style="font-size: large">
+          Mine Oppgjør
+        </Button>
+        </router-link>
+      </template>
+    </Card>
+      <Card v-else>
+        <template #content>
+          <!--
+          Legge til kode hær slik at en administrator får opp en liste over alle oppgjør
+          Eventuelt gi admin en mulighet til å fullføre oppgjør
+          -->
+          <router-link :to="'/settlement/' + id">
             <Button class="p-button-text" style="font-size: large">
-              Mine Prioriteringer
+              Oppgjør
             </Button>
-            </router-link>
-          </template>
-        </Card>
-          <Card v-if="!StoreStateAdmin">
-          <template #content>
-            <router-link :to="'/settlement/' + id">
-            <Button class="p-button-text" style="font-size: large">
-              Mine Oppgjør
-            </Button>
-            </router-link>
-          </template>
-        </Card>
-          <Card v-else>
-            <template #content>
-              <!--
-              Legge til kode hær slik at en administrator får opp en liste over alle oppgjør
-              Eventuelt gi admin en mulighet til å fullføre oppgjør
-              -->
-              <router-link :to="'/settlement/' + id">
-                <Button class="p-button-text" style="font-size: large">
-                  Oppgjør
-                </Button>
-              </router-link>
-            </template>
-          </Card>
-        </div>
-      </div>
-    </template>
-  </Card>
-
+          </router-link>
+        </template>
+      </Card>
+    </div>
+  </div>
 
 </template>
 
@@ -101,11 +92,14 @@ export default defineComponent({
 }
 .p-d-flex {
   justify-content: space-around;
+  margin-left: 3vw;
+  margin-right: 3vw;
 }
 .title {
   position: relative;
-  right: 40%;
   font-size: xxx-large;
 }
-
+a{
+  text-decoration: none;
+}
 </style>
