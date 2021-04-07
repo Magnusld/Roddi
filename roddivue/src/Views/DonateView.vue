@@ -1,6 +1,6 @@
 <template>
   <p>Gjenstander som skal doneres</p>
-  <DonateList />
+  <DonateList v-bind:id="id"/>
 </template>
 
 <script lang="ts">
@@ -13,6 +13,12 @@ export default defineComponent({
   name: "DonateView", // name should in most cases be the same as the file name
   components: { // add the components that the view should show
     DonateList,
+  },
+  props: {
+    id: {
+      type: Number,
+      default: 0
+    }
   }
 })
 </script>

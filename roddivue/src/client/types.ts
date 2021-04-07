@@ -46,7 +46,7 @@ export interface ItemResponse {
     value: number;
     description: string;
     owner?: string | null;
-    throwDonate?: boolean | null;
+    throwDonate?: string | null;
 }
 
 

@@ -43,6 +43,8 @@ export default defineComponent({
       },
 
   },
+
+
   async setup(props) {
     // Lage lista over items
     const items = new Array<ItemResponse>();
@@ -58,11 +60,19 @@ export default defineComponent({
       }
 
     // iterere gjennom liste for å legge inn i frontend
+    for (let i = 0; i < items.length; i++) {
+        const user = items[i];
+        if (user.owner != null) {
+          (this as any).insertItem(user.name, user.owner, user.value);
+
+        }
+    }
 
     return {
         items
     }
   },
+
   data() {
       return {
           a: 2,
@@ -111,7 +121,7 @@ export default defineComponent({
           return str;
       }
     },
-    insertItem(name: string, owner: string, value: string ) {
+    insertItem(name: string, owner: string, value: number ) {
       // Opprette HTML klasse og element
       // Sette inn paragraph med navn og verdi
       const element = document.createElement("div");
@@ -119,7 +129,7 @@ export default defineComponent({
       const info = document.createElement("p");
       info.textContent = name;
       const verdi = document.createElement("p");
-      verdi.textContent = value;
+      verdi.textContent = value.toString();
       element?.appendChild(info);
       element?.appendChild(verdi);
       // Finne hvilken kolonne den skal i

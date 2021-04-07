@@ -21,6 +21,10 @@ export default defineComponent({
     items: {
       default: [],
       type: Object as PropType<ItemResponse[]>
+    },
+    id: {
+      type: Number,
+      default: 0
     }
   },
   components: {
