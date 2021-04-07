@@ -1,5 +1,5 @@
 import axios from "axios";
-import {NewUserItemVoteRequest, UserItemVoteResponse} from "@/client/types";
+import {NewUserItemVoteRequest, UserItemPriorityResponse, UserItemVoteResponse} from "@/client/types";
 
 
 export async function setUserItemVote(userVote: NewUserItemVoteRequest): Promise<void> {
@@ -31,4 +31,10 @@ export async function removeUserItemVote(id: number): Promise<void> {
         .then(response => {
             console.log(response)
         })
+}
+
+export async function getAllItemVote(): Promise<UserItemVoteResponse[]> {
+    const UserVotes: UserItemVoteResponse[] = []
+    await axios.get('')
+    return UserVotes
 }

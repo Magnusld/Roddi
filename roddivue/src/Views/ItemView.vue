@@ -1,8 +1,12 @@
 <template>
   <div class="grid-container">
-    <div class="grid-item-1"><ItemDesc v-bind:name="item.name"
-                                       v-bind:description="item.description"/></div>
-    <div class="grid-item-2"><ItemChoices v-bind:itemId="id" v-if="!StoreStateAdmin"/></div>
+    <div class="grid-item-1">
+      <ItemDesc v-bind:name="item.name"
+                v-bind:description="item.description"/>
+    </div>
+    <div class="grid-item-2">
+      <ItemChoices v-bind:itemId="id" v-if="!StoreStateAdmin"/>
+    </div>
   </div>
 </template>
 

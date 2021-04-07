@@ -1,5 +1,5 @@
 import axios from "axios";
-import {EstateResponse, UserResponse} from "@/client/types";
+import {EstateResponse, UserResponse, UserVote} from "@/client/types";
 
 export async function getAllEstateUsers(estateId: number): Promise<UserResponse[]> {
     /*
@@ -60,4 +60,12 @@ export async function getCurrentUserAdminStatus(): Promise<boolean> {
         admin = response.data[0].is_staff;
     })
     return admin!
+}
+
+export async function getAllUserVotes(userIdList: number[]): Promise<UserVote[]> {
+    const UserVotes: UserVote[] = []
+    userIdList.forEach(i => {
+
+    })
+    return UserVotes
 }

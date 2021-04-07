@@ -34,3 +34,9 @@ export async function removeUserItemPriority(id: number) {
             console.log(response)
         })
 }
+
+export async function getAllItemPriority(): Promise<UserItemPriorityResponse[]> {
+    const UserPriorities: UserItemPriorityResponse[] = []
+    await axios.get('')
+    return UserPriorities
+}
