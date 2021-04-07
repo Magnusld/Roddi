@@ -1,9 +1,9 @@
 import math
 import operator
 
+from django.db.models import Q
 from django.db.models import QuerySet
 from django.shortcuts import get_object_or_404
-from django.db.models import Q
 from rest_framework import viewsets
 from rest_framework.permissions import IsAdminUser
 
@@ -28,6 +28,7 @@ class EstateViewSet(viewsets.ModelViewSet):
             else:
                 queryset = queryset.all().filter(~Q(is_settled=True)).filter(participants__in=[self.request.user.id])
         return queryset
+
 
 class SettlementViewSet(viewsets.ModelViewSet):
     serializer_class = EstateSerializer
