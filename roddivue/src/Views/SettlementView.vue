@@ -1,6 +1,6 @@
 <template>
   <SettlementTitle />
-  <SettlementOverview />
+  <SettlementOverview v-bind:id="id"/>
   <SettlementThrow />
 </template>
 
@@ -12,6 +12,8 @@ import { defineComponent } from "vue"
 import SettlementTitle from "@/components/SettlementTitle.vue";
 import SettlementOverview from "@/components/SettlementOverview.vue";
 import SettlementThrow from "@/components/SettlementThrow.vue";
+import {EstateResponse} from "@/client/types";
+import {getEstateById} from "@/client/estate";
 
 export default defineComponent({
   name: "OppgjørView", // name should in most cases be the same as the file name
@@ -21,8 +23,11 @@ export default defineComponent({
       default: 0
     }
   },
-  /*
+
+  // Kanskje ikke nødvendig?
+ /*
   async setup(props) {
+
     const estate: EstateResponse = {id: 0, name: '', items: null, participants: null}
     try {
       await getEstateById(props.id).then(promise => {
@@ -38,8 +43,10 @@ export default defineComponent({
     return {
       estate
     }
+
   },
-   */
+  */
+
   components: { // add the components that the view should show
     SettlementTitle,
     SettlementOverview,

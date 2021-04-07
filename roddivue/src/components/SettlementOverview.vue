@@ -1,6 +1,5 @@
 <template>
-  <p>Her kommer det masse grids :))))))</p>
-  <Button label="Test" v-on:click="insertItem('teppe', 'Bruker2', '230 kr')"/>
+  <Button label="Test" v-on:click="insertItem('stol', 'Bruker2', '230 kr')"/>
   <div class="grid-container" id="grid-container">
     <div class="grid-user1" id="grid-user1">
       <p>Bruker1</p>
@@ -27,13 +26,38 @@
 <script lang="ts">
 import {defineComponent} from "vue";
 import Button from "primevue/button";
+import {SettlementItemResponse} from "@/client/types";
+import {getAllSettlementItems} from "@/client/settlement";
+import {defineComponent, PropType} from "vue";
 
 export default defineComponent({
   name: "SettlementOverview",
   props: {
+      id: {
+      type: Number,
+      default: 0
+      },
+      itemList: {
+        default: [],
+        type: Array as PropType<SettlementItemResponse[]>
+      },
 
   },
-  setup() {
+  async setup(props) {
+    // Lage lista over items
+    let items = new Array<SettlementItemResponse>();
+      try {
+        await getAllSettlementItems(props.id).then(promise => {
+            // Må få inn lista over items
+            for (let i = 0; i < promise.length; i++) {
+              items.push(promise[i]);
+            }
+        })
+      }
+
+    // iterere gjennom liste for å legge inn i frontend
+
+
     return {
     }
   },

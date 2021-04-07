@@ -55,6 +55,15 @@ export interface ItemDisplay {
     userPriority: any;
 }
 
+export interface SettlementItemResponse {
+    itemId: number;
+    name: string;
+    value: number;
+    description: string;
+    owner: string;
+    throwDonate: Boolean;
+}
+
 export interface NewUserItemVoteRequest {
     userId: number;
     itemId: number;
