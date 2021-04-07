@@ -7,6 +7,7 @@
       </div>
       <div class="right-side">
         <ItemChoices v-bind:itemId="id" v-if="!StoreStateAdmin"/>
+        <UserItemVotes v-bind:itemId="id" v-if="StoreStateAdmin"/>
       </div>
     </div>
 </template>
@@ -23,6 +24,7 @@ import UserItemVotes from "@/components/UserItemVotes.vue";
 export default defineComponent({
   name: "ItemView",
   components: {
+    UserItemVotes,
     ItemDesc,
     ItemChoices,
   },
@@ -57,11 +59,11 @@ export default defineComponent({
   justify-content: flex-start;
 }
 .left-side {
-  max-width: 65%;
+  width: 65%;
   margin-left: 2vw;
 }
 .right-side {
-  min-width: 35%;
+  width: 35%;
   margin-left: 2vw;
   margin-right: 2vw;
 }
