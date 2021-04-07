@@ -11,6 +11,11 @@
         Legg til ny gjenstand
       </Button>
       </div>
+      <div class="toggleButtons">
+      <Button label="Large" icon="pi pi-check" class="p-button" @click="swapSettleState">
+        SettleEstate
+      </Button>
+      </div>
     </div>
     <Divider layout="vertical" />
     <Card style="width: 25rem; margin-bottom: 2em" v-if="newEstate === true">
@@ -21,6 +26,7 @@
       </template>
     </Card>
     <CreateItem v-if="newItem"/>
+    <SettleEstate/>
   </div>
 </template>
 
@@ -31,9 +37,11 @@ import Button from 'primevue/button';
 import Card from "primevue/card";
 import InputText from "primevue/inputtext";
 import Divider from 'primevue/divider';
-import { NewEstateRequest } from '@/client/types';
-import {createNewEstate} from "@/client/estate";
+import {EstateResponse, NewEstateRequest} from '@/client/types';
+import {createNewEstate, getAllEstates, settleEstate} from "@/client/estate";
 import CreateItem from "@/components/CreateItem.vue";
+import Dropdown from "primevue/dropdown";
+import SettleEstate from "@/components/SettleEstate.vue";
 
 export default defineComponent({
   name: "AdminPage",
@@ -44,11 +52,8 @@ export default defineComponent({
     Button,
     Card,
     InputText,
-    Divider
-  },
-  setup() {
-    return {
-    }
+    Divider,
+    SettleEstate
   },
   methods: {
     swapEstateState() {
@@ -64,14 +69,14 @@ export default defineComponent({
       }
       createNewEstate(newEstateRequest)
       this.swapEstateState()
-    }
+    },
   },
   data() {
     return {
       estateName: "",
       newEstate: false,
       ItemName: "",
-      newItem: false
+      newItem: false,
     }
   },
 })

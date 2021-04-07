@@ -45,7 +45,7 @@ export interface ItemResponse {
     name: string;
     value: number;
     description: string;
-    owner?: string | null;
+    owner?: number | null;
     throwDonate?: string | null;
 }
 
@@ -83,4 +83,10 @@ export interface UserItemPriorityResponse {
     user: number;
     item: number;
     priority: number;
+}
+
+export interface UserGetItem {
+    userId: number;
+    userName: string;
+    items: ItemResponse[];
 }

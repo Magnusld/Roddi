@@ -61,3 +61,9 @@ export async function getEstateById(id: number): Promise<EstateResponse> {
     return estateResponse!
 }
 
+export async function settleEstate(id: number): Promise<void> {
+    await axios.get('/api/settleEstate/?estateID=' + id).then(response => {
+        console.log(response)
+    })
+}
+
