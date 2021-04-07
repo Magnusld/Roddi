@@ -18,10 +18,12 @@ import ItemChoices from "@/components/ItemChoices.vue";
 import {getItemById} from "@/client/item";
 import {ItemResponse} from "@/client/types";
 import {store} from "@/store";
+import UserItemVotes from "@/components/UserItemVotes.vue";
 
 export default defineComponent({
   name: "ItemView",
   components: {
+    UserItemVotes,
     ItemDesc,
     ItemChoices,
   },

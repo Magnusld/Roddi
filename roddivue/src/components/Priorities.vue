@@ -17,7 +17,7 @@ import DataTable from "primevue/datatable";
 import Column from 'primevue/column';
 import {ItemDisplay} from "@/client/types";
 import {getAllEstates} from "@/client/estate";
-import {getAllEstateItems} from "@/client/item";
+import {getAllItems} from "@/client/item";
 import {getLoggedInUserItemPriority} from "@/client/priorities";
 import {getLoggedInUserItemVote} from "@/client/votes";
 
@@ -37,7 +37,7 @@ export default defineComponent({
       response.forEach(i => userEstates.push([i.id,i.name]))
     })
     for (const i of userEstates) {
-      await getAllEstateItems(i[0]).then(response => {
+      await getAllItems(i[0]).then(response => {
         response.forEach( j => {
           const itemDis: ItemDisplay = {
             itemId: j.id,

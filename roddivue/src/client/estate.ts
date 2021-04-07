@@ -1,7 +1,7 @@
 import axios from "axios";
 import {EstateResponse, ItemResponse, NewEstateRequest, UserResponse} from "@/client/types";
-import {getAllEstateItems} from "@/client/item";
-import {getAllEstateUsers} from "@/client/user";
+import {getAllItems} from "@/client/item";
+import {getAllUsers} from "@/client/user";
 
 export async function createNewEstate(newEstateRequest: NewEstateRequest): Promise<void> {
     axios
@@ -52,12 +52,18 @@ export async function getEstateById(id: number): Promise<EstateResponse> {
         }
         estateResponse = estate
     })
-    await getAllEstateUsers(estateResponse!.id).then(response => {
+    await getAllUsers(estateResponse!.id).then(response => {
         estateResponse.participants = response
     })
-    await getAllEstateItems(estateResponse!.id).then(response => {
+    await getAllItems(estateResponse!.id).then(response => {
         estateResponse.items = response
     })
     return estateResponse!
+}
+
+export async function settleEstate(id: number): Promise<void> {
+    await axios.get('/api/settleEstate/?estateID=' + id).then(response => {
+        console.log(response)
+    })
 }
 

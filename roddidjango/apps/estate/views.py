@@ -1,12 +1,14 @@
+import math
+import operator
+
+from django.db.models import Q
 from django.db.models import QuerySet
+from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
 from rest_framework.permissions import IsAdminUser
 
-from .serializers import EstateSerializer, EstateItemSerializer, ItemVoteSerializer, ItemPrioritySerializer
 from .models import Estate, EstateItem, ItemVote, ItemPriority
-from django.shortcuts import get_object_or_404
-import math
-import operator
+from .serializers import EstateSerializer, EstateItemSerializer, ItemVoteSerializer, ItemPrioritySerializer
 
 
 class EstateViewSet(viewsets.ModelViewSet):
@@ -22,9 +24,28 @@ class EstateViewSet(viewsets.ModelViewSet):
         queryset = self.queryset
         if isinstance(queryset, QuerySet):
             if self.request.user.is_staff == True:
-                queryset = queryset.all()
+                queryset = queryset.all().filter(~Q(is_settled=True))
             else:
-                queryset = queryset.all().filter(participants__in=[self.request.user.id])
+                queryset = queryset.all().filter(~Q(is_settled=True)).filter(participants__in=[self.request.user.id])
+        return queryset
+
+
+class SettlementViewSet(viewsets.ModelViewSet):
+    serializer_class = EstateSerializer
+    queryset = Estate.objects.all()
+
+    def get_queryset(self):
+        assert self.queryset is not None, (
+                "'%s' should either include a `queryset` attribute, "
+                "or override the `get_queryset()` method."
+                % self.__class__.__name__
+        )
+        queryset = self.queryset
+        if isinstance(queryset, QuerySet):
+            if self.request.user.is_staff == True:
+                queryset = queryset.all().filter(is_settled=True)
+            else:
+                queryset = queryset.all().filter(is_settled=True).filter(participants__in=[self.request.user.id])
         return queryset
 
 
@@ -63,6 +84,24 @@ class ItemPriorityViewSet(viewsets.ModelViewSet):
         else:
             return self.queryset.all().filter(user=self.request.user.id,
                                               item=self.request.query_params.get(key='itemID', default=None))
+
+
+class ItemVoteListForItem(viewsets.ReadOnlyModelViewSet):
+    serializer_class = ItemVoteSerializer
+    queryset = ItemVote.objects.all()
+
+    def get_queryset(self):
+        item_id = self.request.query_params.get(key='itemID', default=None)
+        return self.queryset.all().filter(item=item_id)
+
+
+class ItemPrioListForItem(viewsets.ReadOnlyModelViewSet):
+    serializer_class = ItemPrioritySerializer
+    queryset = ItemPriority.objects.all()
+
+    def get_queryset(self):
+        item_id = self.request.query_params.get(key='itemID', default=None)
+        return self.queryset.all().filter(item=item_id)
 
 
 class DistributeItemsViewSet(viewsets.ModelViewSet):
@@ -110,7 +149,6 @@ class DistributeItemsViewSet(viewsets.ModelViewSet):
                 if user.id == vote.user.id:
                     self.userVoteDict[user.id][vote.item.id] = vote.donate
 
-
         for item in self.items:
             itemid = item.id
             self.giveItem(itemid)
@@ -137,19 +175,19 @@ class DistributeItemsViewSet(viewsets.ModelViewSet):
         item = self.items.get(id=itemid)
         for user in self.users:
             if itemid in self.userPrioDict[user.id].keys():
-                prioCount = prioCount+1
+                prioCount = prioCount + 1
                 tempvalue = self.userNorValueDict[user.id]
                 results[user.id] = self.userPrioDict[user.id][itemid] + (5 / ((tempvalue * 10) + 1))
             if itemid in self.userVoteDict[user.id].keys():
                 if self.userVoteDict[user.id][itemid]:
                     donateCount = donateCount + 1
 
-        if donateCount==0 and prioCount == 0:
+        if donateCount == 0 and prioCount == 0:
             item.donated_or_thrown = "thrown"
             print(item.name, " thrown")
         elif donateCount > prioCount:
             item.donated_or_thrown = "donated"
-            print(item.name," donated")
+            print(item.name, " donated")
         else:
             winnerid = self.keywithmaxval(results)
             winner = self.users.get(id=winnerid)
@@ -160,8 +198,6 @@ class DistributeItemsViewSet(viewsets.ModelViewSet):
 
         item.save()
 
-        
-    
     def keywithmaxval(self, d):
         key = max(d.items(), key=operator.itemgetter(1))[0]
         return key

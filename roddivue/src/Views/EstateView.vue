@@ -46,11 +46,10 @@
 import {defineComponent} from "vue"
 import Card from "primevue/card";
 import Divider from "primevue/divider";
-import {EstateResponse, ItemResponse, UserResponse} from "@/client/types";
+import {EstateResponse} from "@/client/types";
 import ItemList from "@/components/ItemList.vue";
 import {getEstateById} from "@/client/estate";
 import ScrollPanel from "primevue/scrollpanel";
-import Button from "primevue/button";
 
 export default defineComponent({
   name: "EstateView",
