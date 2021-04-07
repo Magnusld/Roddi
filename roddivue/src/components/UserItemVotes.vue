@@ -12,6 +12,10 @@ import {getAllUserVotes} from "@/client/user";
 export default defineComponent({
   name: "UserItemVotes",
   props: {
+    itemId: {
+      type: Number,
+      default: 0
+    }
   },
   components: {
     DataTable,
