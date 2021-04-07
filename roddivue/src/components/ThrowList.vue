@@ -11,9 +11,7 @@
 </template>
 
 <script lang="ts">
-// This is a template file for future vue components, when you want want to make a new component
-// copy this file.
-import {defineComponent, PropType} from "vue";
+import {defineComponent} from "vue";
 import ItemListing from "@/components/ItemListing.vue";
 import {ItemResponse} from "@/client/types";
 import ScrollPanel from "primevue/scrollpanel";
