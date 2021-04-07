@@ -35,7 +35,7 @@ export async function getAllUsers(estateId: number, settled=false): Promise<User
 
 export async function getUserById(userId: number): Promise<UserResponse> {
     let user: UserResponse
-    await axios.get('api/users/'+ userId).then( response => {
+    await axios.get('api/UserList/'+ userId).then( response => {
         const userResponse: UserResponse = {
             id: response.data.id,
             username: response.data.username,

@@ -5,19 +5,19 @@
       <p>Bruker1</p>
     </div>
     <div class="grid-user2" id="grid-user2">
-      <p>Bruker2</p>
+      <p>admin</p>
     </div>
     <div class="grid-user3" id="grid-user3">
-      <p>Bruker3</p>
+      <p>user1</p>
     </div>
     <div class="grid-user4" id="grid-user4">
-      <p>Bruker4</p>
+      <p>user2</p>
     </div>
     <div class="grid-user5" id="grid-user5">
-      <p>Bruker5</p>
+      <p>user3</p>
     </div>
     <div class="grid-user6" id="grid-user6">
-      <p>Bruker6</p>
+      <p>newuser123</p>
     </div>
 
   </div>
@@ -28,6 +28,7 @@ import {defineComponent, PropType} from "vue";
 import Button from "primevue/button";
 import {ItemResponse} from "@/client/types";
 import {getAllItems} from "@/client/item";
+import {getUserById} from "@/client/user";
 
 
 export default defineComponent({
@@ -60,68 +61,54 @@ export default defineComponent({
       }
 
     // iterere gjennom liste for å legge inn i frontend
-    for (let i = 0; i < items.length; i++) {
-        const user = items[i];
-        if (user.owner != null) {
-          (this as any).insertItem(user.name, user.owner, user.value);
 
-        }
-    }
 
     return {
         items
     }
   },
+  async mounted(){
+    let a = 2
+    let b = 2
+    let c = 2
+    let d = 2
+    let e = 2
+    let f = 2
 
-  data() {
-      return {
-          a: 2,
-          b: 2,
-          c: 2,
-          d: 2,
-          e: 2,
-          f: 2,
-    }
-  },
-  components: {
-    Button
-  },
-  methods: {
-      //Må håndtere at det går nedover i grid rows, og starter i 2
-    handleColumn(index: number) {
+    function handleColumn(index: number) {
       if (index === 1) {
-          const t = this.a;
+          const t = a;
           const str = t.toString() + " / " + (t + 1).toString();
-          this.a = t + 1;
+          a = t + 1;
           return str;
       } else if (index === 2) {
-          const t = this.b;
+          const t = b;
           const str = t.toString() + " / " + (t + 1).toString();
-          this.b = t + 1;
+          b = t + 1;
           return str;
       } else if (index === 3) {
-          const t = this.c;
+          const t = c;
           const str = t.toString() + " / " + (t + 1).toString();
-          this.c = t + 1;
+          c = t + 1;
           return str;
       } else if (index === 4) {
-          const t = this.d;
+          const t = d;
           const str = t.toString() + " / " + (t + 1).toString();
-          this.d = t + 1;
+          d = t + 1;
           return str;
       } else if (index === 5) {
-          const t = this.e;
+          const t = e;
           const str = t.toString() + " / " + (t + 1).toString();
-          this.e = t + 1;
+          e = t + 1;
           return str;
       } else if (index === 6) {
-          const t = this.f;
+          const t = f;
           const str = t.toString() + " / " + (t + 1).toString();
-          this.f = t + 1;
+          f = t + 1;
           return str;
       }
-    },
-    insertItem(name: string, owner: string, value: number ) {
+    }
+    function insertItem(name: string, owner: string, value: number ) {
       // Opprette HTML klasse og element
       // Sette inn paragraph med navn og verdi
       const element = document.createElement("div");
@@ -152,11 +139,25 @@ export default defineComponent({
       const columnIndex = colum.toString() + " / " + (colum + 1).toString();
       const gridCol = "grid-column: " + columnIndex;
       console.log(gridCol)
-      const rows = this.handleColumn(colum);
+      const rows = handleColumn(colum);
       console.log(rows);
       element.setAttribute("style", (gridCol + "; grid-row: " + rows));
 
     }
+    for (let i = 0; i < this.items.length; i++) {
+        const item = this.items[i];
+        const user = await getUserById(item.id);
+        if (item.owner != null) {
+          insertItem(item.name, user.username, item.value);
+        }
+    }
+  },
+  components: {
+    Button
+  },
+  methods: {
+      //Må håndtere at det går nedover i grid rows, og starter i 2
+
   }
 })
 
