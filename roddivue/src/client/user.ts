@@ -1,5 +1,5 @@
 import axios from "axios";
-import {EstateResponse, UserResponse} from "@/client/types";
+import {EstateResponse, UserResponse, UserVote} from "@/client/types";
 
 export async function getAllEstateUsers(estateId: number): Promise<UserResponse[]> {
     /*

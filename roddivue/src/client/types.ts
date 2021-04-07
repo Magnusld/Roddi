@@ -80,3 +80,10 @@ export interface UserItemPriorityResponse {
     item: number;
     priority: number;
 }
+
+export interface UserVote {
+    userId: number;
+    itemId: number;
+    vote: number | string;
+    userName: string;
+}
