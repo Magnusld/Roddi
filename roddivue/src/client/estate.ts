@@ -13,7 +13,7 @@ export async function createNewEstate(newEstateRequest: NewEstateRequest): Promi
 
 export async function getAllEstates(): Promise<EstateResponse[]> {
     const estates = new Array<EstateResponse>()
-    await axios.get('api/estates/').then(response => {
+    await axios.get('api/estates/').then(async response => {
         for (let i = 0; i < response.data.length; i++) {
             const estate: EstateResponse = {
                 id: response.data[i].id,
@@ -31,10 +31,10 @@ export async function getAllEstates(): Promise<EstateResponse[]> {
 
 export async function getUserById(id: number): Promise<UserResponse> {
     let userResponse: UserResponse;
-    await axios.get('api/users/' + id).then(response => {
+    await axios.get('api/UserList/' + id).then(response => {
         const user: UserResponse = {
             id: response.data.id,
-            username: response.data.name,
+            username: response.data.username,
         }
         userResponse = user
     })

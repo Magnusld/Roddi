@@ -1,7 +1,7 @@
-from django.contrib.auth.models import User
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib import admin
+
 
 from django.conf import settings
 
@@ -9,9 +9,13 @@ from django.conf import settings
 class Estate(models.Model):
     name = models.CharField(max_length=255)
     participants = models.ManyToManyField(to=settings.AUTH_USER_MODEL, related_name='users', blank=True)
+    is_settled = models.BooleanField(blank=True, null=True)
 
     def __str__(self):
         return self.name
+
+
+
 
 
 
@@ -21,6 +25,8 @@ class EstateItem(models.Model):
     description = models.TextField()
     value = models.DecimalField(max_digits=12, decimal_places=2)
     belongs_to = models.ForeignKey(to=Estate, related_name="items", on_delete=models.CASCADE)
+    given_to = models.ForeignKey(to=settings.AUTH_USER_MODEL, related_name="items", on_delete=models.SET_NULL, blank=True, null=True)
+    donated_or_thrown = models.CharField(max_length=10, blank=True, null=True)
     wants_item = models.ManyToManyField(to=settings.AUTH_USER_MODEL, related_name='userpriorities', blank=True, through='ItemPriority')
     donate_or_throw = models.ManyToManyField(to=settings.AUTH_USER_MODEL, related_name='uservotes', blank=True, through='ItemVote')
 
