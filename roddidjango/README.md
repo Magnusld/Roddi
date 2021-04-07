@@ -114,3 +114,9 @@ URL GET: /api/IsStaff/
 ```
 Samme som over: Adminstatus må hentes på følgende måte:
 data[0].is_staff
+
+##### For å kjøre fordelingsalgoritmen / ferdigstille en estate
+
+```
+URL GET: /api/settleEstate/?estateID=*estateID*
+```

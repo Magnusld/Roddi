@@ -2,7 +2,7 @@ import axios from "axios";
 import {LogInRequest, SignUpRequest} from "@/client/types";
 import {store} from "@/store";
 import router from "@/router";
-import {getCurrentUserId} from "@/client/user";
+import {getCurrentUserAdminStatus, getCurrentUserId} from "@/client/user";
 
 export async function login(loginRequest: LogInRequest): Promise<void> {
     if (store.getters.getLoggedInStatus)
@@ -34,6 +34,10 @@ export async function login(loginRequest: LogInRequest): Promise<void> {
     await getCurrentUserId().then(response => {
         console.log(response)
         store.commit('setUserID', response)
+    })
+    await getCurrentUserAdminStatus().then(response => {
+        console.log(response)
+        store.commit('setAdminStatus', response)
         router.push({path:'/user'})
     })
 }
@@ -55,6 +59,7 @@ export async function logout(): Promise<void> {
             store.commit('removeToken')
             store.commit('removeUsername')
             store.commit('removeUserID')
+            store.commit('removeAdminStatus')
             router.push('/login')
         })
         .catch(error => {

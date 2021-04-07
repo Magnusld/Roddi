@@ -2,6 +2,7 @@
   <Card>
     <template #content>
       <p>Innlogget som: {{StoreStateLoggedInUsername}}</p>
+      <p>Administrator: {{StoreStateAdminStatus}}</p>
     </template>
     <template #footer>
       <Button class="p-button-text" @click="logout()">Logg ut</Button>
@@ -38,6 +39,9 @@ export default defineComponent({
     },
     StoreStateLoggedIn () {
       return this.$store.getters.getLoggedInStatus
+    },
+    StoreStateAdminStatus () {
+      return this.$store.getters.getAdminStatus
     }
   }
 })

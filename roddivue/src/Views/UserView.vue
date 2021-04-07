@@ -11,13 +11,14 @@
         <div class="estateList">
           <Card>
           <template #title>
-            Mine Dødsbo
+            <p v-if="StoreStateAdmin">Alle Dødsbo</p>
+            <p v-else> Mine Dødsbo</p>
           </template>
           <template #content>
             <EstatesView />
           </template>
         </Card>
-        <Card>
+        <Card v-if="!StoreStateAdmin">
           <template #content>
             <router-link to="/priorities">
             <Button class="p-button-text" style="font-size: large">
@@ -26,7 +27,7 @@
             </router-link>
           </template>
         </Card>
-          <Card>
+          <Card v-if="!StoreStateAdmin">
           <template #content>
             <router-link :to="'/settlement/' + id">
             <Button class="p-button-text" style="font-size: large">
@@ -35,6 +36,19 @@
             </router-link>
           </template>
         </Card>
+          <Card v-else>
+            <template #content>
+              <!--
+              Legge til kode hær slik at en administrator får opp en liste over alle oppgjør
+              Eventuelt gi admin en mulighet til å fullføre oppgjør
+              -->
+              <router-link :to="'/settlement/' + id">
+                <Button class="p-button-text" style="font-size: large">
+                  Oppgjør
+                </Button>
+              </router-link>
+            </template>
+          </Card>
         </div>
       </div>
     </template>
@@ -66,6 +80,11 @@ export default defineComponent({
     })
     return {
       id
+    }
+  },
+  computed: {
+    StoreStateAdmin() {
+      return this.$store.getters.getAdminStatus
     }
   }
 })

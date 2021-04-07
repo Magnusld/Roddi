@@ -27,15 +27,17 @@ const router = createRouter({
             path: "/signup",
             name: "Signup",
             component: LogInView,
-            props: {mode: "signup"}
+            props: {
+                mode: "signup"
+            }
         },
         {
             path: "/",
             name: "Admin",
             component: AdminView,
             meta: {
-                requireLogin:true
-                //Legge inn krav om administrator tilgang for å kunne gå til denne siden
+                requireLogin:true,
+                requireAdmin:true
             }
         },
         {
@@ -95,12 +97,9 @@ const router = createRouter({
             path: "/priorities",
             name: "Se prioriteringer",
             component: PrioritiesView,
-            /*
             meta: {
                 requireLogin:true
             },
-
-             */
         },
         {
             path: "/:pathMatch(.*)*",
@@ -112,9 +111,11 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requireLogin) && !store.state.isAuthenticated) {
-    next('/login')
-  } else {
-    next()
+        next('/login')
+    } else if (to.matched.some(record => record.meta.requireAdmin) && !store.state.user.isAdmin){
+        next('/user')
+    } else {
+        next()
   }
 })
 

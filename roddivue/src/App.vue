@@ -1,5 +1,5 @@
 <template>
-  <TabMenu :model="items" v-if="StoreStateLoggedIn"/>
+  <TabMenu :model="items" v-if="StoreStateAdminStatus"/>
   <div>
     <suspense>
       <router-view />
@@ -37,6 +37,9 @@ export default defineComponent({
     computed: {
       StoreStateLoggedIn () {
         return this.$store.getters.getLoggedInStatus
+      },
+      StoreStateAdminStatus () {
+        return this.$store.getters.getAdminStatus
       }
     }
 });
