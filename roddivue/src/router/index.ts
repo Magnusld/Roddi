@@ -7,6 +7,9 @@ import EstatesView from "@/components/EstatesView.vue";
 import EstateView from "@/Views/EstateView.vue";
 import ItemView from "@/Views/ItemView.vue";
 import CreateItemView from "@/Views/CreateItemView.vue";
+import SettlementView from "@/Views/SettlementView.vue";
+import ThrowView from "@/Views/ThrowView.vue";
+import DonateView from "@/Views/DonateView.vue";
 import PrioritiesView from "@/Views/PrioritiesView.vue";
 import ErrorPage from "@/Views/ErrorPage.vue";
 
@@ -71,6 +74,30 @@ const router = createRouter({
             meta: {
                 requireLogin:true
             },
+            props: route => ({
+                id: +route.params.id
+            })
+        },
+        {
+            path: "/settlement/:id",
+            name: "Oppgjør",
+            component: SettlementView,
+            props: route => ({
+                id: +route.params.id
+            })
+        },
+        {
+            path: "/throw/:id",
+            name: "Kastet",
+            component: ThrowView,
+            props: route => ({
+                id: +route.params.id
+            })
+        },
+        {
+            path: "/donate/:id",
+            name: "Donert",
+            component: DonateView,
             props: route => ({
                 id: +route.params.id
             })

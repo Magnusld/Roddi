@@ -1,6 +1,7 @@
 import math
 import operator
 
+from django.db.models import Q
 from django.db.models import QuerySet
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
@@ -23,9 +24,28 @@ class EstateViewSet(viewsets.ModelViewSet):
         queryset = self.queryset
         if isinstance(queryset, QuerySet):
             if self.request.user.is_staff == True:
-                queryset = queryset.all()
+                queryset = queryset.all().filter(~Q(is_settled=True))
             else:
-                queryset = queryset.all().filter(participants__in=[self.request.user.id])
+                queryset = queryset.all().filter(~Q(is_settled=True)).filter(participants__in=[self.request.user.id])
+        return queryset
+
+
+class SettlementViewSet(viewsets.ModelViewSet):
+    serializer_class = EstateSerializer
+    queryset = Estate.objects.all()
+
+    def get_queryset(self):
+        assert self.queryset is not None, (
+                "'%s' should either include a `queryset` attribute, "
+                "or override the `get_queryset()` method."
+                % self.__class__.__name__
+        )
+        queryset = self.queryset
+        if isinstance(queryset, QuerySet):
+            if self.request.user.is_staff == True:
+                queryset = queryset.all().filter(is_settled=True)
+            else:
+                queryset = queryset.all().filter(is_settled=True).filter(participants__in=[self.request.user.id])
         return queryset
 
 

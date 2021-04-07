@@ -27,28 +27,15 @@
             </router-link>
           </template>
         </Card>
-          <Card v-if="!StoreStateAdmin">
+          <Card>
+          <template #title>
+            <p v-if="StoreStateAdmin">Alle Oppgjør</p>
+            <p v-else> Mine Oppgjør</p>
+          </template>
           <template #content>
-            <router-link :to="'/settlement/' + id">
-            <Button class="p-button-text" style="font-size: large">
-              Mine Oppgjør
-            </Button>
-            </router-link>
+            <SettlementsView />
           </template>
         </Card>
-          <Card v-else>
-            <template #content>
-              <!--
-              Legge til kode hær slik at en administrator får opp en liste over alle oppgjør
-              Eventuelt gi admin en mulighet til å fullføre oppgjør
-              -->
-              <router-link :to="'/settlement/' + id">
-                <Button class="p-button-text" style="font-size: large">
-                  Oppgjør
-                </Button>
-              </router-link>
-            </template>
-          </Card>
         </div>
       </div>
     </template>
@@ -61,6 +48,7 @@
 import { defineComponent } from "vue"
 import UserPage from "@/components/UserPage.vue"
 import EstatesView from "@/components/EstatesView.vue";
+import SettlementsView from "@/components/SettlementsView.vue";
 import Card from "primevue/card";
 import Button from "primevue/button";
 import {getCurrentUserId} from "@/client/user";
@@ -69,6 +57,7 @@ export default defineComponent({
   name: "UserView",
   components: {
     EstatesView,
+    SettlementsView,
     UserPage,
     Card,
     Button
