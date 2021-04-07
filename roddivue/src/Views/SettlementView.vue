@@ -15,8 +15,6 @@
 
 
 <script lang="ts">
-// This is a template file for future vue views, when you want want to make a new view
-// copy this file.
 import {defineComponent} from "vue"
 import SettlementTitle from "@/components/SettlementTitle.vue";
 import SettlementThrow from "@/components/SettlementThrow.vue";
@@ -26,16 +24,13 @@ import Column from "primevue/column";
 import DataTable from "primevue/datatable";
 
 export default defineComponent({
-  name: "OppgjørView", // name should in most cases be the same as the file name
+  name: "OppgjørView",
   props: {
     id: {
       type: Number,
       default: 0
     }
   },
-
-  // Kanskje ikke nødvendig?
-
   async setup(props) {
     const estate: EstateResponse = {id: 0, name: '', items: null, participants: null}
     const userGetItemInSettlement: UserGetItem[] = []
@@ -64,15 +59,7 @@ export default defineComponent({
       })
       userGetItemInSettlement.push(belonging)
     })
-    /*
-    estate.items?.forEach(item => {
-      userGetItemInSettlement.forEach(user => {
-        if (user.userId == item.owner){
 
-        }
-      })
-    })
-    */
     console.log(userGetItemInSettlement)
     return {
       estate,
@@ -81,13 +68,9 @@ export default defineComponent({
 
   },
 
-
-  components: { // add the components that the view should show
-
+  components: {
     SettlementTitle,
-    //SettlementOverview,
     SettlementThrow,
-
     DataTable,
     Column,
   }

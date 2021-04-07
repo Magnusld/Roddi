@@ -26,7 +26,7 @@
       </template>
     </Card>
     <CreateItem v-if="newItem"/>
-    <SettleEstate/>
+    <SettleEstate v-if="newSettle"/>
   </div>
 </template>
 
@@ -40,7 +40,6 @@ import Divider from 'primevue/divider';
 import {EstateResponse, NewEstateRequest} from '@/client/types';
 import {createNewEstate, getAllEstates, settleEstate} from "@/client/estate";
 import CreateItem from "@/components/CreateItem.vue";
-import Dropdown from "primevue/dropdown";
 import SettleEstate from "@/components/SettleEstate.vue";
 
 export default defineComponent({
@@ -62,6 +61,9 @@ export default defineComponent({
     swapItemState() {
       this.newItem = !this.newItem
     },
+    swapSettleState() {
+      this.newSettle = !this.newSettle
+    },
     createNewEstate(){
       const newEstateRequest: NewEstateRequest = {
         name: this.estateName,
@@ -77,6 +79,7 @@ export default defineComponent({
       newEstate: false,
       ItemName: "",
       newItem: false,
+      newSettle: false,
     }
   },
 })
