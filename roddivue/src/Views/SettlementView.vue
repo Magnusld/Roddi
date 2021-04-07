@@ -1,31 +1,29 @@
 <template>
-  <!--
-  <SettlementTitle />
-  <SettlementOverview v-bind:id="id"/>
-  <SettlementThrow />
-  -->
   <div>
-      <DataTable v-for="user in userGetItemInSettlement"
-             :key="user.userId"
-             :value="user.items">
-    <Column field="name" :header="user.userName"/>
-  </DataTable>
+    <SettlementTitle/>
   </div>
+
+  <div class="p-d-inline-flex">
+    <DataTable v-for="user in userGetItemInSettlement"
+               :key="user.userId"
+               :value="user.items">
+      <Column field="name" :header="user.userName"/>
+    </DataTable>
+  </div>
+  <SettlementThrow/>
 </template>
 
 
 <script lang="ts">
 // This is a template file for future vue views, when you want want to make a new view
 // copy this file.
-import { defineComponent } from "vue"
+import {defineComponent} from "vue"
 import SettlementTitle from "@/components/SettlementTitle.vue";
-import SettlementOverview from "@/components/SettlementOverview.vue";
 import SettlementThrow from "@/components/SettlementThrow.vue";
 import {EstateResponse, ItemResponse, UserGetItem} from "@/client/types";
 import {getSettlementById} from "@/client/settlement";
 import Column from "primevue/column";
 import DataTable from "primevue/datatable";
-import {getUserById} from "@/client/user";
 
 export default defineComponent({
   name: "OppgjørView", // name should in most cases be the same as the file name
@@ -85,11 +83,11 @@ export default defineComponent({
 
 
   components: { // add the components that the view should show
-    /*
+
     SettlementTitle,
-    SettlementOverview,
+    //SettlementOverview,
     SettlementThrow,
-     */
+
     DataTable,
     Column,
   }
