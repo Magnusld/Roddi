@@ -90,3 +90,10 @@ export interface UserGetItem {
     userName: string;
     items: ItemResponse[];
 }
+
+export interface UserVote {
+    userId: number;
+    itemId: number;
+    vote: number | string;
+    userName: string;
+}

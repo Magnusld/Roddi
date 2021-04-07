@@ -1,5 +1,5 @@
 import axios from "axios";
-import {EstateResponse, UserResponse} from "@/client/types";
+import {EstateResponse, UserResponse, UserVote} from "@/client/types";
 
 export async function getAllUsers(estateId: number, settled=false): Promise<UserResponse[]> {
     let estateUserIDs = new Array<number>()
