@@ -1,5 +1,7 @@
 <template>
-  <DataTable>
+  <DataTable :value="UserVotes">
+    <Column field="userName" header="Navn" sortable="true"/>
+    <Column field="vote" header="Stemme/ Prioritering" sortable="true"/>
   </DataTable>
 </template>
 
@@ -7,7 +9,8 @@
 import {defineComponent} from "vue";
 import DataTable from "primevue/datatable";
 import {UserVote} from "@/client/types";
-import {getAllUserVotes} from "@/client/user";
+import {getAllItemVote} from "@/client/votes";
+import Column from "primevue/column";
 
 export default defineComponent({
   name: "UserItemVotes",
@@ -19,11 +22,13 @@ export default defineComponent({
   },
   components: {
     DataTable,
+    Column
   },
-  async setup() {
+  async setup(props) {
     const UserVotes: UserVote[] = []
-    const users: number[] = []
-    await getAllUserVotes(users)
+    await getAllItemVote(props.itemId).then(promise => {
+      promise.forEach(i => UserVotes.push(i))
+    })
     return {
       UserVotes
     }

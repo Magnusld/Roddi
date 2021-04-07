@@ -6,7 +6,7 @@
     </div>
     <div class="grid-item-2">
       <ItemChoices v-bind:itemId="id" v-if="!StoreStateAdmin"/>
-      <UserItemVotes v-bind:itemId="id" v-else/>
+      <UserItemVotes v-bind:itemId="id" v-if="StoreStateAdmin"/>
     </div>
   </div>
 </template>

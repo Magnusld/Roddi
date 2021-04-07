@@ -61,11 +61,3 @@ export async function getCurrentUserAdminStatus(): Promise<boolean> {
     })
     return admin!
 }
-
-export async function getAllUserVotes(userIdList: number[]): Promise<UserVote[]> {
-    const UserVotes: UserVote[] = []
-    userIdList.forEach(i => {
-
-    })
-    return UserVotes
-}
