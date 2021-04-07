@@ -1,4 +1,4 @@
-<template>
+<template class="itemChoiceDiv">
     <div class = "Beholde">
         <h5>Ønsker du gjenstanden?</h5>
         <SelectButton v-model="value1" v-on:click="wishChoice" :options="options" />
@@ -15,6 +15,7 @@
         <Button @click="save" label="Lagre" icon="pi pi-check" iconPos="right" />
     </div>
 </template>
+
 
 <script lang="ts">
 import {defineComponent} from "vue";
@@ -38,7 +39,7 @@ export default defineComponent({
   components: {
       SelectButton,
       Rating,
-      Button
+      Button,
     },
   async setup(props) {
     let priority = 0

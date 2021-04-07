@@ -1,13 +1,16 @@
 <template>
   <h1>Prioriteringer</h1>
 
-  <DataTable :value="userItems" >
-    <Column field="name" header="Navn" sortable="true"/>
-    <Column field="value" header="Verdi" sortable="true"/>
-    <Column field="estateName" header="Dødsbo" sortable="true"/>
-    <Column field="userPriority" header="Prioritet" sortable="true"/>
-  </DataTable>
-
+  <Card class="dataCard">
+    <template #content>
+      <DataTable :value="userItems">
+        <Column field="name" header="Navn" sortable="true"/>
+        <Column field="value" header="Verdi" sortable="true"/>
+        <Column field="estateName" header="Dødsbo" sortable="true"/>
+        <Column field="userPriority" header="Prioritet" sortable="true"/>
+      </DataTable>
+    </template>
+  </Card>
 
 </template>
 
@@ -15,6 +18,7 @@
 import {defineComponent} from "vue";
 import DataTable from "primevue/datatable";
 import Column from 'primevue/column';
+import Card from "primevue/card";
 import {ItemDisplay} from "@/client/types";
 import {getAllEstates} from "@/client/estate";
 import {getAllItems} from "@/client/item";
@@ -25,7 +29,8 @@ export default defineComponent({
   name: "Priorities",
   components :{
     DataTable,
-    Column
+    Column,
+    Card
   },
   props: {
 
@@ -80,5 +85,8 @@ export default defineComponent({
 
 
 }
-
+.dataCard{
+  margin-right: 3vw;
+  margin-left: 3vw;
+}
 </style>

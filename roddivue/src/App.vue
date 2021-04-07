@@ -54,4 +54,14 @@ export default defineComponent({
   color: #2c3e50;
   margin-top: 0;
 }
+html, body{
+  padding: 0;
+  margin: 0;
+}
+body {
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  background: #e1e1e8;
+}
 </style>

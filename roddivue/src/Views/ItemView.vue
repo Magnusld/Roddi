@@ -1,14 +1,14 @@
 <template>
-  <div class="grid-container">
-    <div class="grid-item-1">
-      <ItemDesc v-bind:name="item.name"
-                v-bind:description="item.description"/>
+  <h2>Oversikt over eiendel</h2>
+    <div class="itemPage">
+      <div class="left-side">
+        <ItemDesc v-bind:name="item.name"
+                  v-bind:description="item.description"/>
+      </div>
+      <div class="right-side">
+        <ItemChoices v-bind:itemId="id" v-if="!StoreStateAdmin"/>
+      </div>
     </div>
-    <div class="grid-item-2">
-      <ItemChoices v-bind:itemId="id" v-if="!StoreStateAdmin"/>
-      <UserItemVotes v-bind:itemId="id" v-if="StoreStateAdmin"/>
-    </div>
-  </div>
 </template>
 
 <script lang="ts">
@@ -23,7 +23,6 @@ import UserItemVotes from "@/components/UserItemVotes.vue";
 export default defineComponent({
   name: "ItemView",
   components: {
-    UserItemVotes,
     ItemDesc,
     ItemChoices,
   },
@@ -53,13 +52,19 @@ export default defineComponent({
 
 <style scoped lang="scss">
 
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.itemPage {
+  display: flex;
+  justify-content: flex-start;
+}
+.left-side {
+  max-width: 65%;
+  margin-left: 2vw;
+}
+.right-side {
+  min-width: 35%;
+  margin-left: 2vw;
+  margin-right: 2vw;
 }
 
-.grid-item-2 {
-  padding-top: 110px;
-}
 
 </style>

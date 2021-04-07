@@ -1,5 +1,5 @@
 <template>
-  <p>Gjenstander som skal doneres</p>
+  <h2>Gjenstander som skal doneres</h2>
   <DonateList v-bind:id="id"/>
 </template>
 

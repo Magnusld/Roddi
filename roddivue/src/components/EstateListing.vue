@@ -1,17 +1,17 @@
 <template>
-  <div>
-    <router-link style="color:black; font-size: large"
-                   class="title"
-                   :to="'/estate/' + id"
-    >
-        {{name}}
-      </router-link>
-  </div>
+  <router-link style="color:black; font-size: large"
+                 class="title"
+                 :to="'/estate/' + id">
+    <Button class="p-button-primary p-button-raised">
+      {{name}}
+    </Button>
+    </router-link>
 </template>
 
 <script lang="ts">
 import {defineComponent} from "vue";
 import Card from "primevue/card";
+import Button from "primevue/button";
 
 export default defineComponent({
   name: "EstateListing",
@@ -30,6 +30,7 @@ export default defineComponent({
     },
   },
   components: {
+    Button
   },
   setup() {
     return {
@@ -39,5 +40,9 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-
+a{
+  text-decoration: none;
+  text-align: center;
+  margin: 8px;
+}
 </style>

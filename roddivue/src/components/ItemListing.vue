@@ -1,26 +1,21 @@
 <template>
-  <Card>
-    <template #subtitle>
-      <router-link style="color:black"
-                   class="subtitle"
-                   :to="'/item/' + id">
-        {{name}}
-      </router-link>
-    </template>
-    <template #content>
-      {{description}}
-    </template>
-  </Card>
+  <router-link style="color:black"
+                 class="subtitle"
+                 :to="'/item/' + id">
+  <Button class="p-button-secondary p-button-raised" style="font-size: large">
+    {{name}}
+  </Button>
+  </router-link>
 </template>
 
 <script lang="ts">
 import {defineComponent} from "vue";
-import Card from "primevue/card";
+import Button from "primevue/button";
 
 export default defineComponent({
   name: "ItemListing",
   components: {
-    Card
+    Button
   },
   props: {
     key: {
@@ -48,5 +43,14 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-
+button{
+  width: 100%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  display: block;
+}
+a{
+  text-decoration: none;
+  text-align: center;
+}
 </style>

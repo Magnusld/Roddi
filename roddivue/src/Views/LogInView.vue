@@ -1,6 +1,10 @@
 <template>
   <div class="p-d-flex">
-    <img src="../assets/RODDI-logo.png">
+    <Card class="logocard">
+      <template #content>
+        <img src="../assets/RODDI-logo-2.png">
+      </template>
+    </Card>
     <LogInPage v-if="mode === 'login'"/>
     <SignUpPage v-if="mode === 'signup'" />
   </div>
@@ -10,12 +14,14 @@
 import { defineComponent } from "vue"
 import LogInPage from "@/components/LogInPage.vue";
 import SignUpPage from "@/components/SignUpPage.vue";
+import Card from "primevue/card";
 
 export default defineComponent({
   name: "LogInView",
   components: {
     SignUpPage,
-    LogInPage
+    LogInPage,
+    Card
   },
   props: {
     mode: {
@@ -30,6 +36,7 @@ export default defineComponent({
 
 .p-d-flex {
   justify-content: center;
+  margin-top: 3vh;
 }
 
 </style>

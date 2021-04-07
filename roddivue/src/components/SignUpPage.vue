@@ -22,7 +22,7 @@
           </div>
         </div>
         <div class="ButtonBar">
-          <Button type="submit" class="p-button-text">Opprett ny bruker</Button>
+          <Button type="submit" class="p-button-raised">Opprett ny bruker</Button>
         </div>
       </form>
     </template>

@@ -1,5 +1,5 @@
 <template>
-    <h2>{{estate.name}}</h2>
+  <h1>Oversikt over: {{estate.name}}</h1>
     <div class="estatePage">
       <div class="left-side">
           <Card class="right-side-cards">
@@ -93,9 +93,11 @@ export default defineComponent({
 }
 .left-side {
   max-width: 65%;
+  margin-left: 2vw;
 }
 .right-side {
   min-width: 35%;
+  margin-right: 2vw;
 }
 .cards {
   min-height: 500px;

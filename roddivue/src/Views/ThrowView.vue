@@ -1,5 +1,5 @@
 <template>
-  <p>Gjenstander som skal kastes</p>
+  <h2>Gjenstander som skal kastes</h2>
   <ThrowList v-bind:id="id"/>
 </template>
 
