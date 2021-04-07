@@ -26,8 +26,8 @@
 <script lang="ts">
 import {defineComponent, PropType} from "vue";
 import Button from "primevue/button";
-import {SettlementItemResponse} from "@/client/types";
-import {getAllSettlementItems} from "@/client/settlement";
+import {ItemResponse} from "@/client/types";
+import {getAllItems} from "@/client/item";
 
 
 export default defineComponent({
@@ -39,15 +39,15 @@ export default defineComponent({
       },
       itemList: {
         default: [],
-        type: Array as PropType<SettlementItemResponse[]>
+        type: Array as PropType<ItemResponse[]>
       },
 
   },
   async setup(props) {
     // Lage lista over items
-    const items = new Array<SettlementItemResponse>();
+    const items = new Array<ItemResponse>();
       try {
-        await getAllSettlementItems(props.id).then(promise => {
+        await getAllItems(props.id).then(promise => {
             // Må få inn lista over items
             for (let i = 0; i < promise.length; i++) {
               items.push(promise[i]);

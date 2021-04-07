@@ -32,6 +32,7 @@ export interface EstateResponse {
     items: ItemResponse[] | null;
 }
 
+
 export interface NewItemRequest {
     name: string;
     value: number;
@@ -44,6 +45,8 @@ export interface ItemResponse {
     name: string;
     value: number;
     description: string;
+    owner?: string | null;
+    throwDonate?: boolean | null;
 }
 
 
@@ -55,14 +58,6 @@ export interface ItemDisplay {
     userPriority: any;
 }
 
-export interface SettlementItemResponse {
-    itemId: number;
-    name: string;
-    value: number;
-    description: string;
-    owner: string;
-    throwDonate: Boolean;
-}
 
 export interface NewUserItemVoteRequest {
     userId: number;

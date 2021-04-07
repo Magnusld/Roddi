@@ -82,16 +82,25 @@ const router = createRouter({
             path: "/settlement/:id",
             name: "Oppgjør",
             component: SettlementView,
+            props: route => ({
+                id: +route.params.id
+            })
         },
         {
             path: "/throw/:id",
             name: "Kastet",
             component: ThrowView,
+            props: route => ({
+                id: +route.params.id
+            })
         },
         {
             path: "/donate/:id",
             name: "Donert",
             component: DonateView,
+            props: route => ({
+                id: +route.params.id
+            })
         },
         {
             path: "/priorities",

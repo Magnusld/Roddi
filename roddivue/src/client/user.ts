@@ -1,16 +1,15 @@
 import axios from "axios";
 import {EstateResponse, UserResponse} from "@/client/types";
 
-export async function getAllEstateUsers(estateId: number): Promise<UserResponse[]> {
-    /*
-    let users: UserResponse[]
-    await axios.get('api/estates/' + estateId).then(response => {
-        console.log(response)
-    })
-    return users!
-     */
+export async function getAllUsers(estateId: number, settled=false): Promise<UserResponse[]> {
     let estateUserIDs = new Array<number>()
-    await axios.get('api/estates/' + estateId).then(response => {
+    let url
+    if(settled){
+        url = "settlements"
+    } else{
+        url = "estates"
+    }
+    await axios.get('api/'+url+'/' + estateId).then(response => {
             const users = {
                 participants: response.data.participants,
             }
@@ -32,6 +31,7 @@ export async function getAllEstateUsers(estateId: number): Promise<UserResponse[
     return estateUsers
 
 }
+
 
 export async function getUserById(userId: number): Promise<UserResponse> {
     let user: UserResponse

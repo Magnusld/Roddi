@@ -13,7 +13,7 @@ import SettlementTitle from "@/components/SettlementTitle.vue";
 import SettlementOverview from "@/components/SettlementOverview.vue";
 import SettlementThrow from "@/components/SettlementThrow.vue";
 import {EstateResponse} from "@/client/types";
-import {getEstateById} from "@/client/estate";
+import {getSettlementById} from "@/client/settlement";
 
 export default defineComponent({
   name: "OppgjørView", // name should in most cases be the same as the file name
@@ -25,12 +25,11 @@ export default defineComponent({
   },
 
   // Kanskje ikke nødvendig?
- /*
-  async setup(props) {
 
+  async setup(props) {
     const estate: EstateResponse = {id: 0, name: '', items: null, participants: null}
     try {
-      await getEstateById(props.id).then(promise => {
+      await getSettlementById(props.id).then(promise => {
         estate.id = promise.id
         estate.name = promise.name
         estate.items = promise.items
@@ -45,7 +44,7 @@ export default defineComponent({
     }
 
   },
-  */
+
 
   components: { // add the components that the view should show
     SettlementTitle,

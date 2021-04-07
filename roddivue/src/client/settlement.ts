@@ -1,7 +1,7 @@
 import axios from "axios";
-import {SettlementItemResponse, ItemResponse, EstateResponse} from "@/client/types";
-import {getAllEstateUsers} from "@/client/user";
-import {getAllEstateItems} from "@/client/item";
+import {ItemResponse, EstateResponse} from "@/client/types";
+import {getAllUsers} from "@/client/user";
+import {getAllItems} from "@/client/item";
 
 export async function getAllSettlements(): Promise<EstateResponse[]> {
     const estates = new Array<EstateResponse>()
@@ -32,29 +32,11 @@ export async function getSettlementById(id: number): Promise<EstateResponse> {
         }
         estateResponse = estate
     })
-    await getAllEstateUsers(estateResponse!.id).then(response => {
+    await getAllUsers(estateResponse!.id, true).then(response => {
         estateResponse.participants = response
     })
-    await getAllEstateItems(estateResponse!.id).then(response => {
+    await getAllItems(estateResponse!.id).then(response => {
         estateResponse.items = response
     })
     return estateResponse!
-}
-
-export async function getAllSettlementItems(estateId: number): Promise<SettlementItemResponse[]> {
-    const estateItems = new Array<SettlementItemResponse>()
-    await axios.get('api/items/?estateID=' + estateId).then(response => {
-        for (let i = 0; i < response.data.length; i++) {
-            const item: SettlementItemResponse = {
-                itemId: response.data[i].id,
-                name: response.data[i].name,
-                value: response.data[i].value,
-                description: response.data[i].description,
-                owner: response.data[i].owner,
-                throwDonate: response.data[i].throwDonate
-            }
-            estateItems.push(item)
-        }
-    })
-    return estateItems
 }
