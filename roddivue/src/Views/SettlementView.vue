@@ -10,7 +10,7 @@
       <Column field="name" :header="user.userName"/>
     </DataTable>
   </div>
-  <SettlementThrow/>
+  <SettlementThrow v-bind:id="id"/>
 </template>
 
 
