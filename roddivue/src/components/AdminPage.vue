@@ -13,7 +13,7 @@
       </div>
       <div class="toggleButtons">
       <Button label="Large" icon="pi pi-check" class="p-button" @click="swapSettleState">
-        SettleEstate
+        Gjør opp Oppgjør
       </Button>
       </div>
     </div>
