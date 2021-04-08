@@ -6,11 +6,3 @@ cd roddivue && yarn install && yarn serve
 ```
 Dersom man gjør endringer på kode eller legger til kode i roddivue
 mappa, husk å linte, se "Lints and fixes"
-
-
-### Lints and fixes files
-Skal linte før man commiter endringer i koden, for å overholde codestyle
-```
-yarn lint
-```
-
