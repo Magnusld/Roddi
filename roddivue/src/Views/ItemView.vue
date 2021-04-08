@@ -3,7 +3,8 @@
     <div class="itemPage">
       <div class="left-side">
         <ItemDesc v-bind:name="item.name"
-                  v-bind:description="item.description"/>
+                  v-bind:description="item.description"
+                  v-bind:value="item.value"/>
       </div>
       <div class="right-side">
         <ItemChoices v-bind:itemId="id" v-if="!StoreStateAdmin"/>

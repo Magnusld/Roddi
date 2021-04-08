@@ -22,8 +22,7 @@
       </template>
         <template #content>
             <div class = "Descs">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
-            quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
+            {{value}}kr
             </div>
         </template>
 </Card>
@@ -50,6 +49,10 @@ export default defineComponent({
     description: {
       type: String,
       default: ' '
+    },
+    value: {
+      type: Number,
+      default: 0
     }
   },
   setup() { //add code for setup if needed
